@@ -1,0 +1,33 @@
+#ifndef __IAP_H_
+#define __IAP_H_
+
+/*----------------------------------------------------------------------------------------------*/
+/* function prototypes                                                                          */
+/*----------------------------------------------------------------------------------------------*/
+
+/*==============================================================================================*/
+/* constant definitions                                                                         */
+/*==============================================================================================*/
+
+
+/*----------------------------------------------------------------------------------------------*/
+/* switch variable for conditional compiling                                                    */
+/* (comment out if backup not required, but please be careful                                   */
+/* and take necessary countermeasures in your application)                                      */
+/*----------------------------------------------------------------------------------------------*/
+#define IAP_APROM 0x00
+#define IAP_UniqueID 0x01
+#define IAP_EEPROM 0x02
+#define IAP_LDROM 0x03          //只有APROM和EEPROM允许IAP写操作
+/*----------------------------------------------------------------------------------------------*/
+/* user function prototypes                                                                    */
+/*----------------------------------------------------------------------------------------------*/
+#define BLOCK_LENGTH    32
+#define IAP_FLASH_START_ADDR	0X3E00//last0.5K
+#define IAP_AREA_VALUE	IAP_EEPROM
+
+
+extern unsigned char IAP_eepromSaveData(unsigned char *WByte, unsigned char NumByte);
+extern void IAP_eepromRestoreData(unsigned char *dataPtr, unsigned char NumByte);
+
+#endif

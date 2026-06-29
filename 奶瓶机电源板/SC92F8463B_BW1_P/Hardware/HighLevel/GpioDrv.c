@@ -1,0 +1,100 @@
+/**
+ *******************************************************************************
+ * Copyright (c) 20250423
+ *  
+ * @file    GpioDrv.c
+ * @author  lianggaosang@qq.com
+ * @brief   OK
+ *
+ *******************************************************************************
+ */
+ 
+/*
+*******************************************************************************
+**  Include files
+*******************************************************************************
+*/
+#include "Hardware_Config.h"
+#include "GpioDrv.h"
+
+#ifdef SC92F8463B_ENABLED
+
+const Gpio_InitTypeDef code tPorts[END_PIN] = {
+		#if NEWTYPE1
+			// {PORT1, GPIO_PIN_2, GPIO_MODE_RX, GPIO_NO_PULL},//PIN07_P12_tCK,//RX0
+			// {PORT1, GPIO_PIN_3, GPIO_MODE_TX, GPIO_NO_PULL},//PIN08_P13_tDIO,//TX0
+			{PORT1, GPIO_PIN_5, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN10_P15_PS//OUTPUT
+			{PORT1, GPIO_PIN_6, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN11_P16_HEAT//OUTPUT
+			{PORT1, GPIO_PIN_7, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN12_P17_PTC//OUTPUT
+			{PORT2, GPIO_PIN_7, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN13_P27_INLET//OUTPUT
+			// {PORT2, GPIO_PIN_6, GPIO_MODE_PWM, GPIO_NO_PULL},//PIN14_P26_BUZ//PWM4
+			//********************************
+			// {PORT2, GPIO_PIN_5, GPIO_MODE_ADC, GPIO_NO_PULL},//PIN15_P25_NTC//AIN3
+			{PORT2, GPIO_PIN_4, GPIO_MODE_INPUT, GPIO_PULL_UP},//PIN16_P24_DOOR//INPUT//上拉
+			{PORT2, GPIO_PIN_3, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN17_P23_LED//OUTPUT
+			// {PORT2, GPIO_PIN_1, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN19_P21//RX1
+			// {PORT2, GPIO_PIN_0, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN20_P20//TX1
+			{PORT0, GPIO_PIN_7, GPIO_MODE_INPUT, GPIO_PULL_UP},//PIN21_P07_FM//INPUT//无上拉电阻，内部弱上拉(INT23)
+			{PORT0, GPIO_PIN_6, GPIO_MODE_INPUT, GPIO_PULL_UP},//PIN22_P06_FAN_FB//INPUT//有上拉电阻(INT22)
+			{PORT0, GPIO_PIN_5, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN23_P05_FAN//OUTPUT
+			{PORT0, GPIO_PIN_4, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN24_P04_INLETPUMP//OUTPUT
+			{PORT0, GPIO_PIN_0, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN28_P00_WP//OUTPUT
+		#else
+			{PORT5, GPIO_PIN_1, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN04_P51_HEAT//OUTPUT
+			{PORT5, GPIO_PIN_0, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN05_P50_PTC//OUTPUT
+			{PORT1, GPIO_PIN_1, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN06_P11_PS//OUTPUT
+			// {PORT1, GPIO_PIN_2, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN07_P12_tCK,//RX0
+			// {PORT1, GPIO_PIN_3, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN08_P13_tDIO,//TX0
+			// {PORT1, GPIO_PIN_4, GPIO_MODE_INPUT, GPIO_NO_PULL},//PIN09_P14_NTC//AIN9,
+			{PORT2, GPIO_PIN_7, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN13_P27_INLET//OUTPUT
+			{PORT2, GPIO_PIN_6, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN14_P26_WP//OUTPUT
+			//********************************
+			{PORT2, GPIO_PIN_5, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN15_P25_FAN_IN//OUTPUT
+			{PORT2, GPIO_PIN_4, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN16_P24_UV//OUTPUT
+			{PORT2, GPIO_PIN_3, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN17_P23_INLETPUMP//OUTPUT,
+			{PORT2, GPIO_PIN_2, GPIO_MODE_INPUT, GPIO_PULL_UP},//PIN18_P22_FAN_IN_FB//INPUT
+			// {PORT2, GPIO_PIN_1, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN19_P21//RX1
+			// {PORT2, GPIO_PIN_0, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN20_P20//TX1
+			{PORT0, GPIO_PIN_7, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN21_P07_FAN_OUT//OUTPUT
+			{PORT0, GPIO_PIN_6, GPIO_MODE_INPUT, GPIO_PULL_UP},//PIN22_P06_FAN_OUT_FB//INPUT
+			{PORT0, GPIO_PIN_5, GPIO_MODE_INPUT, GPIO_NO_PULL},//PIN23_P05_FM_IN//INPUT
+			{PORT0, GPIO_PIN_4, GPIO_MODE_INPUT, GPIO_NO_PULL},//PIN24_P04_FM_OUT//INPUT
+			// {PORT0, GPIO_PIN_2, GPIO_MODE_OUTPUT, GPIO_NO_PULL},//PIN26_P02_MOVEPUMP//OUTPUT
+			{PORT0, GPIO_PIN_1, GPIO_MODE_INPUT, GPIO_PULL_UP},//PIN27_P01_DOOR//INPUT//上拉
+			// {PORT0, GPIO_PIN_0, GPIO_MODE_PWM, GPIO_NO_PULL},//PIN28_P00_BUZ//PWM0
+		#endif
+};
+#endif
+
+void InitPorts(void)
+{
+	int i = 0;
+#ifdef SC92F8463B_ENABLED
+	for (i = 0; i < END_PIN; i++)
+	{
+		Gpio_Init(&tPorts[i]);
+	}	
+	//SC92F8462B_NIO_Init(); //未引出IO口//全引脚引出
+	IOHCON = 0x00;//负载每个PORT的高低四位
+#endif
+}
+
+void SetPin(ePinName pin, unsigned char status)
+{
+	Gpio_Set(&tPorts[pin], status);		
+}
+
+unsigned char GetPin(ePinName pin)
+{
+	unsigned char status = OFF;
+	
+	status = Gpio_Get(&tPorts[pin]);	
+
+	return status;
+}
+
+void ReallocatePin(ePinName pin)
+{
+	Gpio_Init(&tPorts[pin]);			
+}
+

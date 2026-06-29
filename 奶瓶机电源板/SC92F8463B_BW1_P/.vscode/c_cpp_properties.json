@@ -1,0 +1,54 @@
+{
+    "configurations": [
+        {
+            "name": "Target 1",
+            "includePath": [
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Hardware",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Hardware\\HighLevel",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\User",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Hardware\\LowLevel\\SinOne\\SC92F8463",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\H",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\c",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Middleware",
+                "d:\\K\\C51\\INC",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Hardware\\LowLevel\\SinOne\\SC92F8463\\devs",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Middleware\\Buzzer",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Middleware\\WashDish",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Middleware\\LoadDrive",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Middleware\\ReadSwitch",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Middleware\\Initialization",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Middleware\\Temperatures",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Middleware\\TicketHandling",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机电源板\\SC92F8463B_BW1_P\\Middleware\\IoUart_Simulate"
+            ],
+            "defines": [
+                "SC92F8463B_ENABLED",
+                "__C51__",
+                "__VSCODE_C51__",
+                "reentrant=",
+                "compact=",
+                "small=",
+                "large=",
+                "data=",
+                "idata=",
+                "pdata=",
+                "bdata=",
+                "xdata=",
+                "code=",
+                "bit=char",
+                "sbit=char",
+                "sfr=char",
+                "sfr16=int",
+                "sfr32=int",
+                "interrupt=",
+                "using=",
+                "_at_=",
+                "_priority_=",
+                "_task_="
+            ],
+            "intelliSenseMode": "${default}"
+        }
+    ],
+    "version": 4
+}
