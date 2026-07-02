@@ -71,10 +71,10 @@
             "name": "Target 1",
             "includePath": [
                 "d:\\K\\C51\\INC",
-                "d:\\J\\工程文件\\版本0\\奶瓶机显示板\\SC95F8617B_8616B_BW1_R _NEWFORM0\\SC95F8617B_8616B_BW1_R_NEWFORM0",
-                "d:\\J\\工程文件\\版本0\\奶瓶机显示板\\SC95F8617B_8616B_BW1_R _NEWFORM0\\SC95F8617B_8616B_BW1_R_NEWFORM0\\c",
-                "d:\\J\\工程文件\\版本0\\奶瓶机显示板\\SC95F8617B_8616B_BW1_R _NEWFORM0\\SC95F8617B_8616B_BW1_R_NEWFORM0\\CRC_Lib",
-                "d:\\J\\工程文件\\版本0\\奶瓶机显示板\\SC95F8617B_8616B_BW1_R _NEWFORM0\\SC95F8617B_8616B_BW1_R_NEWFORM0\\IAP_Lib"
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机显示板\\SC95F8617B_8616B_BW1_R _NEWFORM0\\SC95F8617B_8616B_BW1_R_NEWFORM0",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机显示板\\SC95F8617B_8616B_BW1_R _NEWFORM0\\SC95F8617B_8616B_BW1_R_NEWFORM0\\c",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机显示板\\SC95F8617B_8616B_BW1_R _NEWFORM0\\SC95F8617B_8616B_BW1_R_NEWFORM0\\CRC_Lib",
+                "d:\\J\\工程文件\\verb_BWjiwenVersion0_Local\\奶瓶机显示板\\SC95F8617B_8616B_BW1_R _NEWFORM0\\SC95F8617B_8616B_BW1_R_NEWFORM0\\IAP_Lib"
             ],
             "defines": [
                 "__C51__",

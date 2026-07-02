@@ -4,7 +4,7 @@
  * 
  * @file    IapAddrDevice.h
  * @author  lianggaosang@qq.com
- * @brief   循环使用EEPROM空间模块//20250403 SOC
+ * @brief   寰幆浣跨敤EEPROM绌洪棿妯″潡//20250403 SOC
  *
  *******************************************************************************
  */
@@ -18,9 +18,9 @@
 #include "EepromDrv.h"
 #include "product_config.h"
 
-#define IAP_SECTOR_NUM       12//可用扇区个数
-#define IAP_SECTOR_SIZE      512//扇区大小
-#define IAP_REMEBER_LOCETION 2//拓展地址
+#define IAP_SECTOR_NUM       12//鍙敤鎵囧尯涓暟
+#define IAP_SECTOR_SIZE      512//鎵囧尯澶у皬
+#define IAP_REMEBER_LOCETION 2//鎷撳睍鍦板潃
 #define IAP_START_ADDRESS  0x0000
 
 
