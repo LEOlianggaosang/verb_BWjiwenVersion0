@@ -42,6 +42,12 @@
 #endif
 
 #define KEY_CODE_NONE						0
+
+/* Key timing count define (10ms tick) -------------------------------------- */
+#define TK_CNT_RELEASE_DEBOUNCE      2    /* 达到释放消抖阈值 20ms */
+#define TK_CNT_POWER_LONG_EARLY      50   /* power key early long-press threshold 0.5s */
+#define TK_CNT_LONG                  300  /* 按键保持达到长按阈值 3s */
+#define TK_CNT_LONG_LONG             500  /* 按键保持达到久按阈值 5s */
 /* Key action type define ----------------------------------------------------*/
 
 typedef enum

@@ -43,11 +43,11 @@ void TK_ReadValue(void)
  */
 /* Monitor the K9key action and call the key action deal function */
 static void TK_MonitorAction(void)
-{//按键动作改变函数主循环20ms调用一次
+{//按键动作改变函数主循环10ms调用一次
     if (Key_Code != keyCodeBuf)//按键改变 松开有效
     {
-        if (((keyCodeBuf == 0)&&(keyStateHoldCount >= 2))&&(Key_ActionType == KEY_ACTION_UNDEFINE))
-        {//40ms
+		if (((keyCodeBuf == 0)&&(keyStateHoldCount >= TK_CNT_RELEASE_DEBOUNCE))&&(Key_ActionType == KEY_ACTION_UNDEFINE))
+				{//达到释放消抖阈值
 			TK_TypeAction();
         }
 		else
@@ -55,6 +55,7 @@ static void TK_MonitorAction(void)
 			Key_Code = keyCodeBuf;
 			Key_ActionType = KEY_ACTION_UNDEFINE;//按键动作识别中
 		}
+		keyStateHoldCount = 0;//20260702 执行建议
     }
     else//按键保持 按下有效
     {
@@ -66,7 +67,7 @@ static void TK_MonitorAction(void)
         else//有按键
         {
 			keyStateHoldCount ++;
-			if((50 == keyStateHoldCount)&&KEY_POWER)
+			if((TK_CNT_POWER_LONG_EARLY == keyStateHoldCount)&&KEY_POWER)
 			{
 				if((STATE_WASHING != Work_CurrentState)&&(STATE_ERROR != Work_CurrentState))
 				{
@@ -74,15 +75,15 @@ static void TK_MonitorAction(void)
 				}
 			}
 
-			if((keyStateHoldCount >= 300)&&(!KEY_IS_RELEASED))
+			if((keyStateHoldCount >= TK_CNT_LONG)&&(!KEY_IS_RELEASED))
 			{
 				//  Buzz_SetType(BUZZ_KEY_VALID);//长按蜂鸣提示
-				Key_ActionType = KEY_ACTION_LONG;//长按3s生效 判断释放补丁 LONG类型只生效一次
+				Key_ActionType = KEY_ACTION_LONG;//达到长按阈值后生效，释放补丁，LONG类型只生效一次
 			}
 
-			if (keyStateHoldCount >= 500)
-			{//按键保持5s 
-				keyStateHoldCount = 500;
+			if (keyStateHoldCount >= TK_CNT_LONG_LONG)
+			{//按键保持达到久按阈值
+				keyStateHoldCount = TK_CNT_LONG_LONG;
 				if((!KEY_IS_RELEASED))
 				{
 					//  Buzz_SetType(BUZZ_KEY_VALID);//长按蜂鸣提示
@@ -97,18 +98,18 @@ static void TK_TypeAction(void)
 {
 	// if(Key_ActionType == KEY_ACTION_UNDEFINE)
 	// {
-		if (keyStateHoldCount < 300)
+		if (keyStateHoldCount < TK_CNT_LONG)
 		{
 			Key_ActionType = KEY_ACTION_SHORT;//短按
 			keyStateHoldCount = 0;
 		}
  	// else if ((keyStateHoldCount > 150)||(keyStateHoldCount < 250))
- 	// {//按键保持3s 
+	// {//按键保持达到长按阈值
    	// Key_ActionType = KEY_ACTION_LONG;//长按
 	// 		keyStateHoldCount = 0;
  	// }
 	// 	if (keyStateHoldCount >= 250)
-	// 	{//按键保持5s 
+	// 	{//按键保持达到久按阈值
 	// 		Key_ActionType = KEY_ACTION_LONG_LONG;//久按
 	// 		keyStateHoldCount = 0;
 	// 	}
