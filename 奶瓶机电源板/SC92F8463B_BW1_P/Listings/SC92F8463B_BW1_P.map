@@ -1,4 +1,4 @@
-LX51 LINKER/LOCATER V4.66.41.0                                                          06/24/2026  18:28:47  PAGE 1
+LX51 LINKER/LOCATER V4.66.41.0                                                          07/04/2026  17:49:19  PAGE 1
 
 
 LX51 LINKER/LOCATER V4.66.41.0, INVOKED BY:
@@ -67,7 +67,7 @@ INPUT MODULES INCLUDED:
   .\Objects\TicketHandling.obj (TICKETHANDLING)
          COMMENT TYPE 0: C51 V9.54
   .\Objects\IoUart_Simulate.obj (IOUART_SIMULATE)
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 2
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 2
 
 
          COMMENT TYPE 0: C51 V9.54
@@ -100,7 +100,7 @@ BASE        START       END         USED      MEMORY CLASS
 C:000000H   C:000000H   C:00FFFFH   003230H   CODE
 I:000000H   I:000000H   I:0000FFH   000001H   IDATA
 X:000000H   X:000000H   X:00FFFFH   0001AFH   XDATA
-C:000000H   C:000000H   C:00FFFFH   0000D6H   CONST
+C:000000H   C:000000H   C:00FFFFH   0000DEH   CONST
 I:000020H.0 I:000020H.0 I:00002FH.7 000000H.2 BIT
 I:000000H   I:000000H   I:00007FH   000008H   DATA
 
@@ -135,7 +135,7 @@ START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
 00002EH   000039H   00000CH   BYTE   UNIT     CODE           ?PR?INIT_TEMPERATURES?TEMPERATURES
 00003AH   00003AH   000001H   BYTE   UNIT     CODE           ?PR?DELAY?TIMERDRV
 00003BH   00003DH   000003H   BYTE   OFFS..   CODE           ?SERIAL?0003B
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 3
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 3
 
 
 00003EH   000052H   000015H   BYTE   UNIT     CODE           ?PR?TX_RELOAD_RX?IOUART_SIMULATE
@@ -203,7 +203,7 @@ START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
 002EC2H   002EE5H   000024H   BYTE   UNIT     CODE           ?PR?_UART_ISRECEIVEDDATADONE?SERIALDRV
 002EE6H   002F08H   000023H   BYTE   UNIT     CODE           ?PR?_UART_SENDDATA?SERIALDRV
 002F09H   002F2BH   000023H   BYTE   UNIT     CODE           ?PR?_UART_RECEIVEDATA?SERIALDRV
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 4
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 4
 
 
 002F2CH   002F4AH   00001FH   BYTE   UNIT     CODE           ?PR?_GETPIN?GPIODRV
@@ -269,9 +269,9 @@ START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
 003227H   003229H   000003H   BYTE   UNIT     CODE           ?PR?INT1_STOP?EXTERNALINTERRUPT
 00322AH   00322CH   000003H   BYTE   UNIT     CODE           ?PR?DISABLEINTERRUPT?SYSTEMDRV
 00322DH   00322FH   000003H   BYTE   UNIT     CODE           ?PR?ENABLEINTERRUPT?SYSTEMDRV
-003230H   0032D9H   0000AAH   BYTE   UNIT     CONST          ?CO?TEMPERATURES
-0032DAH   003305H   00002CH   BYTE   UNIT     CONST          ?CO?GPIODRV
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 5
+003230H   0032E1H   0000B2H   BYTE   UNIT     CONST          ?CO?TEMPERATURES
+0032E2H   00330DH   00002CH   BYTE   UNIT     CONST          ?CO?GPIODRV
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 5
 
 
 
@@ -339,7 +339,7 @@ SYSTEMINIT/SYSTEMINIT                       ----- -----
 INITPORTS/GPIODRV                           0189H 018AH
   +--> ?CO?GPIODRV
   +--> _GPIO_INIT/GPIO
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 6
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 6
 
 
 
@@ -407,7 +407,7 @@ INIT_TICKETHANDLING/TICKETHANDLING          ----- -----
 TICKETHANDLING/TICKETHANDLING               ----- -----
   +--> FLOWMSCANSUB/TICKETHANDLING
   +--> FEEDBACKSUB/TICKETHANDLING
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 7
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 7
 
 
 
@@ -475,7 +475,7 @@ _UART_RECEIVEDATA/SERIALDRV                 0189H 018EH
   +--> _UART_HARDWARE_RECEIVEDATA/SERIAL
 
 _UART_HARDWARE_RECEIVEDATA/SERIAL           018FH 0196H
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 8
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 8
 
 
   +--> _UART0_RECEIVEDATA/SERIAL
@@ -543,7 +543,7 @@ AD_COMPARATORON/AD                          ----- -----
 
 AD_STOP/AD                                  ----- -----
 
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 9
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 9
 
 
 _ADC_AVERAGEVALUE/ADDRV                     0189H 0190H
@@ -611,7 +611,7 @@ _UART_SENDDATA/SERIALDRV                    0189H 018EH
 
 _UART_HARDWARE_SENDDATA/SERIAL              018FH 0196H
   +--> _UART0_SENDDATA/SERIAL
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 10
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 10
 
 
   +--> _UART1_SENDDATA/SERIAL
@@ -679,7 +679,7 @@ EX2/EXTERNALINTERRUPT                       ----- -----
 
 
 PUBLIC SYMBOLS OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 11
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 11
 
 
 
@@ -747,7 +747,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
 *SFR* 000000D0H.6 DATA     BIT       AC
 *SFR* 000000E0H   DATA     BYTE      ACC
       010031DCH   CODE     ---       AD_ComparatorOff
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 12
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 12
 
 
       010031D8H   CODE     ---       AD_ComparatorOn
@@ -815,7 +815,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       020000DCH   XDATA    ---       gpUART1TxAddress
       0200017AH   XDATA    WORD      gSimulateUartRxLen
       0200017CH   XDATA    WORD      gSimulateUartTxLen
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 13
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 13
 
 
       020000C9H   XDATA    WORD      gUART0RxCnt
@@ -883,7 +883,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
 *SFR* 00000080H.4 DATA     BIT       P04
 *SFR* 00000080H.5 DATA     BIT       P05
 *SFR* 00000080H.6 DATA     BIT       P06
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 14
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 14
 
 
 *SFR* 00000080H.7 DATA     BIT       P07
@@ -951,7 +951,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
 *SFR* 00000098H.5 DATA     BIT       SM2
 *SFR* 00000081H   DATA     BYTE      SP
 *SFR* 0000009DH   DATA     BYTE      SSCON0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 15
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 15
 
 
 *SFR* 0000009EH   DATA     BYTE      SSCON1
@@ -997,7 +997,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010031CBH   CODE     ---       TM2_Stop
 *SFR* 0000008EH   DATA     BYTE      TMCON
 *SFR* 00000089H   DATA     BYTE      TMOD
-      010032DAH   CONST    ---       tPorts
+      010032E2H   CONST    ---       tPorts
 *SFR* 00000088H.4 DATA     BIT       TR0
 *SFR* 00000088H.6 DATA     BIT       TR1
 *SFR* 000000C8H.2 DATA     BIT       TR2
@@ -1019,7 +1019,7 @@ PUBLIC SYMBOLS OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010031ADH   CODE     ---       UART0IsReceivedDone
       020000C3H   XDATA    BYTE      UART0isSendBuzy
       01002F6AH   CODE     ---       UART1_Init
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 16
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 16
 
 
       010031ECH   CODE     ---       UART1_Start
@@ -1087,7 +1087,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010031D4H   PUBLIC    CODE     ---       AD_Stop
       010031D0H   PUBLIC    CODE     ---       AD_Start
       01003154H   PUBLIC    CODE     ---       AD_Init
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 17
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 17
 
 
       000000FFH   SFRSYM    DATA     BYTE      OPREG
@@ -1155,7 +1155,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000090H.1 SFRSYM    DATA     BIT       P11
       00000080H.2 SFRSYM    DATA     BIT       P02
       000000A0H.1 SFRSYM    DATA     BIT       P21
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 18
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 18
 
 
       00000090H.2 SFRSYM    DATA     BIT       P12
@@ -1223,7 +1223,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000D2H   SFRSYM    DATA     BYTE      PWMCON
       00000088H.6 SFRSYM    DATA     BIT       TR1
       000000B8H.4 SFRSYM    DATA     BIT       IPUART
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 19
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 19
 
 
       000000C8H.2 SFRSYM    DATA     BIT       TR2
@@ -1291,7 +1291,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010031DCH   LINE      CODE     ---       #163
       010031DCH   LINE      CODE     ---       #164
       010031DCH   LINE      CODE     ---       #166
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 20
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 20
 
 
       010031DFH   LINE      CODE     ---       #167
@@ -1359,7 +1359,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000EEH   SFRSYM    DATA     BYTE      EXBH
       000000F3H   SFRSYM    DATA     BYTE      IAPADH
       000000D4H   SFRSYM    DATA     BYTE      PWMDTYA
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 21
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 21
 
 
       000000DCH   SFRSYM    DATA     BYTE      PWMDTYB
@@ -1427,7 +1427,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0000008CH   SFRSYM    DATA     BYTE      TH0
       0000008DH   SFRSYM    DATA     BYTE      TH1
       00000098H.3 SFRSYM    DATA     BIT       TB8
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 22
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 22
 
 
       000000CDH   SFRSYM    DATA     BYTE      TH2
@@ -1495,7 +1495,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01001BEFH   LINE      CODE     ---       #56
       01001BF8H   LINE      CODE     ---       #57
       01001BF9H   LINE      CODE     ---       #59
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 23
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 23
 
 
       01001BF9H   LINE      CODE     ---       #60
@@ -1563,7 +1563,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002633H   LINE      CODE     ---       #139
       01002644H   LINE      CODE     ---       #140
       01002644H   LINE      CODE     ---       #141
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 24
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 24
 
 
       01002644H   LINE      CODE     ---       #142
@@ -1631,7 +1631,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002CECH   LINE      CODE     ---       #220
       01002CECH   LINE      CODE     ---       #221
       01002CECH   LINE      CODE     ---       #222
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 25
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 25
 
 
       01002CECH   LINE      CODE     ---       #223
@@ -1699,7 +1699,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000EDH   SFRSYM    DATA     BYTE      EXBL
       000000C8H.5 SFRSYM    DATA     BIT       RCLK
       000000F2H   SFRSYM    DATA     BYTE      IAPADL
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 26
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 26
 
 
       000000C8H.4 SFRSYM    DATA     BIT       TCLK
@@ -1767,7 +1767,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000098H.7 SFRSYM    DATA     BIT       SM0
       0000008AH   SFRSYM    DATA     BYTE      TL0
       00000098H.6 SFRSYM    DATA     BIT       SM1
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 27
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 27
 
 
       000000CFH   SFRSYM    DATA     BYTE      WDTCON
@@ -1835,7 +1835,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010031E8H   LINE      CODE     ---       #70
       010031EBH   LINE      CODE     ---       #71
       ---         BLOCKEND  ---      ---       LVL=0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 28
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 28
 
 
 
@@ -1903,7 +1903,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000FDH   SFRSYM    DATA     BYTE      CHKSUMH
       000000D5H   SFRSYM    DATA     BYTE      PWMDTY0
       000000EFH   SFRSYM    DATA     BYTE      OPERCON
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 29
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 29
 
 
       000000D6H   SFRSYM    DATA     BYTE      PWMDTY1
@@ -1971,7 +1971,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000B8H.2 SFRSYM    DATA     BIT       IPINT1
       000000A0H.6 SFRSYM    DATA     BIT       P26
       00000090H.7 SFRSYM    DATA     BIT       P17
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 30
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 30
 
 
       0000009DH   SFRSYM    DATA     BYTE      SSCON0
@@ -2039,7 +2039,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000BBH   SFRSYM    DATA     BYTE      INT0R
       000000BDH   SFRSYM    DATA     BYTE      INT1R
       000000C7H   SFRSYM    DATA     BYTE      INT2R
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 31
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 31
 
 
       000000D0H.5 SFRSYM    DATA     BIT       F0
@@ -2107,7 +2107,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       ---         BLOCKEND  ---      ---       LVL=0
 
       010031F0H   BLOCK     CODE     ---       LVL=0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 32
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 32
 
 
       010031F0H   LINE      CODE     ---       #225
@@ -2175,7 +2175,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002A86H   LINE      CODE     ---       #269
       01002A8DH   LINE      CODE     ---       #271
       01002A96H   LINE      CODE     ---       #272
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 33
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 33
 
 
       01002A9FH   LINE      CODE     ---       #273
@@ -2243,7 +2243,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01000830H   LINE      CODE     ---       #420
       0100083BH   LINE      CODE     ---       #421
       0100083BH   LINE      CODE     ---       #422
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 34
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 34
 
 
       0100084CH   LINE      CODE     ---       #423
@@ -2311,7 +2311,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01000552H   LINE      CODE     ---       #579
       01000557H   LINE      CODE     ---       #580
       01000557H   LINE      CODE     ---       #581
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 35
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 35
 
 
       0100055AH   LINE      CODE     ---       #583
@@ -2379,7 +2379,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01000741H   LINE      CODE     ---       #651
       01000741H   LINE      CODE     ---       #652
       01000743H   LINE      CODE     ---       #654
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 36
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 36
 
 
       01000743H   LINE      CODE     ---       #655
@@ -2447,7 +2447,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0100316BH   LINE      CODE     ---       #810
       0100316BH   LINE      CODE     ---       #811
       0100316BH   LINE      CODE     ---       #812
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 37
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 37
 
 
       0100316EH   LINE      CODE     ---       #813
@@ -2515,7 +2515,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002799H   LINE      CODE     ---       #864
       010027B5H   LINE      CODE     ---       #865
       010027B5H   LINE      CODE     ---       #866
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 38
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 38
 
 
       010027B5H   LINE      CODE     ---       #867
@@ -2583,7 +2583,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000EBH   SFRSYM    DATA     BYTE      EXA2
       000000ECH   SFRSYM    DATA     BYTE      EXA3
       000000C8H   SFRSYM    DATA     BIT       CP
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 39
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 39
 
 
       000000C8H.6 SFRSYM    DATA     BIT       EXF2
@@ -2651,7 +2651,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000B8H   SFRSYM    DATA     BIT       IPINT0
       000000A0H.5 SFRSYM    DATA     BIT       P25
       00000090H.6 SFRSYM    DATA     BIT       P16
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 40
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 40
 
 
       00000080H.7 SFRSYM    DATA     BIT       P07
@@ -2719,7 +2719,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000C9H   SFRSYM    DATA     BYTE      T2MOD
       000000C8H   SFRSYM    DATA     BYTE      T2CON
       000000F7H   SFRSYM    DATA     BYTE      EXADH
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 41
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 41
 
 
       000000AEH   SFRSYM    DATA     BYTE      ADCVL
@@ -2787,7 +2787,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0100301BH   LINE      CODE     ---       #116
       0100301BH   LINE      CODE     ---       #118
       0100301BH   LINE      CODE     ---       #119
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 42
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 42
 
 
       0100301BH   LINE      CODE     ---       #121
@@ -2855,7 +2855,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0100000EH   LINE      CODE     ---       #250
       01000010H   LINE      CODE     ---       #251
       01000012H   LINE      CODE     ---       #252
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 43
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 43
 
 
       ---         BLOCKEND  ---      ---       LVL=0
@@ -2923,7 +2923,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010020C8H   LINE      CODE     ---       #399
       010020DBH   LINE      CODE     ---       #401
       010020DDH   LINE      CODE     ---       #402
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 44
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 44
 
 
       010020DFH   LINE      CODE     ---       #403
@@ -2991,7 +2991,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000098H.1 SFRSYM    DATA     BIT       TI
       000000DFH   SFRSYM    DATA     BYTE      PWMDTY5
       000000B8H.1 SFRSYM    DATA     BIT       IPT0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 45
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 45
 
 
       000000DAH   SFRSYM    DATA     BYTE      P5PH
@@ -3059,7 +3059,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000E0H   SFRSYM    DATA     BYTE      ACC
       000000A8H.1 SFRSYM    DATA     BIT       ET0
       00000088H.5 SFRSYM    DATA     BIT       TF0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 46
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 46
 
 
       000000A8H.3 SFRSYM    DATA     BIT       ET1
@@ -3127,7 +3127,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       ---         MODULE    ---      ---       EXTERNALINTERRUPT
       01002C28H   PUBLIC    CODE     ---       EX2
       01002BE3H   PUBLIC    CODE     ---       EX1
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 47
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 47
 
 
       01002B9EH   PUBLIC    CODE     ---       EX0
@@ -3195,7 +3195,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000090H   SFRSYM    DATA     BIT       P10
       00000080H.1 SFRSYM    DATA     BIT       P01
       00000099H   SFRSYM    DATA     BYTE      SBUF
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 48
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 48
 
 
       00000087H   SFRSYM    DATA     BYTE      PCON
@@ -3263,7 +3263,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000098H.5 SFRSYM    DATA     BIT       SM2
       000000CCH   SFRSYM    DATA     BYTE      TL2
       000000D0H.3 SFRSYM    DATA     BIT       RS0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 49
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 49
 
 
       00000088H.4 SFRSYM    DATA     BIT       TR0
@@ -3331,7 +3331,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0100194CH   LINE      CODE     ---       #72
       0100195AH   LINE      CODE     ---       #73
       0100195BH   LINE      CODE     ---       #74
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 50
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 50
 
 
       0100195BH   LINE      CODE     ---       #75
@@ -3399,7 +3399,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002ACDH   LINE      CODE     ---       #188
       01002ACDH   LINE      CODE     ---       #189
       01002AD1H   LINE      CODE     ---       #190
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 51
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 51
 
 
       01002AD1H   LINE      CODE     ---       #192
@@ -3467,7 +3467,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01003221H   LINE      CODE     ---       #254
       01003221H   LINE      CODE     ---       #255
       01003221H   LINE      CODE     ---       #256
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 52
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 52
 
 
       01003223H   LINE      CODE     ---       #257
@@ -3535,7 +3535,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000D8H   SFRSYM    DATA     BYTE      P5
       000000A8H.7 SFRSYM    DATA     BIT       EA
       000000C8H.1 SFRSYM    DATA     BIT       T2
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 53
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 53
 
 
       000000A8H.6 SFRSYM    DATA     BIT       EADC
@@ -3603,7 +3603,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000080H.5 SFRSYM    DATA     BIT       P05
       000000F5H   SFRSYM    DATA     BYTE      IAPDAT
       00000088H   SFRSYM    DATA     BYTE      TCON
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 54
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 54
 
 
       00000089H   SFRSYM    DATA     BYTE      TMOD
@@ -3671,7 +3671,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000091H   SFRSYM    DATA     BYTE      P1CON
       000000C8H.3 SFRSYM    DATA     BIT       EXEN2
       000000BCH   SFRSYM    DATA     BYTE      INT1F
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 55
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 55
 
 
       000000A1H   SFRSYM    DATA     BYTE      P2CON
@@ -3739,7 +3739,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01001E9BH   LINE      CODE     ---       #60
       01001E9BH   LINE      CODE     ---       #61
       01001EB8H   LINE      CODE     ---       #62
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 56
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 56
 
 
       01001EB8H   LINE      CODE     ---       #63
@@ -3756,7 +3756,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       ---         BLOCKEND  ---      ---       LVL=0
 
       ---         MODULE    ---      ---       GPIODRV
-      010032DAH   PUBLIC    CONST    ---       tPorts
+      010032E2H   PUBLIC    CONST    ---       tPorts
       0100311BH   PUBLIC    CODE     ---       _ReallocatePin
       01002F2CH   PUBLIC    CODE     ---       _GetPin
       01002F86H   PUBLIC    CODE     ---       _SetPin
@@ -3807,7 +3807,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000D0H.2 SFRSYM    DATA     BIT       OV
       000000F4H   SFRSYM    DATA     BYTE      IAPADE
       0000009CH   SFRSYM    DATA     BYTE      P0VO
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 57
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 57
 
 
       000000CAH   SFRSYM    DATA     BYTE      RCAP2L
@@ -3875,7 +3875,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000ACH   SFRSYM    DATA     BYTE      ADCCFG1
       00000098H.2 SFRSYM    DATA     BIT       RB8
       000000C8H.7 SFRSYM    DATA     BIT       TF2
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 58
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 58
 
 
       000000AAH   SFRSYM    DATA     BYTE      ADCCFG2
@@ -3943,7 +3943,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002F86H   BLOCK     CODE     ---       LVL=0
       00000007H   SYMBOL    DATA     BYTE      pin
       02000189H   SYMBOL    XDATA    BYTE      status
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 59
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 59
 
 
       01002F86H   LINE      CODE     ---       #82
@@ -4011,7 +4011,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000DDH   SFRSYM    DATA     BYTE      PWMDTY3
       000000A2H   SFRSYM    DATA     BYTE      P2PH
       000000D0H.7 SFRSYM    DATA     BIT       CY
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 60
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 60
 
 
       000000DEH   SFRSYM    DATA     BYTE      PWMDTY4
@@ -4079,7 +4079,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000097H   SFRSYM    DATA     BYTE      IOHCON
       000000F1H   SFRSYM    DATA     BYTE      IAPKEY
       000000CEH   SFRSYM    DATA     BYTE      BTMCON
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 61
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 61
 
 
       000000D1H   SFRSYM    DATA     BYTE      PWMCFG
@@ -4147,7 +4147,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01003204H   LINE      CODE     ---       #23
       01003207H   LINE      CODE     ---       #25
       ---         BLOCKEND  ---      ---       LVL=0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 62
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 62
 
 
 
@@ -4215,7 +4215,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000DAH   SFRSYM    DATA     BYTE      P5PH
       000000B8H.3 SFRSYM    DATA     BIT       IPT1
       000000B8H.5 SFRSYM    DATA     BIT       IPT2
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 63
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 63
 
 
       000000CBH   SFRSYM    DATA     BYTE      RCAP2H
@@ -4283,7 +4283,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000A8H.3 SFRSYM    DATA     BIT       ET1
       000000ABH   SFRSYM    DATA     BYTE      ADCCFG0
       000000B9H   SFRSYM    DATA     BYTE      IP1
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 64
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 64
 
 
       00000088H.7 SFRSYM    DATA     BIT       TF1
@@ -4351,7 +4351,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002955H   LINE      CODE     ---       #41
       01002965H   LINE      CODE     ---       #43
       ---         BLOCKEND  ---      ---       LVL=0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 65
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 65
 
 
 
@@ -4419,7 +4419,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000D0H.6 SFRSYM    DATA     BIT       AC
       0000008FH   SFRSYM    DATA     BYTE      OTCON
       000000D8H   SFRSYM    DATA     BYTE      P5
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 66
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 66
 
 
       000000A8H.7 SFRSYM    DATA     BIT       EA
@@ -4487,7 +4487,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000A0H.3 SFRSYM    DATA     BIT       P23
       00000090H.4 SFRSYM    DATA     BIT       P14
       00000080H.5 SFRSYM    DATA     BIT       P05
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 67
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 67
 
 
       000000F5H   SFRSYM    DATA     BYTE      IAPDAT
@@ -4555,7 +4555,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000B8H.6 SFRSYM    DATA     BIT       IPADC
       000000BAH   SFRSYM    DATA     BYTE      INT0F
       00000091H   SFRSYM    DATA     BYTE      P1CON
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 68
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 68
 
 
       000000C8H.3 SFRSYM    DATA     BIT       EXEN2
@@ -4623,7 +4623,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000D7H   SFRSYM    DATA     BYTE      PWMDTY2
       00000092H   SFRSYM    DATA     BYTE      P1PH
       00000098H   SFRSYM    DATA     BIT       RI
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 69
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 69
 
 
       000000DDH   SFRSYM    DATA     BYTE      PWMDTY3
@@ -4691,7 +4691,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000F6H   SFRSYM    DATA     BYTE      IAPCTL
       000000A9H   SFRSYM    DATA     BYTE      IE1
       000000F0H   SFRSYM    DATA     BYTE      B
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 70
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 70
 
 
       00000097H   SFRSYM    DATA     BYTE      IOHCON
@@ -4759,7 +4759,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0100312EH   BLOCK     CODE     ---       LVL=0
       0100312EH   LINE      CODE     ---       #20
       0100312EH   LINE      CODE     ---       #21
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 71
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 71
 
 
       0100312EH   LINE      CODE     ---       #25
@@ -4827,7 +4827,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0000009CH   SFRSYM    DATA     BYTE      P0VO
       000000CAH   SFRSYM    DATA     BYTE      RCAP2L
       000000EEH   SFRSYM    DATA     BYTE      EXBH
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 72
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 72
 
 
       000000F3H   SFRSYM    DATA     BYTE      IAPADH
@@ -4895,7 +4895,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000C8H.7 SFRSYM    DATA     BIT       TF2
       000000AAH   SFRSYM    DATA     BYTE      ADCCFG2
       0000008CH   SFRSYM    DATA     BYTE      TH0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 73
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 73
 
 
       0000008DH   SFRSYM    DATA     BYTE      TH1
@@ -4963,7 +4963,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010029CDH   LINE      CODE     ---       #38
       010029CDH   LINE      CODE     ---       #39
       010029E6H   LINE      CODE     ---       #40
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 74
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 74
 
 
       010029F6H   LINE      CODE     ---       #42
@@ -5031,7 +5031,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000FDH   SFRSYM    DATA     BYTE      CHKSUMH
       000000D5H   SFRSYM    DATA     BYTE      PWMDTY0
       000000EFH   SFRSYM    DATA     BYTE      OPERCON
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 75
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 75
 
 
       000000D6H   SFRSYM    DATA     BYTE      PWMDTY1
@@ -5099,7 +5099,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000B8H.2 SFRSYM    DATA     BIT       IPINT1
       000000A0H.6 SFRSYM    DATA     BIT       P26
       00000090H.7 SFRSYM    DATA     BIT       P17
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 76
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 76
 
 
       0000009DH   SFRSYM    DATA     BYTE      SSCON0
@@ -5167,7 +5167,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000BBH   SFRSYM    DATA     BYTE      INT0R
       000000BDH   SFRSYM    DATA     BYTE      INT1R
       000000C7H   SFRSYM    DATA     BYTE      INT2R
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 77
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 77
 
 
       000000D0H.5 SFRSYM    DATA     BIT       F0
@@ -5235,7 +5235,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0000009CH   SFRSYM    DATA     BYTE      P0VO
       000000CAH   SFRSYM    DATA     BYTE      RCAP2L
       000000EEH   SFRSYM    DATA     BYTE      EXBH
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 78
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 78
 
 
       000000F3H   SFRSYM    DATA     BYTE      IAPADH
@@ -5303,7 +5303,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000C8H.7 SFRSYM    DATA     BIT       TF2
       000000AAH   SFRSYM    DATA     BYTE      ADCCFG2
       0000008CH   SFRSYM    DATA     BYTE      TH0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 79
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 79
 
 
       0000008DH   SFRSYM    DATA     BYTE      TH1
@@ -5371,7 +5371,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002A15H   LINE      CODE     ---       #40
       01002A15H   LINE      CODE     ---       #41
       01002A2EH   LINE      CODE     ---       #42
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 80
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 80
 
 
       01002A3EH   LINE      CODE     ---       #44
@@ -5439,7 +5439,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000CBH   SFRSYM    DATA     BYTE      RCAP2H
       00000081H   SFRSYM    DATA     BYTE      SP
       000000D0H.2 SFRSYM    DATA     BIT       OV
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 81
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 81
 
 
       000000F4H   SFRSYM    DATA     BYTE      IAPADE
@@ -5507,7 +5507,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000088H.7 SFRSYM    DATA     BIT       TF1
       000000A8H.5 SFRSYM    DATA     BIT       ET2
       000000ACH   SFRSYM    DATA     BYTE      ADCCFG1
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 82
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 82
 
 
       00000098H.2 SFRSYM    DATA     BIT       RB8
@@ -5575,7 +5575,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002E8FH   LINE      CODE     ---       #32
       01002E92H   LINE      CODE     ---       #33
       01002E95H   LINE      CODE     ---       #34
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 83
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 83
 
 
       01002E98H   LINE      CODE     ---       #35
@@ -5643,7 +5643,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000F2H   SFRSYM    DATA     BYTE      IAPADL
       000000C8H.4 SFRSYM    DATA     BIT       TCLK
       00000080H   SFRSYM    DATA     BIT       P00
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 84
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 84
 
 
       00000090H   SFRSYM    DATA     BIT       P10
@@ -5711,7 +5711,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000098H.6 SFRSYM    DATA     BIT       SM1
       000000CFH   SFRSYM    DATA     BYTE      WDTCON
       0000008BH   SFRSYM    DATA     BYTE      TL1
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 85
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 85
 
 
       00000098H.5 SFRSYM    DATA     BIT       SM2
@@ -5779,7 +5779,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01001B0DH   LINE      CODE     ---       #62
       01001B0DH   LINE      CODE     ---       #63
       01001B20H   LINE      CODE     ---       #64
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 86
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 86
 
 
       01001B36H   LINE      CODE     ---       #65
@@ -5847,7 +5847,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       02000008H   PUBLIC    XDATA    BYTE      WD_BeepState
       02000007H   PUBLIC    XDATA    BYTE      NL_State
       01000E23H   PUBLIC    CODE     ---       WashDish_Control
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 87
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 87
 
 
       01002D72H   PUBLIC    CODE     ---       Init_WashDish
@@ -5915,7 +5915,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000A0H   SFRSYM    DATA     BIT       P20
       00000090H.1 SFRSYM    DATA     BIT       P11
       00000080H.2 SFRSYM    DATA     BIT       P02
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 88
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 88
 
 
       000000A0H.1 SFRSYM    DATA     BIT       P21
@@ -5983,7 +5983,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000D0H.4 SFRSYM    DATA     BIT       RS1
       000000D2H   SFRSYM    DATA     BYTE      PWMCON
       00000088H.6 SFRSYM    DATA     BIT       TR1
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 89
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 89
 
 
       000000B8H.4 SFRSYM    DATA     BIT       IPUART
@@ -6051,7 +6051,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002D72H   LINE      CODE     ---       #147
       01002D72H   LINE      CODE     ---       #148
       01002D86H   LINE      CODE     ---       #149
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 90
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 90
 
 
       01002D8BH   LINE      CODE     ---       #151
@@ -6119,7 +6119,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01000F63H   LINE      CODE     ---       #221
       01000F68H   LINE      CODE     ---       #222
       01000F6EH   LINE      CODE     ---       #223
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 91
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 91
 
 
       01000F6EH   LINE      CODE     ---       #224
@@ -6187,7 +6187,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01000C58H   LINE      CODE     ---       #295
       01000C58H   LINE      CODE     ---       #296
       01000C60H   LINE      CODE     ---       #297
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 92
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 92
 
 
       01000C68H   LINE      CODE     ---       #298
@@ -6255,7 +6255,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01000E22H   LINE      CODE     ---       #378
       01000E22H   LINE      CODE     ---       #380
       ---         BLOCKEND  ---      ---       LVL=0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 93
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 93
 
 
 
@@ -6323,7 +6323,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002FD3H   BLOCK     CODE     ---       LVL=0
       01002FD3H   LINE      CODE     ---       #454
       01002FD3H   LINE      CODE     ---       #455
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 94
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 94
 
 
       01002FD3H   LINE      CODE     ---       #456
@@ -6391,7 +6391,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010010A9H   LINE      CODE     ---       #516
       010010ADH   LINE      CODE     ---       #517
       010010B3H   LINE      CODE     ---       #518
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 95
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 95
 
 
       010010B6H   LINE      CODE     ---       #519
@@ -6459,7 +6459,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0100119CH   LINE      CODE     ---       #581
       010011A0H   LINE      CODE     ---       #582
       010011A4H   LINE      CODE     ---       #583
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 96
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 96
 
 
       010011A4H   LINE      CODE     ---       #584
@@ -6527,7 +6527,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000FDH   SFRSYM    DATA     BYTE      CHKSUMH
       000000D5H   SFRSYM    DATA     BYTE      PWMDTY0
       000000EFH   SFRSYM    DATA     BYTE      OPERCON
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 97
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 97
 
 
       000000D6H   SFRSYM    DATA     BYTE      PWMDTY1
@@ -6595,7 +6595,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000B8H.2 SFRSYM    DATA     BIT       IPINT1
       000000A0H.6 SFRSYM    DATA     BIT       P26
       00000090H.7 SFRSYM    DATA     BIT       P17
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 98
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 98
 
 
       0000009DH   SFRSYM    DATA     BYTE      SSCON0
@@ -6663,7 +6663,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000BBH   SFRSYM    DATA     BYTE      INT0R
       000000BDH   SFRSYM    DATA     BYTE      INT1R
       000000C7H   SFRSYM    DATA     BYTE      INT2R
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 99
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 99
 
 
       000000D0H.5 SFRSYM    DATA     BIT       F0
@@ -6731,7 +6731,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0100141AH   LINE      CODE     ---       #113
       01001421H   LINE      CODE     ---       #114
       01001421H   LINE      CODE     ---       #115
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 100
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 100
 
 
       01001421H   LINE      CODE     ---       #117
@@ -6799,7 +6799,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01001D3AH   LINE      CODE     ---       #199
       01001D46H   LINE      CODE     ---       #200
       01001D46H   LINE      CODE     ---       #201
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 101
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 101
 
 
       01001D4CH   LINE      CODE     ---       #202
@@ -6867,7 +6867,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01000287H   LINE      CODE     ---       #279
       01000298H   LINE      CODE     ---       #280
       01000298H   LINE      CODE     ---       #281
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 102
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 102
 
 
       010002C3H   LINE      CODE     ---       #282
@@ -6935,7 +6935,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010003E7H   LINE      CODE     ---       #345
       010003E8H   LINE      CODE     ---       #346
       010003E8H   LINE      CODE     ---       #347
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 103
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 103
 
 
       010003EFH   LINE      CODE     ---       #348
@@ -7003,7 +7003,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000A8H   SFRSYM    DATA     BYTE      IE
       000000E9H   SFRSYM    DATA     BYTE      EXA0
       000000EAH   SFRSYM    DATA     BYTE      EXA1
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 104
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 104
 
 
       000000FEH   SFRSYM    DATA     BYTE      OPINX
@@ -7071,7 +7071,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000D8H.1 SFRSYM    DATA     BIT       P51
       000000A0H.4 SFRSYM    DATA     BIT       P24
       00000090H.5 SFRSYM    DATA     BIT       P15
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 105
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 105
 
 
       00000080H.6 SFRSYM    DATA     BIT       P06
@@ -7139,7 +7139,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000C6H   SFRSYM    DATA     BYTE      INT2F
       00000098H.4 SFRSYM    DATA     BIT       REN
       000000D9H   SFRSYM    DATA     BYTE      P5CON
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 106
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 106
 
 
       000000AFH   SFRSYM    DATA     BYTE      ADCVH
@@ -7207,7 +7207,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000A8H   SFRSYM    DATA     BYTE      IE
       000000E9H   SFRSYM    DATA     BYTE      EXA0
       000000EAH   SFRSYM    DATA     BYTE      EXA1
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 107
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 107
 
 
       000000FEH   SFRSYM    DATA     BYTE      OPINX
@@ -7275,7 +7275,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000D8H.1 SFRSYM    DATA     BIT       P51
       000000A0H.4 SFRSYM    DATA     BIT       P24
       00000090H.5 SFRSYM    DATA     BIT       P15
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 108
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 108
 
 
       00000080H.6 SFRSYM    DATA     BIT       P06
@@ -7343,7 +7343,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000C6H   SFRSYM    DATA     BYTE      INT2F
       00000098H.4 SFRSYM    DATA     BIT       REN
       000000D9H   SFRSYM    DATA     BYTE      P5CON
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 109
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 109
 
 
       000000AFH   SFRSYM    DATA     BYTE      ADCVH
@@ -7384,62 +7384,62 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       02000130H   SYMBOL    XDATA    ---       ADC_Temperature
 
       0100002EH   BLOCK     CODE     ---       LVL=0
-      0100002EH   LINE      CODE     ---       #58
-      0100002EH   LINE      CODE     ---       #59
-      0100002EH   LINE      CODE     ---       #60
-      01000034H   LINE      CODE     ---       #61
-      01000039H   LINE      CODE     ---       #62
+      0100002EH   LINE      CODE     ---       #82
+      0100002EH   LINE      CODE     ---       #83
+      0100002EH   LINE      CODE     ---       #84
+      01000034H   LINE      CODE     ---       #85
+      01000039H   LINE      CODE     ---       #86
       ---         BLOCKEND  ---      ---       LVL=0
 
       01001F52H   BLOCK     CODE     ---       LVL=0
       01001F52H   BLOCK     CODE     NEAR LAB  LVL=1
       0200012DH   SYMBOL    XDATA    BYTE      sampleCount
       ---         BLOCKEND  ---      ---       LVL=1
-      01001F52H   LINE      CODE     ---       #72
-      01001F52H   LINE      CODE     ---       #73
-      01001F52H   LINE      CODE     ---       #76
-      01001F6FH   LINE      CODE     ---       #77
-      01001F6FH   LINE      CODE     ---       #78
-      01001F8AH   LINE      CODE     ---       #80
-      01001F9CH   LINE      CODE     ---       #84
-      01001FA2H   LINE      CODE     ---       #86
-      01001FA8H   LINE      CODE     ---       #87
-      01001FA8H   LINE      CODE     ---       #88
-      01001FAAH   LINE      CODE     ---       #89
-      01001FB8H   LINE      CODE     ---       #90
-      01001FBFH   LINE      CODE     ---       #91
-      01001FC3H   LINE      CODE     ---       #92
-      01001FC7H   LINE      CODE     ---       #94
-      01001FD3H   LINE      CODE     ---       #95
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 110
+      01001F52H   LINE      CODE     ---       #96
+      01001F52H   LINE      CODE     ---       #97
+      01001F52H   LINE      CODE     ---       #100
+      01001F6FH   LINE      CODE     ---       #101
+      01001F6FH   LINE      CODE     ---       #102
+      01001F8AH   LINE      CODE     ---       #104
+      01001F9CH   LINE      CODE     ---       #108
+      01001FA2H   LINE      CODE     ---       #110
+      01001FA8H   LINE      CODE     ---       #111
+      01001FA8H   LINE      CODE     ---       #112
+      01001FAAH   LINE      CODE     ---       #113
+      01001FB8H   LINE      CODE     ---       #114
+      01001FBFH   LINE      CODE     ---       #115
+      01001FC3H   LINE      CODE     ---       #116
+      01001FC7H   LINE      CODE     ---       #118
+      01001FD3H   LINE      CODE     ---       #119
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 110
 
 
-      01001FD3H   LINE      CODE     ---       #96
-      01001FD8H   LINE      CODE     ---       #98
-      01001FDFH   LINE      CODE     ---       #100
-      01001FE6H   LINE      CODE     ---       #101
-      01001FE6H   LINE      CODE     ---       #102
-      01001FEDH   LINE      CODE     ---       #103
-      01001FEEH   LINE      CODE     ---       #105
-      01001FEEH   LINE      CODE     ---       #106
-      01001FF5H   LINE      CODE     ---       #107
-      01001FF5H   LINE      CODE     ---       #108
-      01001FF6H   LINE      CODE     ---       #110
-      01001FF6H   LINE      CODE     ---       #111
-      01001FFFH   LINE      CODE     ---       #112
-      01001FFFH   LINE      CODE     ---       #113
-      01002005H   LINE      CODE     ---       #114
-      01002006H   LINE      CODE     ---       #115
-      0100200FH   LINE      CODE     ---       #116
-      0100200FH   LINE      CODE     ---       #117
-      01002014H   LINE      CODE     ---       #118
-      01002015H   LINE      CODE     ---       #120
-      01002015H   LINE      CODE     ---       #122
-      01002021H   LINE      CODE     ---       #124
-      01002021H   LINE      CODE     ---       #125
-      01002021H   LINE      CODE     ---       #126
-      01002021H   LINE      CODE     ---       #127
-      01002021H   LINE      CODE     ---       #128
+      01001FD3H   LINE      CODE     ---       #120
+      01001FD8H   LINE      CODE     ---       #122
+      01001FDFH   LINE      CODE     ---       #124
+      01001FE6H   LINE      CODE     ---       #125
+      01001FE6H   LINE      CODE     ---       #126
+      01001FEDH   LINE      CODE     ---       #127
+      01001FEEH   LINE      CODE     ---       #129
+      01001FEEH   LINE      CODE     ---       #130
+      01001FF5H   LINE      CODE     ---       #131
+      01001FF5H   LINE      CODE     ---       #132
+      01001FF6H   LINE      CODE     ---       #134
+      01001FF6H   LINE      CODE     ---       #135
+      01001FFFH   LINE      CODE     ---       #136
+      01001FFFH   LINE      CODE     ---       #137
+      01002005H   LINE      CODE     ---       #138
+      01002006H   LINE      CODE     ---       #139
+      0100200FH   LINE      CODE     ---       #140
+      0100200FH   LINE      CODE     ---       #141
+      01002014H   LINE      CODE     ---       #142
+      01002015H   LINE      CODE     ---       #144
+      01002015H   LINE      CODE     ---       #146
+      01002021H   LINE      CODE     ---       #148
+      01002021H   LINE      CODE     ---       #149
+      01002021H   LINE      CODE     ---       #150
+      01002021H   LINE      CODE     ---       #151
+      01002021H   LINE      CODE     ---       #152
       ---         BLOCKEND  ---      ---       LVL=0
 
       ---         MODULE    ---      ---       TICKETHANDLING
@@ -7479,7 +7479,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000092H   SFRSYM    DATA     BYTE      P1PH
       00000098H   SFRSYM    DATA     BIT       RI
       000000DDH   SFRSYM    DATA     BYTE      PWMDTY3
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 111
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 111
 
 
       000000A2H   SFRSYM    DATA     BYTE      P2PH
@@ -7547,7 +7547,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000A9H   SFRSYM    DATA     BYTE      IE1
       000000F0H   SFRSYM    DATA     BYTE      B
       00000097H   SFRSYM    DATA     BYTE      IOHCON
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 112
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 112
 
 
       000000F1H   SFRSYM    DATA     BYTE      IAPKEY
@@ -7615,7 +7615,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0100281AH   SYMBOL    CODE     ---       FeedbackSub
       02000152H   SYMBOL    XDATA    BYTE      L_FeedbackScan
       02000153H   SYMBOL    XDATA    BYTE      L_FlowScan
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 113
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 113
 
 
       02000154H   SYMBOL    XDATA    BYTE      L_FB100smCnt
@@ -7683,7 +7683,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01002D31H   LINE      CODE     ---       #110
       ---         BLOCKEND  ---      ---       LVL=0
 
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 114
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 114
 
 
       0100281AH   BLOCK     CODE     ---       LVL=0
@@ -7751,7 +7751,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       0000009FH   SFRSYM    DATA     BYTE      SSDAT
       00000090H   SFRSYM    DATA     BYTE      P1
       000000A0H   SFRSYM    DATA     BYTE      P2
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 115
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 115
 
 
       000000A8H.4 SFRSYM    DATA     BIT       EUART
@@ -7819,7 +7819,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       000000A0H.2 SFRSYM    DATA     BIT       P22
       00000090H.3 SFRSYM    DATA     BIT       P13
       00000080H.4 SFRSYM    DATA     BIT       P04
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 116
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 116
 
 
       00000098H   SFRSYM    DATA     BYTE      SCON
@@ -7887,7 +7887,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       00000083H   SFRSYM    DATA     BYTE      DPH
       00000082H   SFRSYM    DATA     BYTE      DPL
       000000A8H   SFRSYM    DATA     BIT       EINT0
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 117
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 117
 
 
       0000009AH   SFRSYM    DATA     BYTE      P0CON
@@ -7955,7 +7955,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       01001E36H   LINE      CODE     ---       #106
       01001E36H   LINE      CODE     ---       #107
       01001E36H   LINE      CODE     ---       #109
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 118
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 118
 
 
       01001E55H   LINE      CODE     ---       #110
@@ -8023,7 +8023,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
       010022F3H   LINE      CODE     ---       #238
       010022F5H   LINE      CODE     ---       #239
       010022F5H   LINE      CODE     ---       #240
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 119
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 119
 
 
       010022F5H   LINE      CODE     ---       #241
@@ -8091,7 +8091,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
 
       ---         MODULE    ---      ---       ?C?ULDIV
       010015F9H   PUBLIC    CODE     ---       ?C?ULDIV
-LX51 LINKER/LOCATER V4.66.41.0                                                        06/24/2026  18:28:47  PAGE 120
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/04/2026  17:49:19  PAGE 120
 
 
 
@@ -8127,5 +8127,5 @@ SYMBOL TABLE OF MODULE:  .\Objects\SC92F8463B_BW1_P (?C_STARTUP)
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    _IOUART_RECEIVEDENABLE/IOUART_SIMULATE
 
-Program Size: data=9.2 xdata=431 const=214 code=12848
+Program Size: data=9.2 xdata=431 const=222 code=12848
 LX51 RUN COMPLETE.  10 WARNING(S),  0 ERROR(S)
