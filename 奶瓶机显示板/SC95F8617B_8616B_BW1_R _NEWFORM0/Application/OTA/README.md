@@ -13,16 +13,25 @@
 - 将固件写入 Flash
 - 写入升级元信息，通知 bootloader 进行 APP 区更新
 
+> [!NOTE]
+> 函数结构
+>>主函数是OtaDecode()；OtaInit()，OtaSendData()，Get16BitCusum()入口均在主函数中作为功能函数被调用
+>>>主函数分为4个阶段(升级请求，固件信息，接收数据，接收结束)，复杂度主要集中在接收数据部分
+
 ## 2. 关键状态与变量
 
 - `file_len`：固件总字节数
 - `file_checksum`：固件整体校验和
+> OtaInit()被初始化，固件文件信息包被赋值，接收数据/校验数据时使用
 - `fw_checksum`：接收数据时累计的校验和
 - `fw_addr_offset`：当前写入 Flash 的偏移量
 - `fw_buf_cnt`：当前缓存的数据长度
 - `fw_write_buf[256]`：缓存写入块
+> OtaInit()被初始化，接收数据过程的中间数据
 - `UPDATA_MSG_ADDR`：写入升级元信息的地址
 - `FW_START_ADDR`：固件写入起始地址
+- `UPDATA_MSG_SIZE`：FDL_buf缓存初始化大小
+> 外部宏定义
 
 ## 3. 数据包结构与处理流程
 
@@ -132,37 +141,96 @@ A5 77 00 06 7D 5A
 sequenceDiagram
     participant Host
     participant Device
-    Host->>Device: 升级请求包\n(0x99 0x00 0x01 0x9A)
-    Device-->>Host: ACK\n(A5 99 00 06 9F 5A)
-    Host->>Device: 固件信息包\n(file_len + file_checksum)
-    Device-->>Host: ACK\n(A5 99 00 06 9F 5A)
+    Host->>Device: 升级请求包<br/>(A5 99 00 01 9A .. sum)
+    Note left of Host: Step1 升级请求
+    Note right of Device: 擦除BOOT区
+    Device-->>Host: ACK<br/>(A5 99 00 06 9F 5A)
+    Note right of Device: 擦除成功OtaInit();
+    Host->>Device: 固件信息包<br/>(A5 99 06 + file_len + file_checksum + sum)
+    Note left of Host: Step2 固件信息
+    Note right of Device: 校验成功
+    Device-->>Host: ACK<br/>(A5 99 00 06 9F 5A)
+    Note right of Device: 保存file_len<br/>file_checksum;
+    Note left of Host: Step3 接收数据
     loop 分包发送固件数据
-        Host->>Device: 数据包\n(0x88 + len + data + checksum)
-        Device-->>Host: ACK\n(A5 88 00 08 90 5A)
+        Host->>Device: 数据包<br/>(A5 88 + len + data + checksum)
+        Note right of Device: 写入数据
+        Device-->>Host: ACK<br/>(A5 88 00 08 90 5A)
     end
-    Host->>Device: 升级完成包\n(0x77)
-    Device-->>Host: ACK\n(A5 77 00 06 7D 5A)
-    Device->>Device: 写入升级元信息\n并等待 bootloader
+    Host->>Device: 升级完成包<br/>(0x77)
+    Note left of Host: Step4 接收结束
+    Device-->>Host: ACK<br/>(A5 77 00 06 7D 5A)
+    Note right of Device: 启动升级
+    Device->>Device: 写入升级元信息<br/>并等待 bootloader
 ```
 
-### 4.2 状态转换
+### 4.2 主函数逻辑结构
 
 ```mermaid
 flowchart TD
-    A["`收到 REC_OK 数据`"] --> B["`rxd_buf[1]`"]
-    B -->|0x99| C["`rxd_buf[2]`"]
-    C -->|0x00| D["`rxd_buf[3]`"]
-    D -->|0x01 且 0x9A| E["`擦除 OTA 区并初始化`"]
-    E --> F["`发送 0x99 ACK`"]
-    C -->|0x06| G["`读取 file_len/file_checksum`"]
-    G --> H["`发送 0x99 ACK`"]
-    B -->|0x88| I["`校验数据包`"]
-    I -->|成功| J["`缓存数据，按 256 字节写 Flash`"]
-    I -->|失败| K["`OtaInit 重置`"]
-    B -->|0x77| L["`校验整体校验和`"]
-    L -->|成功| M["`写入升级元信息，等待 BOOT`"]
-    L -->|失败| K
-    K --> N["`重置升级状态`"]
+    STRAT@{ shape: circle, label: "Start" }
+    STRAT --> A0
+    A0{"`串口接收完成`"} %%菱形节点(if/else)
+    A0 -->|"`N`"| B1["`时间计算`"]
+    B2[/"`A5 99 00 06 9F 5A`"/] %%四边形节点(Output)
+    B1 -->|"`OtaSendData()`"| B2[/"`定时ACK<br/>A5 88 A5 88 90 5A`"/]
+    B0{{"`判断<br/>rxd_buf[1]`"}} %%六边形节点(switch/case)
+    A0 -->|"`Y`"| B0
+    B0 -->|"`0x99`"| C1{{"`判断<br/>rxd_buf[2]`"}}
+    D1@{ shape: rounded, label: "Step1 升级请求" } %%事件节点(Step)
+    C1 -->|"`0x00`"| D1
+    D1 --- E01{"`rxd_buf[3]==0x01<br/>rxd_buf[4]==0x9A`"} %%无箭头
+    E01 -->|"`Y`"| E02["`擦除BOOT区`"]
+    E01 -->|"`N`"| END
+    E02 ---|"`Boot_FSL_Erase(35,27)`"| E03{"`擦除成功`"}
+    E04(("`OtaInit() 重置`")) %%圆形节点(Init)
+    E03 -->|"`Y`"| E04
+    E04 --> E05[/"`发送 0x99 ACK<br/>A5 99 00 06 9F 5A`"/]
+    END(["`接收初始化<br/>OtaRecInit()`"]) %%体育场终点(End)
+    E05 -->|"`OtaSendData()`"| END
+    C1 -->|"`0x06`"| D2@{ shape: rounded, label: "Step2 固件信息" }
+    D2 --- E11{"`校验checksum`"}
+    E11 -->|"`Y`"| E12["`读取 file_len/file_checksum`"]
+    E12 --> E13[/"`发送 0x99 ACK<br/>A5 99 00 06 9F 5A`"/] -->|"`OtaSendData()`"| END
+    E11 -->|"`N`"| E14(("`OtaInit() 重置`")) --> END
+    B0 -->|"`0x88`"| D3@{ shape: rounded, label: "Step3 接收数据" }
+    D3 -->|"`Get16BitCusum()`"| E301{"`校验本帧数据`"}
+    E301 -->|"`N`"| E302(("`OtaInit() 重置`")) --> END
+    E301 -->|"`Y<br/>本帧长度rxd_buf[2]`"| E303
+    subgraph 缓存数组 %%子图(for)
+      E303@{ shape: circle, label: "for<br/>od_i < rxd_buf[2]" }
+      E304["`累积更新<br/>fw_buf_cnt++<br/>fw_write_buf[]数组<br/>fw_checksum校验和<br/>fw_addr_offset偏移量`"]
+      E303 --> E304
+      E304 --- E305{"`file_len大于<br/>256+fw_addr_offset?`"}
+      E305 -->|"`Y`"| E306{"`fw_buf_cnt计数<br/>是否大于256`"}
+      E306 -->|"`Y`"| E307["`从偏移地址写入256字节`"]
+      E307 ---|"`Boot_FSL_Write()`"| E308{"`写入成功?`"}
+      E308 -->|"`Y`"| E309["`更新fw_addr_offset<br/>fw_buf_cnt计数清零`"]
+      E308 -->|"`N`"| E310(("`OtaInit() 重置`")) -->E309
+      E309 --> E311(["`for<br/>od_i++`"])
+      E306 -->|"`N`"| E311
+      E305 -->|"`N`"| E313{"`file_len刚好等于<br/>fw_buf_cnt+<br/>fw_addr_offset?`"}
+      E313 -->|"`N`"| E311
+      E313 -->|"`Y`"| E314["`补全32位数据`"]
+      E314 -->|"`Boot_FSL_Write()<br/>写入动态长度`"| E315{"`写入成功?`"}
+      E315 -->|"`Y`"| E316["`更新fw_addr_offset<br/>fw_buf_cnt计数清零`"]
+      E315 -->|"`N`"| E317(("`OtaInit() 重置`")) --> E316
+      E311 -.-> E303 %%虚线箭头
+    end
+    E316 -->|"`break`"| F0
+    E311 --> F0[/"`A5 88 00 08 90 5A`"/] -->|"`发送 0x88 ACK`"| END
+    B0 --->|"`0x88`"| D4@{ shape: rounded, label: "Step4 接收结束" } %%延长箭头
+    D4 ---|"`fw_checksum`"| E41{"`校验file_checksum`"}
+    E41 -->|"`N`"| END
+    E41 -->|"`Y`"| E42["`写入升级元信息`"]
+    E43["`***启动BOOT更新函数***`"] %%使用markdown字体
+    E42 ==>|"`Boot_FDL_Open()<br/>Boot_FDL_Erase(0)<br/>Boot_FDL_Write()<br/>Boot_FDL_Close()`"| E43 %%加粗箭头
+    E43 -->|"`等待BOOT下载完成`"| E44[/"`发送 0x77 ACK<br/>A5 77 00 06 7D 5A`"/]
+    E44 ---|"`OtaSendData()`"| E45{"`写入成功`"}
+    E46[("`while(1)<br/>重启进入BOOT进行APP区更新`")] %%数据库节点(while)
+    E45 -->|"`Y`"| E46 
+    E45 -->|"`N`"| E47(("`OtaInit() 重置`"))
+    E47 --> END
 ```
 
 ## 5. 备注

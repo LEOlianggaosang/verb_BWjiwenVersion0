@@ -126,7 +126,7 @@ void OtaDecode(void)
 					fw_write_buf[fw_buf_cnt++] = rxd_buf[3+od_i];
 					fw_checksum += rxd_buf[3+od_i];
 					
-					if(file_len>=(fw_addr_offset+0x100UL)){		/* 判断剩余末写数据长度是否大于一次最大写入长度 */
+					if(file_len>=(fw_addr_offset+0x100)){		/* 判断剩余末写数据长度是否大于一次最大写入长度 */
 						if(0x100<=fw_buf_cnt){		
 							/* 写入缓存满256字节，进行一次写入 */
 							ret = Boot_FSL_Write((FW_START_ADDR + fw_addr_offset),fw_write_buf,64);
@@ -134,6 +134,7 @@ void OtaDecode(void)
 							if(FSL_OK!=ret){
 								/* 写入失败 */
 								OtaInit();
+								/*break;//增加进程使能*/
 							}
 							
 							fw_addr_offset += fw_buf_cnt;
@@ -157,6 +158,7 @@ void OtaDecode(void)
 							if(FSL_OK!=ret){
 								/* 写入失败 */
 								OtaInit();
+								/*break;//增加进程使能*/
 							}
 							
 							fw_addr_offset += fw_buf_cnt;

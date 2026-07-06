@@ -23,48 +23,48 @@
 // 	{STAGE_PRE,		1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			20,		0},
 
 // 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		60},//800ml
-// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		9*60},//42¶ÈÎÂ´ïÊ£Ï´
-// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		9*60},//42åº¦æ¸©è¾¾å‰©æ´—
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	#if CONFIG_MP_ENABLE
-// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	#endif
 // 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 
 // 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml
 // 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0, 		 	90,		3*60},
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	#if CONFIG_MP_ENABLE
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	#endif
 // 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 
 // 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_RINSE,		0, (C_LITER*7),		30},//700ml
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	70,		6*60},//75¶ÈÎÂ´ïÊ£Ï´
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	70,		6*60},//75åº¦æ¸©è¾¾å‰©æ´—
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	#if CONFIG_MP_ENABLE
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	#endif
 // 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	
 // 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
-// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//¶¨Ê±¼ÓÈÈ8·ÖÖÓ
-// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ
-// 	// {STAGE_STEAM,	0,	1,  1,	0,	1,	DRAIN_STEAM,		0,			80,		2*60},//ÅÅË®¶¯×÷×éS0
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//å®šæ—¶åŠ çƒ­8åˆ†é’Ÿ
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ
+// 	// {STAGE_STEAM,	0,	1,  1,	0,	1,	DRAIN_STEAM,		0,			80,		2*60},//æŽ’æ°´åŠ¨ä½œç»„S0
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	// #if CONFIG_MP_ENABLE
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	// #endif
 
-// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//¾²ÖÃ
-// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		60},//ÅÅ¿Õ//20251110 NEWFORM0 Ê±Ðò±í
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//é™ç½®
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		60},//æŽ’ç©º//20251110 NEWFORM0 æ—¶åºè¡¨
 // 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		30*60,		30*60},//45
 // 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 // 	// {STAGE_DRY,		1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
@@ -84,7 +84,7 @@ static const StepInfo fastSteps[]=
 };
 #elif CONFIG_IQC_TEST//20260117
 static const StepInfo fastSteps[]=
-{//RGBµÆÈýÉ«ÏÔÊ¾
+{//RGBç¯ä¸‰è‰²æ˜¾ç¤º
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			1,		0},
 	
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			7,		0},
@@ -95,71 +95,71 @@ static const StepInfo fastSteps[]=
 static const StepInfo fastSteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
-	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*Î´¼ÓÈëÎÂ¶È²¹³¥//*Ö´ÐÐÅÅË®¶¯×÷×é
+	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*æœªåŠ å…¥æ¸©åº¦è¡¥å¿//*æ‰§è¡ŒæŽ’æ°´åŠ¨ä½œç»„
 //--------------
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			90,		90},//*42¶È×óÓÒÏ´µÓ²¹×ã9·ÖÖÓ
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			90,		90},//*42åº¦å·¦å³æ´—æ¶¤è¡¥è¶³9åˆ†é’Ÿ
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 //--------------
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	42,		3*60},//42¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	42,		3*60},//42åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 //--------------
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±//*²»Ê¹ÓÃ¶þÆ¯½øË®²½Öè
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	72,		6*60},//72¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶//*ä¸ä½¿ç”¨äºŒæ¼‚è¿›æ°´æ­¥éª¤
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	72,		6*60},//72åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 //--------------
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
 	
 	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//¶¨Ê±¼ÓÈÈ10·ÖÖÓ//20251216
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ//20251216
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//å®šæ—¶åŠ çƒ­10åˆ†é’Ÿ//20251216
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ//20251216
 	#else
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//¶¨Ê±¼ÓÈÈ8·ÖÖÓ
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//å®šæ—¶åŠ çƒ­8åˆ†é’Ÿ
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ
 	#endif
 //--------------
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//¾²ÖÃ
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//ÅÅ¿Õ//20251110 NEWFORM0 Ê±Ðò±í
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//ÅÅ¿Õ*//(20251127 ¸ü¸Ä×î´óÑÓÊ±60->90)
+	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//é™ç½®
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//æŽ’ç©º//20251110 NEWFORM0 æ—¶åºè¡¨
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//æŽ’ç©º*//(20251127 æ›´æ”¹æœ€å¤§å»¶æ—¶60->90)
 	#if CONFIG_T2_STEAMDRY//20251211
 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
 	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*¸ÄÎª40
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*æ”¹ä¸º40
 	#endif
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*ÌáÇ°30s¹Ø±Õ¸ÄÎª¸½¼Ó·ç»ú30s
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*æå‰30så…³é—­æ”¹ä¸ºé™„åŠ é£Žæœº30s
 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
@@ -170,56 +170,56 @@ static const StepInfo fastSteps[]=
 // {
 // 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 // 	{STAGE_PRE,		1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			20,		0},
-// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			0,		0},//Ô¤Ï´ÎÂ¶È²¹³¥¼ì²é//20250920
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			0,		0},//é¢„æ´—æ¸©åº¦è¡¥å¿æ£€æŸ¥//20250920
 
 // 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		60},//800ml
-// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	STAGE_WASH_TIME_SET,0,		 14*60,		14*60},//Éè¶¨½×¶ÎÏ´µÓ×ÜÊ±¼ä
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	WASH_HEAT_TEMP2,	0,			42,		14*60},//42¶ÈÎÂ´ïÌø²½
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	WASH_TIMER,			0,			300,	14*60},//Ï´µÓ5·ÖÖÓ
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	WASH_HEAT_TEMP2,	0,			55,		14*60},//55¶ÈÎÂ´ïÌø²½
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	STAGE_WASH_TIME,	0,		  	0,		14*60},//Ê£ÓàÊ±¼äÏ´µÓ
-// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	STAGE_WASH_TIME_SET,0,		 14*60,		14*60},//è®¾å®šé˜¶æ®µæ´—æ¶¤æ€»æ—¶é—´
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	WASH_HEAT_TEMP2,	0,			42,		14*60},//42åº¦æ¸©è¾¾è·³æ­¥
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	WASH_TIMER,			0,			300,	14*60},//æ´—æ¶¤5åˆ†é’Ÿ
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	WASH_HEAT_TEMP2,	0,			55,		14*60},//55åº¦æ¸©è¾¾è·³æ­¥
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	STAGE_WASH_TIME,	0,		  	0,		14*60},//å‰©ä½™æ—¶é—´æ´—æ¶¤
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	#if CONFIG_MP_ENABLE
-// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	#endif
 // 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 
 // 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	50,		5*60},//50¶ÈÎÂ´ïÊ£Ï´
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	50,		5*60},//50åº¦æ¸©è¾¾å‰©æ´—
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	#if CONFIG_MP_ENABLE
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	#endif
 // 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 
 // 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_RINSE,		0, (C_LITER*7),		30},//700ml
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP_SET,	0, 		 	70,		9*60},//80¶ÈÎÂ´ïÊ£Ï´
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	WASH_HEAT_TEMP3,	0, 		 	75,		9*60},//85¶ÈÎÂ¶ÈÎ¬³Ö
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP_SET,	0, 		 	70,		9*60},//80åº¦æ¸©è¾¾å‰©æ´—
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	WASH_HEAT_TEMP3,	0, 		 	75,		9*60},//85åº¦æ¸©åº¦ç»´æŒ
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	#if CONFIG_MP_ENABLE
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	#endif
 // 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	
 // 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
-// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//¶¨Ê±¼ÓÈÈ8·ÖÖÓ
-// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ
-// 	// {STAGE_STEAM,	0,	1,  1,	0,	1,	DRAIN_STEAM,		0,			80,		2*60},//ÅÅË®¶¯×÷×éS0
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//å®šæ—¶åŠ çƒ­8åˆ†é’Ÿ
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ
+// 	// {STAGE_STEAM,	0,	1,  1,	0,	1,	DRAIN_STEAM,		0,			80,		2*60},//æŽ’æ°´åŠ¨ä½œç»„S0
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	// #if CONFIG_MP_ENABLE
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	// #endif
 
-// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//¾²ÖÃ
-// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		60},//ÅÅ¿Õ//20251110 NEWFORM0 Ê±Ðò±í
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//é™ç½®
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		60},//æŽ’ç©º//20251110 NEWFORM0 æ—¶åºè¡¨
 // 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		30*60,		30*60},//45
 // 	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//20250920//20250929
 // 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
@@ -240,7 +240,7 @@ static const StepInfo standardSteps[]=
 };
 #elif CONFIG_IQC_TEST//20260117
 static const StepInfo standardSteps[]=
-{//ÆÁ±Î
+{//å±è”½
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
@@ -254,79 +254,79 @@ static const StepInfo standardSteps[]=
 static const StepInfo standardSteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
-	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*Ö´ÐÐÅÅË®¶¯×÷×é
+	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*æ‰§è¡ŒæŽ’æ°´åŠ¨ä½œç»„
 //--------------
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//Ô¤Ï´ÎÂ¶È²¹³¥¼ì²é*¸ÄÖ÷Ï´
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//é¢„æ´—æ¸©åº¦è¡¥å¿æ£€æŸ¥*æ”¹ä¸»æ´—
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,		    90,		90},//*42¶È×óÓÒÏ´µÓ²¹×ã10·ÖÖÓ//20251211
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			55,		240},//55¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±*¸Ä»úÖÆÇø·Ö¿ìËÙ
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,		    90,		90},//*42åº¦å·¦å³æ´—æ¶¤è¡¥è¶³10åˆ†é’Ÿ//20251211
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			55,		240},//55åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶*æ”¹æœºåˆ¶åŒºåˆ†å¿«é€Ÿ
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 //--------------
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		4*60},//55¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±*¸Ä»úÖÆÇø·Ö¿ìËÙ//20251211
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		4*60},//55åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶*æ”¹æœºåˆ¶åŒºåˆ†å¿«é€Ÿ//20251211
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 //--------------
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±//*²»Ê¹ÓÃ¶þÆ¯½øË®²½Öè
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶//*ä¸ä½¿ç”¨äºŒæ¼‚è¿›æ°´æ­¥éª¤
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
 
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP2,	0, 		 	82,		14*60},//72¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±*¸Ä»úÖÆÇø·Ö¿ìËÙ//20251211
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP2,	0, 		 	82,		14*60},//72åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶*æ”¹æœºåˆ¶åŒºåˆ†å¿«é€Ÿ//20251211
 
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			10,		0},//20251211
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 //--------------
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
 
 	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//¶¨Ê±¼ÓÈÈ10·ÖÖÓ//20251216
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ//20251216
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//å®šæ—¶åŠ çƒ­10åˆ†é’Ÿ//20251216
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ//20251216
 	#else
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//¶¨Ê±¼ÓÈÈ8·ÖÖÓ
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//å®šæ—¶åŠ çƒ­8åˆ†é’Ÿ
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ
 	#endif
 //--------------
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//¾²ÖÃ
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//ÅÅ¿Õ//20251110 NEWFORM0 Ê±Ðò±í
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//ÅÅ¿Õ*//(20251127 ¸ü¸Ä×î´óÑÓÊ±60->90)
+	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//é™ç½®
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//æŽ’ç©º//20251110 NEWFORM0 æ—¶åºè¡¨
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//æŽ’ç©º*//(20251127 æ›´æ”¹æœ€å¤§å»¶æ—¶60->90)
 	
 	#if CONFIG_T2_STEAMDRY//20251211
 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
 	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*¸ÄÎª40
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*æ”¹ä¸º40
 	#endif
 
-	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*¼ÓÈëÎÂ¶È²¹³¥
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*ÌáÇ°30s¹Ø±Õ¸ÄÎª¸½¼Ó·ç»ú30s
+	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*åŠ å…¥æ¸©åº¦è¡¥å¿
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*æå‰30så…³é—­æ”¹ä¸ºé™„åŠ é£Žæœº30s
 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
@@ -335,73 +335,73 @@ static const StepInfo standardSteps[]=
 static const StepInfo standardSteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
-	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*Ö´ÐÐÅÅË®¶¯×÷×é
+	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*æ‰§è¡ŒæŽ’æ°´åŠ¨ä½œç»„
 //--------------
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//Ô¤Ï´ÎÂ¶È²¹³¥¼ì²é*¸ÄÖ÷Ï´
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//é¢„æ´—æ¸©åº¦è¡¥å¿æ£€æŸ¥*æ”¹ä¸»æ´—
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,		   150,		150},//*42¶È×óÓÒÏ´µÓ²¹×ã10·ÖÖÓ
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			55,		240},//55¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±*¸Ä»úÖÆÇø·Ö¿ìËÙ
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,		   150,		150},//*42åº¦å·¦å³æ´—æ¶¤è¡¥è¶³10åˆ†é’Ÿ
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			55,		240},//55åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶*æ”¹æœºåˆ¶åŒºåˆ†å¿«é€Ÿ
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 //--------------
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		5*60},//55¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±*¸Ä»úÖÆÇø·Ö¿ìËÙ
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		5*60},//55åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶*æ”¹æœºåˆ¶åŒºåˆ†å¿«é€Ÿ
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 //--------------
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±//*²»Ê¹ÓÃ¶þÆ¯½øË®²½Öè
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	72,		9*60},//72¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±*¸Ä»úÖÆÇø·Ö¿ìËÙ
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶//*ä¸ä½¿ç”¨äºŒæ¼‚è¿›æ°´æ­¥éª¤
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	72,		9*60},//72åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶*æ”¹æœºåˆ¶åŒºåˆ†å¿«é€Ÿ
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 //--------------
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
 	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//¶¨Ê±¼ÓÈÈ10·ÖÖÓ//20251216
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ//20251216
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//å®šæ—¶åŠ çƒ­10åˆ†é’Ÿ//20251216
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ//20251216
 	#else
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//¶¨Ê±¼ÓÈÈ8·ÖÖÓ
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//å®šæ—¶åŠ çƒ­8åˆ†é’Ÿ
+	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ
 	#endif
 //--------------
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//¾²ÖÃ
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//ÅÅ¿Õ//20251110 NEWFORM0 Ê±Ðò±í
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//ÅÅ¿Õ*//(20251127 ¸ü¸Ä×î´óÑÓÊ±60->90)
+	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//é™ç½®
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//æŽ’ç©º//20251110 NEWFORM0 æ—¶åºè¡¨
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//æŽ’ç©º*//(20251127 æ›´æ”¹æœ€å¤§å»¶æ—¶60->90)
 	#if CONFIG_T2_STEAMDRY//20251211
 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
 	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*¸ÄÎª40
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*æ”¹ä¸º40
 	#endif
-	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*¼ÓÈëÎÂ¶È²¹³¥
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*ÌáÇ°30s¹Ø±Õ¸ÄÎª¸½¼Ó·ç»ú30s
+	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*åŠ å…¥æ¸©åº¦è¡¥å¿
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*æå‰30så…³é—­æ”¹ä¸ºé™„åŠ é£Žæœº30s
 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
@@ -411,23 +411,23 @@ static const StepInfo standardSteps[]=
 
 // static const StepInfo steamSteps[]=
 // {
-// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//20251110 NEWFORM0 Ê±Ðò±í
-// 	{STAGE_PRE,		1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			20,		0},//20251110 NEWFORM0 Ê±Ðò±í
-// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			0,		0},//Ô¤Ï´ÎÂ¶È²¹³¥¼ì²é//20250920
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//20251110 NEWFORM0 æ—¶åºè¡¨
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			20,		0},//20251110 NEWFORM0 æ—¶åºè¡¨
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			0,		0},//é¢„æ´—æ¸©åº¦è¡¥å¿æ£€æŸ¥//20250920
 
 // 	{STAGE_STEAM,	1,	0,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
-// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//¶¨Ê±¼ÓÈÈ8·ÖÖÓ
-// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_STEAM,		0,			80,		2*60},//ÅÅË®¶¯×÷×éS0
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//å®šæ—¶åŠ çƒ­8åˆ†é’Ÿ
+// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_STEAM,		0,			80,		2*60},//æŽ’æ°´åŠ¨ä½œç»„S0
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	// #if CONFIG_MP_ENABLE
-// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	// {STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	// #endif
 
-// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//¾²ÖÃ
-// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		60},//ÅÅ¿Õ//20251110 NEWFORM0 Ê±Ðò±í
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//é™ç½®
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		60},//æŽ’ç©º//20251110 NEWFORM0 æ—¶åºè¡¨
 // 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		30*60,		30*60},//45
 // 	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//20250920//20250929
 // 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
@@ -437,38 +437,38 @@ static const StepInfo standardSteps[]=
 static const StepInfo steamSteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
-	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*Ö´ÐÐÅÅË®¶¯×÷×é
+	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*æ‰§è¡ŒæŽ’æ°´åŠ¨ä½œç»„
 //--------------
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//Ô¤Ï´ÎÂ¶È²¹³¥¼ì²é*¸ÄÖ÷Ï´
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//é¢„æ´—æ¸©åº¦è¡¥å¿æ£€æŸ¥*æ”¹ä¸»æ´—
 //--------------
 	{STAGE_STEAM,	1,	0,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml//*mod*
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//¶¨Ê±¼ÓÈÈ8·ÖÖÓ//*mod
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ//*mod
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//å®šæ—¶åŠ çƒ­8åˆ†é’Ÿ//*mod
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ//*mod
 
 	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//¶¨Ê±¼ÓÈÈ10·ÖÖÓ//20251216
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ//20251216
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//å®šæ—¶åŠ çƒ­10åˆ†é’Ÿ//20251216
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ//20251216
 	#else
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//¶¨Ê±¼ÓÈÈ8·ÖÖÓ
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//¼äÐª¼ÓÈÈ2·ÖÖÓ
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//å®šæ—¶åŠ çƒ­8åˆ†é’Ÿ
+	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//é—´æ­‡åŠ çƒ­2åˆ†é’Ÿ
 	#endif
 //--------------
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//¾²ÖÃ
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//ÅÅ¿Õ//20251110 NEWFORM0 Ê±Ðò±í
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//ÅÅ¿Õ*//(20251127 ¸ü¸Ä×î´óÑÓÊ±60->90)
+	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//é™ç½®
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//æŽ’ç©º//20251110 NEWFORM0 æ—¶åºè¡¨
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//æŽ’ç©º*//(20251127 æ›´æ”¹æœ€å¤§å»¶æ—¶60->90)
 	#if CONFIG_T2_STEAMDRY//20251211
 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
 	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*¸ÄÎª40
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*æ”¹ä¸º40
 	#endif
-	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*¼ÓÈëÎÂ¶È²¹³¥
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*ÌáÇ°30s¹Ø±Õ¸ÄÎª¸½¼Ó·ç»ú30s
+	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*åŠ å…¥æ¸©åº¦è¡¥å¿
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*æå‰30så…³é—­æ”¹ä¸ºé™„åŠ é£Žæœº30s
 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
@@ -476,9 +476,9 @@ static const StepInfo steamSteps[]=
 
 // static const StepInfo drySteps[]=
 // {
-// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//20251110 NEWFORM0 Ê±Ðò±í
-// 	{STAGE_PRE,		1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			20,		0},//20251110 NEWFORM0 Ê±Ðò±í
-// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			0,		0},//Ô¤Ï´ÎÂ¶È²¹³¥¼ì²é//20250920
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//20251110 NEWFORM0 æ—¶åºè¡¨
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			20,		0},//20251110 NEWFORM0 æ—¶åºè¡¨
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			0,		0},//é¢„æ´—æ¸©åº¦è¡¥å¿æ£€æŸ¥//20250920
 	
 // 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45
 // 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//20250920//20250929
@@ -489,23 +489,23 @@ static const StepInfo steamSteps[]=
 static const StepInfo drySteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
-	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*Ö´ÐÐÅÅË®¶¯×÷×é
+	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*æ‰§è¡ŒæŽ’æ°´åŠ¨ä½œç»„
 //--------------
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//Ô¤Ï´ÎÂ¶È²¹³¥¼ì²é*¸ÄÖ÷Ï´
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//é¢„æ´—æ¸©åº¦è¡¥å¿æ£€æŸ¥*æ”¹ä¸»æ´—
 //--------------
 	#if CONFIG_T2_STEAMDRY//20251211
 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_TIMER,		0, 		38*60,		38*60},//20251216
 	#else
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_TIMER,		0, 		40*60,		40*60},//45*¸ÄÎª40*ÎÞ¾²ÖÃÅÅ¿Õ//*mod
+	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_TIMER,		0, 		40*60,		40*60},//45*æ”¹ä¸º40*æ— é™ç½®æŽ’ç©º//*mod
 	#endif
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*¼ÓÈëÎÂ¶È²¹³¥//*mod
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_TIMER,			0,		   30,		0},//*ÌáÇ°30s¹Ø±Õ¸ÄÎª¸½¼Ó·ç»ú30s//*mod
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*åŠ å…¥æ¸©åº¦è¡¥å¿//*mod
+	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_TIMER,			0,		   30,		0},//*æå‰30så…³é—­æ”¹ä¸ºé™„åŠ é£Žæœº30s//*mod
 	{STAGE_DRY,		1,	0,  1,	0,	1,	COMPLETE_SAVE,		0, 			0,		0},//*mod
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
@@ -518,38 +518,38 @@ static const StepInfo drySteps[]=
 // 	{STAGE_PRE,		1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			30,		0},
 
 // 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		60},//800ml
-// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			50,		5*60},//55¶ÈÎÂ´ïÊ£Ï´
-// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			50,		5*60},//55åº¦æ¸©è¾¾å‰©æ´—
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	#if CONFIG_MP_ENABLE
-// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	#endif
 // 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 
 // 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	30,		2*60},//¼ÓÈÈµ½Ê±¼ä½áÊø
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	30,		2*60},//åŠ çƒ­åˆ°æ—¶é—´ç»“æŸ
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	#if CONFIG_MP_ENABLE
-// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	#endif
 // 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 
 // 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_RINSE,		0, (C_LITER*7),		30},//700ml
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	40        ,		3*60},//55¶ÈÎÂ´ïÊ£Ï´
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	40        ,		3*60},//55åº¦æ¸©è¾¾å‰©æ´—
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 // 	#if CONFIG_MP_ENABLE
-// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 // 	#endif
 // 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			10,		10},
 // 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 // 	// {STAGE_RINSE2,	1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 // 	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		60},//ÅÅ¿Õ//20251110 NEWFORM0 Ê±Ðò±í
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		60},//æŽ’ç©º//20251110 NEWFORM0 æ—¶åºè¡¨
 // 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 // };
 
@@ -567,7 +567,7 @@ static const StepInfo selfcleanSteps[]=
 };
 #elif CONFIG_IQC_TEST//20260117
 static const StepInfo selfcleanSteps[]=
-{//¿ª·ç»ú¼ì²â·ç»ú¹ÊÕÏ
+{//å¼€é£Žæœºæ£€æµ‹é£Žæœºæ•…éšœ
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
@@ -579,63 +579,63 @@ static const StepInfo selfcleanSteps[]=
 static const StepInfo selfcleanSteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
-	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*Ö´ÐÐÅÅË®¶¯×÷×é
+	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*æ‰§è¡ŒæŽ’æ°´åŠ¨ä½œç»„
 //--------------
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
-	// {STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//Ô¤Ï´ÎÂ¶È²¹³¥¼ì²é*¸ÄÖ÷Ï´
+	// {STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//é¢„æ´—æ¸©åº¦è¡¥å¿æ£€æŸ¥*æ”¹ä¸»æ´—
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		5*60},//42¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±*×Ô½à
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		5*60},//42åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶*è‡ªæ´
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 //--------------
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	42,		2*60},//42¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±*×Ô½à
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	42,		2*60},//42åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶*è‡ªæ´
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 //--------------
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS1//*ÅäÊ±·Ç0*²¢Èë
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//ÅÅË®¶¯×÷×éS2
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//ÅÅË®¶¯×÷×éS3
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S1//*é…æ—¶éž0*å¹¶å…¥
+	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//æŽ’æ°´åŠ¨ä½œç»„S2
+	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//æŽ’æ°´åŠ¨ä½œç»„S3
 	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//ÅÅË®¶¯×÷×éS4
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//æŽ’æ°´åŠ¨ä½œç»„S4
 	#endif
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*ÅäÊ±·Ç0¹ÊÕÏ»Ö¸´ÎÞÏÞÑÓÊ±//*²»Ê¹ÓÃ¶þÆ¯½øË®²½Öè
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*ÈÈÏ´Ö®Ç°ÀäÏ´20s
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		3*60},//55¶ÈÎÂ´ïÊ£Ï´*²»ÑÓÊ±*×Ô½à
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*é…æ—¶éž0æ•…éšœæ¢å¤æ— é™å»¶æ—¶//*ä¸ä½¿ç”¨äºŒæ¼‚è¿›æ°´æ­¥éª¤
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*çƒ­æ´—ä¹‹å‰å†·æ´—20s
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		3*60},//55åº¦æ¸©è¾¾å‰©æ´—*ä¸å»¶æ—¶*è‡ªæ´
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 //--------------
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//¾²ÖÃ
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//ÅÅ¿Õ//20251110 NEWFORM0 Ê±Ðò±í
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//ÅÅ¿Õ*//(20251127 ¸ü¸Ä×î´óÑÓÊ±60->90)
+	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//é™ç½®
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//æŽ’ç©º//20251110 NEWFORM0 æ—¶åºè¡¨
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//æŽ’ç©º*//(20251127 æ›´æ”¹æœ€å¤§å»¶æ—¶60->90)
 
 	#if CONFIG_T2_STEAMDRY//20251211
 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
 	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*¸ÄÎª40
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*æ”¹ä¸º40
 	#endif
-	// {STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*¼ÓÈëÎÂ¶È²¹³¥
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*ÌáÇ°30s¹Ø±Õ¸ÄÎª¸½¼Ó·ç»ú30s
+	// {STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*åŠ å…¥æ¸©åº¦è¡¥å¿
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*æå‰30så…³é—­æ”¹ä¸ºé™„åŠ é£Žæœº30s
 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 };
 		#endif
 #endif
-//20251011 ³§²âÄ£Ê½
+//20251011 åŽ‚æµ‹æ¨¡å¼
 static const TestInfo Test1Steps[]=
 {//20251110 NEWFORM0 11
 	{0x60,	0,	PAUSE_TIMER,		0,	0,				0},
@@ -643,7 +643,7 @@ static const TestInfo Test1Steps[]=
 
 	{0x61,	0,	INLET_ROTATION,		0,	(C_LITER*8),	60},//43s
 
-	{0x62,	0,	WASH_HEAT_TEMP1,	0,	72,				12*60},//9min 66¶È//11min 71¶È(20251127 ¸ü¸Ä)//22¶È¼ÓÈÈµ½72¶È11·Ö40Ãë
+	{0x62,	0,	WASH_HEAT_TEMP1,	0,	72,				12*60},//9min 66åº¦//11min 71åº¦(20251127 æ›´æ”¹)//22åº¦åŠ çƒ­åˆ°72åº¦11åˆ†40ç§’
 
 	{0x63,	0,	DRAIN_TIMER,		0,	15,				15},
 	{0x63,	0,	PAUSE_TIMER,		0,	2,				2},
@@ -654,7 +654,7 @@ static const TestInfo Test1Steps[]=
 
 	{0x64,	0,	FAN_PTC_TIMER,		0,	6*60,			6*60},//6min
 
-	{0x65,	0,	DRAIN_ALL,			0,	0,				60},//2minÂúÏäÊ£1/5 *//(20251127 ¸ü¸Ä×î´óÑÓÊ±60->90)
+	{0x65,	0,	DRAIN_ALL,			0,	0,				60},//2minæ»¡ç®±å‰©1/5 *//(20251127 æ›´æ”¹æœ€å¤§å»¶æ—¶60->90)
 	{0x65,	0,	DRAIN_ALL,			0,	30,				0},
 
 	{0x66,	1,	PAUSE_TIMER,		0,	2,				2},

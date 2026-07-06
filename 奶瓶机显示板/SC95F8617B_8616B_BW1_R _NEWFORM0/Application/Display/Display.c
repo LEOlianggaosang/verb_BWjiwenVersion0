@@ -853,7 +853,34 @@ static void Fct_Display(void)
 
 #if CONFIG_POWER_TEST//20260509
 static void Display_PowerTest(void)
-{
+{//显示规则(数码管)
 	Light_IsWorking = 0;
+	if(!F_Led_Power)//20260702
+	{
+		if(F_Lack)
+		{
+			Display_Screen_888(P_FlowMCnt/C_LITER);
+		}
+		else if(F_Lack_Rad&&F_Led_Light)
+		{
+			Display_Screen_888(P_FlowMCnt/C_LITER);
+		}
+		else if(F_Wsah&&F_Led_Light)
+		{
+			DigitalShowTemperature();
+		}
+		else if(F_Sterilize)
+		{
+			DigitalShowTemperature();
+		}
+		else if(F_Save&&F_Led_Light)
+		{
+			Display_Screen_888(P_FeedBackCnt);
+		}
+		else
+		{
+			DigitalShowTheSame(DISP_CHAR_BAR);
+		}
+	}
 }
 #endif

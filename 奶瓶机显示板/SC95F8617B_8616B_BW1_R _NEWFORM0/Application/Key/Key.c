@@ -674,28 +674,82 @@ static void Fct_MonitorAction(void)
 #if CONFIG_POWER_TEST//20260509
 static void Key_PowerTest(void)
 {
+	static bit Buf_Led_Light = 0;
 	#if NEWTPE1
-	if(KEY_SELFCLEAN&&KEY_ACT_SHORT)
-	{
+	if(KEY_POWER&&KEY_ACT_SHORT)
+	{//开关键//20260702
+		BeepState = BUZZ_POWERON;
+		if(F_Led_Power)
+		{
+			F_Led_Power = 0;
+		}
+		else
+		{
+			Trant_LED_Index(DIGITAL_ALL_OFF);
+			Trant_LED_Index(LED_ALL_OFF);
+			F_Led_Power = 1;
+		}
+	}
+
+	if(KEY_START&&KEY_ACT_SHORT&&(!F_Led_Power))
+	{//启动键//20260702
 		BeepState = BUZZ_KEY_VALID;
-		F_Lack = F_Led_SelfClean = !F_Led_SelfClean;
+		F_Led_Start = !F_Led_Start;
+	}
+
+	if(KEY_SELFCLEAN&&KEY_ACT_SHORT&&(!F_Led_Power))
+	{//进水键
+		if(!(F_Led_Light&&(F_Led_Fast||F_Led_Srandard||F_Led_Sterilize||F_Led_Save)))
+		{//功能键自锁
+			BeepState = BUZZ_KEY_VALID;
+			F_Lack = F_Led_SelfClean = !F_Led_SelfClean;
+		}
+	}
+
+	if(KEY_FAST&&KEY_ACT_SHORT&&(!F_Led_Power))
+	{//排水键
+		if(!(F_Led_Light&&(F_Led_SelfClean||F_Led_Srandard||F_Led_Sterilize||F_Led_Save)))
+		{//功能键自锁
+			BeepState = BUZZ_KEY_VALID;
+			F_Lack_Rad = F_Led_Fast = !F_Led_Fast;
+		}
+	}
+
+	if(KEY_STANDARD&&KEY_ACT_SHORT&&(!F_Led_Power))
+	{//洗涤键
+		if(!(F_Led_Light&&(F_Led_SelfClean||F_Led_Fast||F_Led_Sterilize||F_Led_Save)))
+		{//功能键自锁
+			BeepState = BUZZ_KEY_VALID;
+			F_Wsah = F_Led_Srandard = !F_Led_Srandard;
+		}
+	}
+
+	if(KEY_STERILIZE&&KEY_ACT_SHORT&&(!F_Led_Power))
+	{//加热键//20260702
+		if(!(F_Led_Light&&(F_Led_SelfClean||F_Led_Fast||F_Led_Srandard||F_Led_Save)))
+		{//功能键自锁
+			BeepState = BUZZ_KEY_VALID;
+			F_Sterilize = F_Led_Sterilize = !F_Led_Sterilize;
+		}
+	}
+
+	if(KEY_SAVE&&KEY_ACT_SHORT&&(!F_Led_Power))
+	{//风机键//20260702
+		if(!(F_Led_Light&&(F_Led_SelfClean||F_Led_Fast||F_Led_Srandard||F_Led_Sterilize)))
+		{//功能键自锁
+			BeepState = BUZZ_KEY_VALID;
+			F_Save = F_Led_Save = !F_Led_Save;
+		}
+	}
+
+	if(KEY_LIGHT&&KEY_ACT_SHORT&&(!F_Led_Power))
+	{//功能键//20260702
+		BeepState = BUZZ_KEY_VALID;
+		Buf_Led_Light = !F_Led_Light;
+		Trant_LED_Index(DIGITAL_ALL_OFF);
+		Trant_LED_Index(LED_ALL_OFF);
+		F_Led_Light = Buf_Led_Light;
 	}
 	#endif
-
-	if(KEY_FAST&&KEY_ACT_SHORT)
-	{
-		BeepState = BUZZ_KEY_VALID;
-		F_Led_Fast = !F_Led_Fast;
-		#if NEWTPE1
-		F_Lack_Rad = F_Led_Fast;
-		#endif
-	}
-
-	if(KEY_STANDARD&&KEY_ACT_SHORT)
-	{
-		BeepState = BUZZ_KEY_VALID;
-		F_Wsah = F_Led_Srandard = !F_Led_Srandard;
-	}
-
 }
 #endif
