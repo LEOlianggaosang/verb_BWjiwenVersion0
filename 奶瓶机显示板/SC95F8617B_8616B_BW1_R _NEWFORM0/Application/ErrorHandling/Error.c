@@ -10,12 +10,12 @@
 */
 
 #include "TicketHandling\TicketHandling.h"
-// #include "Relays\Relays.h"
-// #include "Signals\Signals.h"
-// #include "Buzzer\Buzzer.h"
-// #include "InletValveRotation\InletValveRotation.h"
-// #include "Temperatures\Temperatures.h"
-// #include "Test\Self_Test.h"
+//// #include "Relays\Relays.h"
+//// #include "Signals\Signals.h"
+//// #include "Buzzer\Buzzer.h"
+//// #include "InletValveRotation\InletValveRotation.h"
+//// #include "Temperatures\Temperatures.h"
+//// #include "Test\Self_Test.h"
 #include "Key\Key.h"
 #include "Work\Work.h"
 #include "Power\Power.h"
@@ -98,6 +98,7 @@ void Error_Handling(void)
         }
         else 
         {
+            //! NEWFORM1 #3-3 检测功能冲突
             #if ((0 == CONFIG_LIFE_TEST)&&(0 == CONFIG_IQC_TEST))//20251204//20260117
             if (Power_DoorIsOpend)
             {
@@ -140,6 +141,7 @@ void Error_Handling(void)
 										{
 											Error_SetCode(ERROR_FAN);
 										}
+											//! NEWFORM1 #3-3 检测功能冲突
 											#if CONFIG_IQC_TEST//20260117
 										else if(MENU_SELFCLEAN == Work_CurrentMenu)
 										{
@@ -254,10 +256,10 @@ static void errorTdsHandler(void)
 
 static void errorRtHandler(void)
 {   //自动恢复
-    // if(!AdErr_ErrRe)
-    // {
-    //     errorRecovery();
-    // }
+//    // if(!AdErr_ErrRe)
+//    // {
+//    //     errorRecovery();
+//    // }
 
     //无需处理 不能恢复
 }

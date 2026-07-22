@@ -12,17 +12,17 @@
 #include "Work.h"
 #include "FuctionSteps_Sheet.h"
 #include "Key\Key.h"
-// #include "Test\Self_Test.h"
+//// #include "Test\Self_Test.h"
 #include "Save\Save.h"
 #include "ErrorHandling\Error.h"
 #include "Display\Display.h"
 #include "TicketHandling\TicketHandling.h"
 #include "PowerLostMemory\PowerLostMemory.h"
-// #include "Relays\Relays.h"//"Power\Power.h"
-// #include "Signals\Signals.h"//"Power\Power.h"
-// #include "Temperatures\Temperatures.h"//"Power\Power.h"
-// #include "InletValveRotation\InletValveRotation.h"//"Power\Power.h"
-// #include "Buzzer\Buzzer.h"//"Power\Power.h"
+//// #include "Relays\Relays.h"//"Power\Power.h"
+//// #include "Signals\Signals.h"//"Power\Power.h"
+//// #include "Temperatures\Temperatures.h"//"Power\Power.h"
+//// #include "InletValveRotation\InletValveRotation.h"//"Power\Power.h"
+//// #include "Buzzer\Buzzer.h"//"Power\Power.h"
 #include "Power\Power.h"
 #if CONFIG_AUTO_WASH
 #include "Turbidity\Turbidity.h"
@@ -42,91 +42,76 @@
 /* const define ------------------------------------------------------------- */
 const stMenuPara  MenuList[] = 
 {
-	{MENU_FAST,		0,		1,		0,		1, 		1},
-	{MENU_STANDARD, 0,		1,		0,		1, 		1},
-	{MENU_STEAM, 	1,		0,		0,		1, 		1},
+	{MENU_FAST,		0,		1,		1,		1, 		1},
+	{MENU_STANDARD, 0,		1,		1,		1, 		1},
+	{MENU_STEAM, 	1,		0,		1,		1, 		1},
 	{MENU_DRY,		0,		0,		1,		0, 		1},
-	{MENU_SELFCLEAN,0,		0,		0,		NEWFORM0,NEWTPE1},//NEWTPE1//20251110 NEWFORM0 11.6
-	{MENU_NULL,		0,		1,		0,		1,		0}
+	{MENU_SELFCLEAN,0,		0,		0,		0,		0},
+	{MENU_NULL,		0,		0,		0,		0,		0}
 };
+//! NEWFORM1 #4-2 更新叠加功能，默认烘干，烘干可选定义为保管可选
+// const stMenuPara  MenuList[] = 
+// {
+// 	{MENU_FAST,		0,		1,		0,		1, 		1},
+// 	{MENU_STANDARD, 0,		1,		0,		1, 		1},
+// 	{MENU_STEAM, 	1,		0,		0,		1, 		1},
+// 	{MENU_DRY,		0,		0,		1,		0, 		1},
+// 	{MENU_SELFCLEAN,0,		0,		0,		NEWFORM0,NEWTPE1},//NEWTPE1//20251110 NEWFORM0 11.6
+// 	{MENU_NULL,		0,		1,		0,		1,		0}
+// };
 const UCHAR_XDATA Work_StageStartTimeMode[MAX_MENU_NUMBER][STAGE_END+1]=
-{					//(20251127 1-0-1-66-end)
-					// {19,18,10,7,1,1,0},//MENU_FAST
-					// {29,28,15,10,1,1,0},//MENU_STANDARD
-					// {10,10,10,10,10,1,0},//MENU_STEAM
-					// {35,35,35,35,35,35,0},//MENU_DRY//45
-					// #if NEWTPE1
-					// {10,10,5,2,1,1,0}//MENU_SELFCLEAN
-					// #endif
-#if CONFIG_LIFE_TEST//20251204
-	//20251110 NEWFORM0 10.6
-	{2,2,0,0,0,0,0,0},//MENU_FAST
-	{255,255,0,0,0,0,0,0},//MENU_STANDARD
-	{10,10,10,10,10,0,0,0},//MENU_STEAM
-	{40,40,40,40,40,40,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
-	#if NEWTPE1
-	{80,80,0,0,0,0,0}//MENU_SELFCLEAN
-	#endif
-#elif CONFIG_IQC_TEST//20260117
-	{1,1,0,0,0,0,0,0},//MENU_FAST
-	{255,255,0,0,0,0,0,0},//MENU_STANDARD
-	{10,10,10,10,10,0,0,0},//MENU_STEAM
-	{40,40,40,40,40,40,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
-	#if NEWTPE1
-	{1,1,0,0,0,0,0}//MENU_SELFCLEAN
-	#endif
-#else
-	//20251110 NEWFORM0 10.6
+{
 	{19,19,10,7,0,0,0,0},//MENU_FAST
-	// {29,29,15,10,0,0,0,0},//MENU_STANDARD
-	// {10,10,10,10,10,0,0,0},//MENU_STEAM
-	// {40,40,40,40,40,40,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
-
-	#if CONFIG_T2_STANDARD//20251211//20260421 版本0
-	{32,32,19,15,0,0,0,0},//MENU_STANDARD
-	#else
 	{29,29,15,10,0,0,0,0},//MENU_STANDARD
-	#endif
-
-	#if CONFIG_T2_STEAMDRY//20251211//20260421 版本0
-	{12,12,12,12,12,0,0,0},//MENU_STEAM//20251216
-	{38,38,38,38,38,38,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3//20251216
-	#else
 	{10,10,10,10,10,0,0,0},//MENU_STEAM
 	{40,40,40,40,40,40,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
-	#endif
-
-	#if NEWTPE1
 	{10,10,5,3,0,0,0}//MENU_SELFCLEAN
-	#endif
-#endif
 	//20251126 少于配时扣足配时，大于配时不再走时，非进水最大延时跳步，阶段走时上下限
 };
-
-
-// const UCHAR_XDATA Work_StageStartTimeInSteamMode[MAX_MENU_NUMBER][STAGE_COMPLETE+1]=
+//! NEWFORM1 #4-2 精简阶段时间表，处理时间计算问题
+// const UCHAR_XDATA Work_StageStartTimeMode[MAX_MENU_NUMBER][STAGE_END+1]=
 // {
-// 	{19+10,18+10,10+10,7+10,1+10,1,0},//MENU_FAST
-// 	{29+10,28+10,15+10,10+10,1+10,1,0},//MENU_STANDARD
-// 	{10,10,10,10,10,1,0},//MENU_STEAM
-// 	{45+10,45+10,45+10,45+10,45+10,45,0}//MENU_DRY
-// };
-
-
-// const UCHAR_XDATA Work_StageStartTimeInDryMode[MAX_MENU_NUMBER][STAGE_COMPLETE+1] =
-// {
-// 	{19+45,18+45,10+45,7+45,1+45,1+45,0},//MENU_FAST
-// 	{29+45,28+45,15+45,10+45,1+45,1+45,0},//MENU_STANDARD
-// 	{10+45,10+45,10+45,10+45,10+45,1+45,0},//MENU_STEAM
-// 	{45,45,45,45,45,45,0}//MENU_DRY
-// };
-
-// const UCHAR_XDATA Work_StageStartTimeInSteam_DryMode[MAX_MENU_NUMBER][STAGE_COMPLETE+1] =
-// {
-// 	{19+55,18+55,10+55,7+55,1+55,1+45,0},//MENU_FAST
-// 	{29+55,28+55,15+55,10+55,1+55,1+45,0},//MENU_STANDARD
-// 	{10+45,10+45,10+45,10+45,10+45,1+45,0},//MENU_STEAM
-// 	{45+10,45+10,45+10,45+10,45+10,45,0}//MENU_DRY
+// //! NEWFORM1 #3-3 检测功能冲突
+// #if CONFIG_LIFE_TEST//20251204
+// 	//20251110 NEWFORM0 10.6
+// 	{2,2,0,0,0,0,0,0},//MENU_FAST
+// 	{255,255,0,0,0,0,0,0},//MENU_STANDARD
+// 	{10,10,10,10,10,0,0,0},//MENU_STEAM
+// 	{40,40,40,40,40,40,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
+// 	#if NEWTPE1
+// 	{80,80,0,0,0,0,0}//MENU_SELFCLEAN
+// 	#endif
+// #elif CONFIG_IQC_TEST//20260117
+// 	{1,1,0,0,0,0,0,0},//MENU_FAST
+// 	{255,255,0,0,0,0,0,0},//MENU_STANDARD
+// 	{10,10,10,10,10,0,0,0},//MENU_STEAM
+// 	{40,40,40,40,40,40,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
+// 	#if NEWTPE1
+// 	{1,1,0,0,0,0,0}//MENU_SELFCLEAN
+// 	#endif
+// #else
+// 	//20251110 NEWFORM0 10.6
+// 	{19,19,10,7,0,0,0,0},//MENU_FAST
+// 	// {29,29,15,10,0,0,0,0},//MENU_STANDARD
+// 	// {10,10,10,10,10,0,0,0},//MENU_STEAM
+// 	// {40,40,40,40,40,40,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
+// 	#if CONFIG_T2_STANDARD//20251211//20260421 版本0
+// 	{32,32,19,15,0,0,0,0},//MENU_STANDARD
+// 	#else
+// 	{29,29,15,10,0,0,0,0},//MENU_STANDARD
+// 	#endif
+// 	#if CONFIG_T2_STEAMDRY//20251211//20260421 版本0
+// 	{12,12,12,12,12,0,0,0},//MENU_STEAM//20251216
+// 	{38,38,38,38,38,38,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3//20251216
+// 	#else
+// 	{10,10,10,10,10,0,0,0},//MENU_STEAM
+// 	{40,40,40,40,40,40,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
+// 	#endif
+// 	#if NEWTPE1
+// 	{10,10,5,3,0,0,0}//MENU_SELFCLEAN
+// 	#endif
+// #endif
+// 	//20251126 少于配时扣足配时，大于配时不再走时，非进水最大延时跳步，阶段走时上下限
 // };
 
 const StepInfo (*steps[]) =
@@ -173,6 +158,7 @@ UCHAR_XDATA  Test_WaitKeyActionCount = 0;
 UCHAR_XDATA  Work_DoorOpenDelaySecondCount = 0;
 UINT_XDATA 	FlowMCntSet = 0;
 UINT_XDATA 	FlowMCnt = 0;
+//! NEWFORM1 #3-3 检测功能冲突
 #if CONFIG_LIFE_TEST//20251204
 UINT_XDATA LifeTestCnt = 0;
 #endif
@@ -310,10 +296,11 @@ void Work_NextStep(void)
 		Work_SpecialSecondInCurrentStage = 0;
 		Work_DrainAllFail = MD_FALSE;//20251110 NEWFORM0 10.1(3) 20251126
 		Work_SteamLack = MD_FALSE;
-		#if CONFIG_MENORY_WASHDATA
-		Work_MemoryWrite = MD_TRUE;
-		Work_IsPowerLostMemory = MD_TRUE;
-		#endif
+		//! NEWFORM1 #2-2 屏蔽写动作
+		// #if CONFIG_MENORY_WASHDATA
+		// Work_MemoryWrite = MD_TRUE;
+		// Work_IsPowerLostMemory = MD_TRUE;
+		// #endif
 		Work_HasHeat = MD_FALSE;
 		Work_HeatOk = MD_FALSE;
 		heat_error_count = 0;
@@ -347,9 +334,10 @@ void Test_NextStep(void)
 	if((Test_CurrentStage != (test_info.stage & 0x0f))||(test_info.clearStepDataEnable))
 	{
 		Test_CurrentStage = (test_info.stage & 0x0f);
-		#if CONFIG_MENORY_WASHDATA
-		Work_IsPowerLostMemory = MD_TRUE;
-		#endif
+		//! NEWFORM1 #2-2 屏蔽写动作
+		// #if CONFIG_MENORY_WASHDATA
+		// Work_IsPowerLostMemory = MD_TRUE;
+		// #endif
 		Work_SpecialSecondInCurrentStage = 0;
 		Work_DrainAllFail = MD_FALSE;//20251110 NEWFORM0 10.1(3) 20251126
 		Work_SteamLack = MD_FALSE;
@@ -381,10 +369,6 @@ void Work_Control(void)
 	Work_TimerTick1s = MD_FALSE;
 	Init_Variable_When_Close_Power();
 	Init_Variable_When_Goto_Standby();
-		#if (CONFIG_LIFE_TEST||CONFIG_IQC_TEST)//20251204//20260117
-	    Work_IsSteamMode = 0;
-        Work_IsDryMode = 0;
-		#endif
 	if (F_Work1s != F_Base1s)
 	{
 		F_Work1s = F_Base1s;
@@ -397,6 +381,14 @@ void Work_Control(void)
 	OutputEnable = 0;
 	Work_EndConditionIsTemperature = MD_FALSE;
 	FlowMCntSet = 0;
+	//! NEWFORM1 #3-3 检测功能冲突
+	#if (CONFIG_LIFE_TEST||CONFIG_IQC_TEST)//20251204//20260117
+	Work_IsSteamMode = 0;
+    Work_IsDryMode = 0;
+	#endif
+	//! NEWFORM1 #2-1 从入口锁死叠加功能
+	Work_InletMode = 0;
+	Light_IsWorking = 0;
 
 	if(Fcting)
 	{
@@ -408,9 +400,11 @@ void Work_Control(void)
 		case STATE_RESET:
 			if(Work_TimerTick1s)
 			{
-				if(++ResetTimer >= 2)
+				//! NEWFORM1 #1-1 增加蜂鸣一声，复位时间改为1s
+				if(++ResetTimer >= 1)
 				{//20251016 增加功能
 					ResetTimer = 0;
+					BeepState = BUZZ_KEY_VALID;
 					Work_CurrentState = STATE_POWER;
 					Test_WaitKeyActionCount = 60;//20251016 增加功能
 				}
@@ -449,38 +443,50 @@ void Work_Control(void)
 			}
 			break;
 		case STATE_STANDBY:
-			if(IsNormalMune(Work_CurrentMenu))
-			{
-				Work_LeftMinToEnd = Work_StageStartTimeMode[(UCHAR)Work_CurrentMenu][0];
-			}
-			else
-			{
-				Work_LeftMinToEnd = 0;
-			}
+			//! NEWFORM1 #4-2 待机时间按菜单显示，阶段时间不累加
+			Work_LeftMinToEnd = Work_StageStartTimeMode[(UCHAR)Work_CurrentMenu][0];
+			// if(IsNormalMune(Work_CurrentMenu))
+			// {
+			// 	Work_LeftMinToEnd = Work_StageStartTimeMode[(UCHAR)Work_CurrentMenu][0];
+			// }
+			// else
+			// {
+			// 	Work_LeftMinToEnd = 0;
+			// }
 
-			if(IsSteamMune(Work_CurrentMenu))
-			{
-				Work_LeftMinToEnd += Work_StageStartTimeMode[(UCHAR)MENU_STEAM][0];
-			}
-			if(IsDryMune(Work_CurrentMenu))
-			{
-				Work_LeftMinToEnd += Work_StageStartTimeMode[(UCHAR)MENU_DRY][0];
-			}
-
+			// if(IsSteamMune(Work_CurrentMenu))
+			// {
+			// 	Work_LeftMinToEnd += Work_StageStartTimeMode[(UCHAR)MENU_STEAM][0];
+			// }
+			// if(IsDryMune(Work_CurrentMenu))
+			// {
+			// 	Work_LeftMinToEnd += Work_StageStartTimeMode[(UCHAR)MENU_DRY][0];
+			// }
+			//! NEWFORM1 #4-2 待机检测NTC，休眠时间10分钟
 			if(Work_TimerTick1s)
 			{
-				if(++SleepCnt >= 300)
+				if(++SleepCnt >= 600)
 				{
 					Work_CurrentState = STATE_POWER;
 					SleepCnt = 0;
 				}
-
-				#if (0 == CONFIG_TEST_ERROR)
-					#if ((0 == CONFIG_LIFE_TEST)&&(0 == CONFIG_IQC_TEST))//20251204//20260117
 				checkRTError();
-					#endif
-				#endif
 			}
+			// if(Work_TimerTick1s)
+			// {
+			// 	if(++SleepCnt >= 300)
+			// 	{
+			// 		Work_CurrentState = STATE_POWER;
+			// 		SleepCnt = 0;
+			// 	}
+
+			// 	#if (0 == CONFIG_TEST_ERROR)
+			// 		//! NEWFORM1 #3-3 检测功能冲突
+			// 		#if ((0 == CONFIG_LIFE_TEST)&&(0 == CONFIG_IQC_TEST))//20251204//20260117
+			// 	checkRTError();
+			// 		#endif
+			// 	#endif
+			// }
 			break;
 		case STATE_WASHING:
 			Work_NextStepHandler  = Work_NextStep;
@@ -490,6 +496,7 @@ void Work_Control(void)
 
 				if(Work_TimerTick1s)
 				{
+					//! NEWFORM1 #3-3 检测功能冲突
 					#if (CONFIG_LIFE_TEST||CONFIG_IQC_TEST)//20251204//20260117
 					if(MENU_STANDARD == Work_CurrentMenu)
 					#endif
@@ -523,6 +530,7 @@ void Work_Control(void)
 							}
 						}
 					}
+					//! NEWFORM1 #3-3 检测功能冲突
 					#if ((0 == CONFIG_LIFE_TEST)&&(0 == CONFIG_IQC_TEST))//20251204//20260117
 					checkHeatError();
 					#endif
@@ -1073,10 +1081,10 @@ static void inlet_steam(void)
 	if(checkLackError())
 	{
 		Inlet_IsInLetting = 0;
-		// if((P_FlowMCnt + FlowMCnt) < C_LITER*2)//200ml
-		// {
-		// 	Work_SteamLack = 1;//如果蒸汽使能且蒸汽开启，缺水跳过蒸汽步骤
-		// }
+//		// if((P_FlowMCnt + FlowMCnt) < C_LITER*2)//200ml
+//		// {
+//		// 	Work_SteamLack = 1;//如果蒸汽使能且蒸汽开启，缺水跳过蒸汽步骤
+//		// }
 		if((P_FlowMCnt + FlowMCnt) < C_LITER*2)//200ml
 		{//20251007
 			FlowMCnt += P_FlowMCnt;//20251007
@@ -1145,6 +1153,7 @@ static void wash_heat_temp2(void)
 /*
 定温加热，温达维持
 */
+//! NEWFORM1 #3-3 检测功能冲突
 #if CONFIG_LIFE_TEST//20251204
 static void wash_heat_temp3(void)
 {
@@ -1493,8 +1502,12 @@ static void complete(void)
 	TestKeyCnt = 0;
 	Work_KeyboardIsLocked = MD_FALSE;
 	Work_IsPaused = MD_FALSE;
-	Work_LastMenu = Work_CurrentMenu;//20250920
+	//! NEWFORM1 #2-1 开关机默认程序，保管标志位初始化
+	Work_SaveMode = 1;
+	Work_LastMenu = INIT_MENU;
+	// Work_LastMenu = Work_CurrentMenu;//20250920
 	Work_NextStepHandler  = Work_NextStep;
+	//! NEWFORM1 #3-3 检测功能冲突
 	#if CONFIG_LIFE_TEST//20251204
 	Work_CurrentStep = 0;
 	if(++LifeTestCnt>=999)
@@ -1513,14 +1526,19 @@ static void complete(void)
 	if(Work_SaveEnter)
 	{
 		Work_CurrentState = STATE_SAVING;
-		Work_SaveEnter = MD_FALSE;
+		//! NEWFORM1 #2-1 进入保管时不清零，用以区分判断开门故障
+		// Work_SaveEnter = MD_FALSE;
 		Save_InitSet();
 	}
 	else
 	{
 		Work_CurrentState = STATE_FINISHED;
 	}
-	Work_MemoryWrite = MD_TRUE;//20251110 NEWFORM0 2.4
+	//! NEWFORM1 #2-2 屏蔽写动作
+	// Work_MemoryWrite = MD_TRUE;//20251110 NEWFORM0 2.4
+	//! NEWFORM1 #2-1 写记忆后保管不亮蒸汽
+	Work_IsSteamMode = 0;
+	Work_IsDryMode = 1;
 	#endif
 	//20251011 厂测模式
 	Test_CurrentOption = TEST_NULL;
@@ -1670,26 +1688,33 @@ static void Init_Variable_When_Goto_Standby(void)
 {
 	if(Work_GotoStandbyInit)
 	{
-		BeepState = BUZZ_POWERON;
+		BeepState = BUZZ_KEY_VALID;
+		//! NEWFORM1 #1-1 开关机改为短蜂鸣
+		// BeepState = BUZZ_POWERON;
 		Work_GotoStandbyInit = MD_FALSE;
 		Work_CurrentState = STATE_STANDBY;
-		//20251110 NEWFORM0 2.4
-		//Work_IsSteamMode//Work_IsDryMode//Work_MemoryRead
-		if(MENU_STEAM == Work_LastMenu)
-		{//20251110 NEWFORM0 3、
-			Work_CurrentMenu = MENU_NULL;
-			Work_IsSteamMode = 1;
-		}
-		else if(MENU_DRY == Work_LastMenu)
-		{//20251110 NEWFORM0 3、
-			Work_CurrentMenu = MENU_NULL;
-			Work_IsDryMode = 1;
-		}
-		else
-		{
-			Work_CurrentMenu = Work_LastMenu;
-		}
-		Work_LeftMinToEnd = 0;
+		//20251110 NEWFORM0 2.4//Work_IsSteamMode//Work_IsDryMode//Work_MemoryRead
+		//! NEWFORM1 #2-1 开关机默认程序与叠加功能，保管标志位初始化
+		Work_CurrentMenu = Work_LastMenu;
+		Work_IsSteamMode = 0;
+		Work_IsDryMode = 1;
+		Work_SaveMode = 1;
+		Work_LeftMinToEnd = Work_StageStartTimeMode[Work_LastMenu][0];
+		// if(MENU_STEAM == Work_LastMenu)
+		// {//20251110 NEWFORM0 3、
+		// 	Work_CurrentMenu = MENU_NULL;
+		// 	Work_IsSteamMode = 1;
+		// }
+		// else if(MENU_DRY == Work_LastMenu)
+		// {//20251110 NEWFORM0 3、
+		// 	Work_CurrentMenu = MENU_NULL;
+		// 	Work_IsDryMode = 1;
+		// }
+		// else
+		// {
+		// 	Work_CurrentMenu = Work_LastMenu;
+		// }
+		// Work_LeftMinToEnd = 0;
 		SleepCnt = 0;
 		DrainCnt = 0;
 		EndCnt = 0;
@@ -1732,15 +1757,12 @@ static void Init_Variable_When_Goto_Standby(void)
 		Work_TimeHaltEnable = MD_FALSE;
 		Work_SaveEnter = MD_FALSE;
 		Work_TempCompensation = MD_FALSE;//20251204
-		// temperatureDisplayCount = 0;
-    	// time_WaitKeyActionCount = 0;
-		// lockFlashCount = 0;
-		// addedWaterSecond = 0;
 		//20251011 厂测模式
 		Test_CurrentOption = TEST_NULL;
 		Test_CurrentStep = Test_MaxStage = 0xff;
 		Test_CurrentStage = 0;
 		Work_NextStepHandler  = Work_NextStep;
+		//! NEWFORM1 #3-3 检测功能冲突
 		#if CONFIG_LIFE_TEST//20251204
 		LifeTestCnt = 0;
 		#endif
@@ -1751,14 +1773,16 @@ static void Init_Variable_When_Close_Power(void)
 {
 	if(Work_ClosePowerInit)
 	{
-		BeepState = BUZZ_POWERON;//
+		BeepState = BUZZ_KEY_VALID;
+		//! NEWFORM1 #1-1 开关机改为短蜂鸣
+		// BeepState = BUZZ_POWERON;
 		Work_ClosePowerInit = MD_FALSE;
 		Work_CurrentState = STATE_POWER;
-		Work_LastMenu = Work_CurrentMenu;
-		//20251110 NEWFORM0 2.4
-		//Work_CurrentMenu = MENU_NULL;
-		// Work_IsSteamMode = MD_FALSE;
-		// Work_IsDryMode = MD_FALSE;
+		//! NEWFORM1 #2-1 开关机默认程序与叠加功能，保管标志位初始化
+		Work_LastMenu = MENU_INIT;
+		Work_SaveMode = 1;
+		// Work_LastMenu = Work_CurrentMenu;
+		//20251110 NEWFORM0 2.4//Work_CurrentMenu = MENU_NULL;//Work_IsSteamMode = MD_FALSE;//Work_IsDryMode = MD_FALSE;
 		Test_Entered = MD_FALSE;
 		Work_KeyboardIsLocked = MD_FALSE;
 		Work_IsPaused = MD_FALSE;
@@ -1784,18 +1808,16 @@ static void Init_Variable_When_Close_Power(void)
 		EndCnt = 0;
 		drainCount = 0;
 		TestKeyCnt = 0;
-		// Work_CurrentHalfMode = HALF_BY_TURNS;
-		// Half_CurrentPoint = T_UNKNOWN;
-		// Pipe_CurrentState = PIPE_STATE_UNKNOWN;
 		//20251011 厂测模式
 		Test_CurrentOption = TEST_NULL;
 		Test_CurrentStep = Test_MaxStage = 0xff;
 		Test_CurrentStage = 0;
 		Work_NextStepHandler  = Work_NextStep;
-		#if CONFIG_IAPADDR_DEVICE	
-		Work_MemoryWrite = MD_TRUE;//20251110 NEWFORM0 2.4//20251126 关机记忆时间太长
-		#endif
-		
+		//! NEWFORM1 #2-2 屏蔽写动作
+		// #if CONFIG_IAPADDR_DEVICE	
+		// Work_MemoryWrite = MD_TRUE;//20251110 NEWFORM0 2.4//20251126 关机记忆时间太长
+		// #endif
+		//! NEWFORM1 #3-3 检测功能冲突
 		#if CONFIG_LIFE_TEST//20251204
 		LifeTestCnt = 0;
 		#endif

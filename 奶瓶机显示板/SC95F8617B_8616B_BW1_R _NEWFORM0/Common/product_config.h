@@ -15,7 +15,7 @@
 #include "user_define.h"
 
 // System configuration
-#define VERSION_NUMBER	2//b02
+#define VERSION_NUMBER	10//b02
 #define INIT_MENU       MENU_STANDARD   /* Initial menu */
 #define INIT_STATE      STATE_RESET   /* Initial system state */
 // #define	C_LITER         1029//0.1L
@@ -47,8 +47,8 @@
 #define CONFIG_BRZZER                       1
 #define CONFIG_WIFI                         0
 #define CONFIG_PUMP_ADCHECK                 0//过流保护
-#define CONFIG_MENORYENABLE                 1//掉电记忆
-#define CONFIG_IAPADDR_DEVICE               1//循环使用EEPROM空间模块
+#define CONFIG_MENORYENABLE                 0//掉电记忆
+#define CONFIG_IAPADDR_DEVICE               0//循环使用EEPROM空间模块
 #define CONFIG_MENORY_WASHDATA              0//20251105 更新
 #define CONFIG_FLOW_CHECK                   0
 #define CONFIG_INLET_MODE                   0//进水模式切换
@@ -72,12 +72,12 @@
 #define CONFIG_DEBUG_PRINT                  0
 #define EMC_TEST_NO_INLET                   0
 #define CONFIG_UART_MORE                    0 
-#define CONFIG_EXTRA_INFORMATION            1//20251105 更新
-#define CONFIG_DISPLAY_INLET                1//20251110 NEWFORM0
+#define CONFIG_EXTRA_INFORMATION            0//20251105 更新
+#define CONFIG_DISPLAY_INLET                0//20251110 NEWFORM0
 #define CONFIG_STATE_FLESH                  1//20251110 NEWFORM0
 #define CONFIG_LIFE_TEST                    0//20251204
 #define CONFIG_IQC_TEST                    	0//20260117
-#define CONFIG_POWER_TEST                   1//20260509
+#define CONFIG_POWER_TEST                   0//20260509
 //*****************************************************************************
 #endif
 //更改记录
@@ -484,3 +484,251 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
 //3.3、功能键切换开关时停止所有功能，功能键亮起时切换另一组功能且不能叠加(自锁处理,交集逆反)
 //3.4、显示规则(数码管)对电源键做判断，内容以状态指示灯和功能键做判断
 //3.5、负载驱动规则对功能键与启停键做判断，功能切换对流量、温度、转速控制作处理
+
+//20260706 从样机差异总结竞品逻辑更改
+/*
+----------------------------------------
+本次更改由以下几部分组成：
+////注释原代码
+//! NEWFORM1 #<标签> [更改详情]
+! (宏定义前提)
+*1、问题
+    *1.1、 未处理
+        //备注
+* 2、差异
+    * #0 分类
+        todo #标签
+            搜索关键词
+            ? 状态
+            //? 重大更改
+                //规则阐述
+* 3、定位
+    *3.1、 文件名
+        ! 代码块 #标签
+----------------------------------------
+    ! (0==CONFIG_POWER_TEST)
+    ! (0==CONFIG_MENORYENABLE)
+    ! (0==CONFIG_IAPADDR_DEVICE)
+    ! (0==CONFIG_MENORY_WASHDATA)
+    ! (0==CONFIG_EXTRA_INFORMATION)
+    ! (0==CONFIG_LIFE_TEST)
+    ! (0==CONFIG_IQC_TEST)
+    ! (0==CONFIG_NIGHT_LIGHT)////直接关
+    ! (0==CONFIG_DISPLAY_INLET)////直接关
+* 1、问题
+    * 1.1、 转速修正(反馈检测）-电源板
+    * 1.2、 蒸汽温度(温度检测）-电源板/显示板
+    * 1.3、 排空噪声(流量检测) -显示板
+        //待机、烘干关机不强排
+        //整合Light封装函数
+        //缺水可继续，交替显示已进水量
+        //故障启动排水
+* 2、差异
+    * #1 微调
+        todo #1-1 蜂鸣
+            KEY_POWER
+                //开机短鸣一声，关机长鸣一声
+            ? STATE_RESET
+                //复位到关机短鸣一声
+        todo #1-2 开门处理：待机/运行/保管/故障
+            Work_DoorOpenDelaySecondCount
+                //关门、厂测、保管、运行进入赋值延迟1s开始运行与判断开门故障
+                //由于此计数全局递减，开门时反复赋值为3
+            ? STATE_STANDBY
+                //待机启动改为开门无效
+                //开门蜂鸣一声/更改error
+            Work_SaveEnter
+                //进入保管时不清零，用以区分判断开门故障
+    * #2 标志位
+        todo #2-1 从初始化与入口锁死叠加功能
+            Work_LastMenu
+                //沿用赋值，方便后续增加掉电记忆
+            INIT_MENU
+                //回到待机默认强力洗
+            Work_IsSteamMode = 0;
+                //只能运行更改
+            Work_IsDryMode = 1;
+                //无法更改
+            light_IsWorking = 0;
+                //无法更改
+            Work_InletMode = 0;
+                //无法更改
+            //? 增加 Work_SaveMode
+            Work_SaveMode = 1;
+                //分离烘干与保管标志位
+                //只能运行更改
+        todo #2-2 不需要掉电记忆，只留初始化
+            CONFIG_MENORYENABLE
+                //配置为0，只控制是否调用读写底层函数
+            Work_MemoryRead
+            Work_MemoryWrite
+            Work_IsPowerLostMemory
+                //屏蔽入口与出口
+    * #3 屏蔽
+        todo #3-1 去掉自清洁与夜灯键按键，屏蔽对应按键显示
+            CONFIG_TESTENTER_CHECK
+            KEY_LIGHT
+            KEY_SELFCLEAN
+                //手动屏蔽
+        todo #3-2 参数显示功能冲突
+            CONFIG_EXTRA_INFORMATION
+                //手动屏蔽
+        todo #3-3 检测功能冲突
+            CONFIG_LIFE_TEST
+            CONFIG_IQC_TEST
+                //受控宏定义关闭
+        todo #3-4 屏蔽夜灯，屏蔽白进水灯，屏蔽半亮
+            CONFIG_NIGHT_LIGHT
+            CONFIG_DISPLAY_INLET
+                //受控宏定义关闭
+    * #4 状态显示与交互与时间计算
+        //重构 key/work/display/light 更改规则
+        todo #4-1 更改按键规则
+            Key_MonitorAction
+            ? STATE_STANDBY
+                //菜单键只能选取4种程序，无法复选取消
+                //叠加功能键作为选取菜使用，默认叠加烘干与保管，不叠加蒸汽
+                //开门无法启动
+            ? STATE_WASHING
+            MENU_DRY
+                //增加按键无效提示
+                //烘干菜单特有分支：关机不强排，无法取消保管
+                //取消按键改变叠加功能更新总时间
+                //蒸汽阶段前可配置叠加蒸汽
+                //保管前可配置叠加保管
+            ? STATE_DRAIN
+            ? STATE_ERROR
+            ? STATE_SAVING
+                //增加按键无效提示
+            ? STATE_SAVING
+                //更改前进键位置
+        todo #4-2 更改工作规则
+            MenuList
+            //? 时间计算问题：上限/配时/走时/延时/非零
+            Work_StageStartTimeMode
+            Work_NextStep
+                //跳步配时清算，非零
+            Work_Control
+                //取消按键改变叠加功能更新总时间入口
+            runMinCountDown
+                //阶段上下限处理
+            ? STATE_STANDBY
+                //总时间不叠加，菜单固定总时间
+                //待机检测NTC，10分钟休眠
+            ? STATE_WASHING
+                //走时延时跳步处理
+        todo #4-3 更改显示规则
+            //? 模块化 DigitalMinCount
+            DigitalMinCount(UCHAR flesh1, UCHAR flesh2, UINT num);
+                //替代 DigitalMinCount
+                //取消内置规则
+                //增加函数参数接口自由配置
+                //三位数改为小时制
+            Digital_State
+                //待机不亮，洗涤包括暂停闪烁，保管单闪烁，开门与缺水故障单独处理
+                //洗涤状态指示定义为烘干，烘干状态指示定义为保管
+            //? 增加 Led_Program
+            Led_Program(bit d_power,MenuOption d_mune,bit d_start);
+                //替代 Led_ProgramStandby Led_ProgramWork
+                //内置规则
+                //取消内置规则
+                //增加函数参数接口自由配置
+            Display_Control
+            ? STATE_STANDBY
+                //电源键亮，程序/功能亮，运行亮
+                //数码管状态闪烁，时间运行冒号闪烁
+            ? STATE_WASHING
+                //电源键亮，程序/功能亮，运行亮
+                //数码管状态闪烁，时间运行冒号闪烁
+            Work_IsPaused
+                //电源键亮，程序/功能亮，运行闪烁
+                //数码管状态闪烁，时间冒号闪烁
+            ? STATE_DRAIN
+                //电源键常亮，数码管熄灭
+            ? STATE_ERROR
+            ERROR_DOOR
+                //电源键亮，程序/功能亮，运行亮
+                //数码管状态闪烁，时间冒号闪烁
+                //自动恢复
+            ERROR_LACK
+                //电源键亮，程序/功能灭，运行闪烁
+                //数码管状态闪烁，时间运行冒号闪烁，5s交替显示已进水量
+                //可按键恢复
+                //借用NL_100msCnt计数
+            ERROR
+            DigitalErrorCode
+                //电源键亮，程序/功能灭，运行灭
+                //数码管状态灭，故障代码闪烁
+                //无法恢复
+            ? STATE_SAVING
+                //电源键亮，程序/功能亮，运行亮
+                //数码管状态闪烁，时间冒号熄灭
+             ERROR_DOOR
+                //电源键亮，程序/功能熄灭，保管亮，运行亮
+                //数码管状态闪烁，显示剩余保管时间
+    * #5 处理逻辑
+    * #6 时序
+            CONFIG_T2_STANDARD
+* 3、定位
+    * 3.1、 key
+        ! Key_MonitorAction(STATE_POWER) #1-1 #3-3
+        ! Key_MonitorAction(STATE_DRAIN) #3-2
+        ! Key_MonitorAction() #4-1
+        // ! Key_MonitorAction(STATE_STANDBY) #3-1 #3-2 #3-3
+        ! Key_MonitorAction(STATE_STANDBY) #1-2
+        // ! Key_MonitorAction(STATE_WASHING) #3-1 #3-3
+        // ! Key_MonitorAction(STATE_SAVING) #3-1
+        ! Key_MonitorAction(STATE_TESTING) #2-1 #3-1 #2-2 #4-1
+        ! Fct_MonitorAction() #3-1
+    * 3.2、 work
+        ! MenuList[] #4-2
+        // ! Work_StageStartTimeMode[][] #3-3
+        ! Work_StageStartTimeMode[][] #4-2
+        ! Work_NextStep() #2-2
+        ! Test_NextStep() #2-2
+        ! Work_Control() #3-3 #2-1
+        ! Work_Control(STATE_RESET) #1-1
+        // ! Work_Control(STATE_STANDBY) #3-3
+        ! Work_Control(STATE_STANDBY) #4-2
+        ! Work_Control(STATE_WASHING) #3-3
+        ! wash_heat_temp3() #3-3
+        ! Init_Variable_When_Goto_Standby() #1-1 #2-1 #3-3
+        ! Init_Variable_When_Close_Power() #2-1 #2-2 #3-3
+        ! complete() #2-1 #2-2 #3-3
+    * 3.3、 display
+        ! static void Led_Program(bit d_power,MenuOption d_mune,bit d_start); #4-3
+        ! Display_Control() #3-4 #4-3
+        ! Display_Control(STATE_POWER) #3-2
+        // ! Display_Control(STATE_STANDBY) #3-2
+        // ! Display_Control(STATE_WASHING) #3-2 #3-3
+        // ! Display_Control(STATE_ERROR) #3-2
+        // ! Display_Control(STATE_SAVING) #3-2
+        // ! Display_Control(STATE_TESTING) #3-2 #3-4
+        // ! DigitalMinCount() #4-3
+        ! DigitalMinCount(UCHAR flesh1, UCHAR flesh2, UCHAR num); #4-3
+        ! DigitalErrorCode() #4-3
+        ! Fct_Display() #3-1
+        ! NightLight_Control() #3-3 #3-4
+    * 3.4、light
+        ! Leds_Flesh() #3-1
+        // ! Digital_State() #3-4
+        ! Digital_State() #4-3
+        // ! Led_ProgramStandby() #3-1 #4-3
+        // ! Led_ProgramWork() #3-1  #4-3
+        ! Led_Power_Off() #3-4
+        ! Led_Power_On() #3-4
+        ! Digital_Null() #4-3
+    * 3.5、 PowerLostMemory
+        ! Recovery_Power_Lost_Memory() #2-1 #2-2
+        ! Work_PowerDownDeal() #2-2
+    * 3.6、 FuctionSteps_Sheet
+        ! fastSteps[][] #3-3
+        ! standardSteps[][] #3-3
+        ! selfcleanSteps[][] #3-3
+    * 3.7、 Error
+        ! Error_Handling() #3-3
+    * 3.8、 work.h
+        ! WorkAction_Flags #2-1
+
+
+*/

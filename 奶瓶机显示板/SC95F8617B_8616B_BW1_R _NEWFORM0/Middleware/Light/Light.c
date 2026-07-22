@@ -156,11 +156,16 @@ UCHAR_XDATA  Com3_Buf = 0;
 void Leds_Flesh(void)
 {
 	unsigned char i = 0;
-	// if(F_Light10ms != F_Base10ms)
-	// {
-	// 	F_Light10ms = F_Base10ms;
-
+//	// if(F_Light10ms != F_Base10ms)
+//	// {
+//	// 	F_Light10ms = F_Base10ms;
 		//Leds_Test();
+		//! NEWFORM1 #3-1 从出口附加规则
+		#if(0==CONFIG_POWER_TEST)
+		F_Led_SelfClean = 0;
+		F_Led_Light = 0;
+		F_Lack = 0;
+		#endif
 
 		Digital_Buf = segNumsPart1[Com1_Buf];
 		F_Com1_SegA = LF_SEG_A;
@@ -201,22 +206,22 @@ void Leds_Flesh(void)
 				LCDRAM[((UCHAR)tLeds[i].seg)] &= ~((UCHAR)tLeds[i].com);
 			}
 
-			// if(tLeds[i].value)
-			// {
-			// 	LedRamBuf[((UCHAR)tLeds[i].seg)] |= ((UCHAR)tLeds[i].com);
-			// }
-			// // else
-			// // {
-			// // 	LedRamBuf[((UCHAR)tLeds[i].seg)] &= ~((UCHAR)tLeds[i].com);
-			// // }
+//			// if(tLeds[i].value)
+//			// {
+//			// 	LedRamBuf[((UCHAR)tLeds[i].seg)] |= ((UCHAR)tLeds[i].com);
+//			// }
+//			// // else
+//			// // {
+//			// // 	LedRamBuf[((UCHAR)tLeds[i].seg)] &= ~((UCHAR)tLeds[i].com);
+//			// // }
 		}
 
-		// for(i = 0; i < 28; i++)
-		// {
-		// 	LedRamBuf[i] = 0x00;
-		// 	LCDRAM[i] = LedRamBuf[i];
-		// 	LedRamBuf[i] = 0;
-		// }
+//		// for(i = 0; i < 28; i++)
+//		// {
+//		// 	LedRamBuf[i] = 0x00;
+//		// 	LCDRAM[i] = LedRamBuf[i];
+//		// 	LedRamBuf[i] = 0;
+//		// }
 
 	// }
 }
@@ -269,103 +274,129 @@ static void Digital_State(void)
 	buf = 1;
 	#endif
 
-#if NEWTPE1
 	if(Inlet_Lack)
-	{
+	{//缺水故障
 		F_Lack_Rad = buf;
 	}
 	else
-	{
+	{//待机//运行//保管
 		F_Lack_Rad = 0;
 	}
-	#if (CONFIG_IV_ENABLE&&CONFIG_INLET_MODE)
-	F_Lack = Work_InletMode;
-	#else
-	F_Lack = 0;
-	#endif
-
-	#if CONFIG_DISPLAY_INLET
-	if(Inlet_IsInLetting)
-	{//20251110 NEWFORM0 9.1
-		F_Lack = buf;
-	}
-	else
-	#endif
-	{//20251110 NEWFORM0 9.2
-		F_Lack = 0;
-	}
-
-	if((STAGE_MAIN == Work_CurrentStage)||(STAGE_RINSE1 == Work_CurrentStage)||(STAGE_RINSE2 == Work_CurrentStage))
-	{
-		F_Wsah = buf;
-	}
-	else
-	{
-		F_Wsah = 0;
-	}
-
 	if(STAGE_STEAM == Work_CurrentStage)
-	{
+	{//运行
 		F_Sterilize = buf;
 	}
 	else
-	{
+	{//待机
 		F_Sterilize = 0;
 	}
-
 	if(STAGE_DRY == Work_CurrentStage)
-	{
-		F_Save = buf;
-	}
-	else if(STATE_SAVING == Work_CurrentState)
-	{
-		F_Save = 1;
+	{//运行
+		F_Wsah = buf;
 	}
 	else
-	{
-		F_Save = 0;
+	{//待机
+		F_Wsah = 0;
 	}
-
-#else
-	if(Inlet_Lack)
-	{
-		F_Lack = buf;
-	}
-	else
-	{
-		F_Lack = 0;
-	}
-	#if CONFIG_INLET_MODE
-	F_Led_Inlet = Work_InletMode;
-	#endif
-
-	if(STAGE_STEAM == Work_CurrentStage)
-	{
-		F_Steam = buf;
-	}
-	else
-	{
-		F_Steam = 0;
-	}
-
-	if(STAGE_DRY == Work_CurrentStage)
-	{
-		F_Dry = buf;
-	}
-	else
-	{
-		F_Dry = 0;
-	}
-
 	if(STATE_SAVING == Work_CurrentState)
-	{
+	{//保管
 		F_Save = buf;
 	}
 	else
-	{
+	{//待机//运行//故障
 		F_Save = 0;
 	}
-#endif
+//! NEWFORM1 #4-3 待机/运行/保管/故障调用，变更指示灯定义
+// #if NEWTPE1
+// 	if(Inlet_Lack)
+// 	{
+// 		F_Lack_Rad = buf;
+// 	}
+// 	else
+// 	{
+// 		F_Lack_Rad = 0;
+// 	}
+// 	#if (CONFIG_IV_ENABLE&&CONFIG_INLET_MODE)
+// 	F_Lack = Work_InletMode;
+// 	#else
+// 	F_Lack = 0;
+// 	#endif
+// 	//! NEWFORM1 #3-4 屏蔽进水灯
+// 	#if CONFIG_DISPLAY_INLET
+// 	if(Inlet_IsInLetting)
+// 	{//20251110 NEWFORM0 9.1
+// 		F_Lack = buf;
+// 	}
+// 	else
+// 	#endif
+// 	{//20251110 NEWFORM0 9.2
+// 		F_Lack = 0;
+// 	}
+// 	if((STAGE_MAIN == Work_CurrentStage)||(STAGE_RINSE1 == Work_CurrentStage)||(STAGE_RINSE2 == Work_CurrentStage))
+// 	{
+// 		F_Wsah = buf;
+// 	}
+// 	else
+// 	{
+// 		F_Wsah = 0;
+// 	}
+// 	if(STAGE_STEAM == Work_CurrentStage)
+// 	{
+// 		F_Sterilize = buf;
+// 	}
+// 	else
+// 	{
+// 		F_Sterilize = 0;
+// 	}
+// 	if(STAGE_DRY == Work_CurrentStage)
+// 	{
+// 		F_Save = buf;
+// 	}
+// 	else if(STATE_SAVING == Work_CurrentState)
+// 	{
+// 		F_Save = 1;
+// 	}
+// 	else
+// 	{
+// 		F_Save = 0;
+// 	}
+// #else
+// 	if(Inlet_Lack)
+// 	{
+// 		F_Lack = buf;
+// 	}
+// 	else
+// 	{
+// 		F_Lack = 0;
+// 	}
+// 	#if CONFIG_INLET_MODE
+// 	F_Led_Inlet = Work_InletMode;
+// 	#endif
+// 	if(STAGE_STEAM == Work_CurrentStage)
+// 	{
+// 		F_Steam = buf;
+// 	}
+// 	else
+// 	{
+// 		F_Steam = 0;
+// 	}
+// 	if(STAGE_DRY == Work_CurrentStage)
+// 	{
+// 		F_Dry = buf;
+// 	}
+// 	else
+// 	{
+// 		F_Dry = 0;
+// 	}
+// 	if(STATE_SAVING == Work_CurrentState)
+// 	{
+// 		F_Save = buf;
+// 	}
+// 	else
+// 	{
+// 		F_Save = 0;
+// 	}
+// #endif
 }
 
 static void Led_Testting(void)
@@ -394,228 +425,234 @@ static void Led_Testting(void)
 }
 static void Led_ProgramStandby(void)
 {
-	#if NEWTPE1
-	Work_InletMode = 0;
-	F_Led_Light = Light_IsWorking;
-	#else
-	Light_IsWorking = 1;
-	F_Led_Inlet = Work_InletMode;
-	#endif
-	switch(Work_CurrentMenu)
-	{
-		case MENU_FAST:
-			F_Led_Fast = 1;
-			F_Led_Srandard = 0;
-			#if NEWTPE1
-			F_Led_SelfClean = 0;
-			#endif
-			F_Led_Steam = Work_IsSteamMode;
-			F_Led_Dry = Work_IsDryMode;
-			break;
-		case MENU_STANDARD:
-			F_Led_Fast = 0;
-			F_Led_Srandard = 1;
-			#if NEWTPE1
-			F_Led_SelfClean = 0;
-			#endif
-			F_Led_Steam = Work_IsSteamMode;
-			F_Led_Dry = Work_IsDryMode;
-			break;
-		#if NEWTPE1
-		case MENU_SELFCLEAN:
-			F_Led_Fast = F_Led_Srandard = F_Led_Steam = 0;
-			#if NEWFORM0
-			F_Led_Dry = Work_IsDryMode;
-			#else
-			F_Led_Dry = 0;
-			#endif
-			F_Led_SelfClean = 1;
-			break;
-		#endif
-		default://MENU_STEAM/MENU_DRY/MENU_NULL
-			F_Led_Fast = 0;
-			F_Led_Srandard = 0;
-			#if NEWTPE1
-			F_Led_SelfClean = 0;
-			#endif
-			if((Work_IsSteamMode)||(MENU_STEAM == Work_CurrentMenu))
-			{
-				F_Led_Steam = 1;
-				F_Led_Dry = Work_IsDryMode;
-			}
-			else if((Work_IsDryMode)||(MENU_DRY == Work_CurrentMenu))
-			{
-				F_Led_Steam = 0;
-				F_Led_Dry = 1;
-			}
-			else
-			{
-				F_Led_Steam = F_Led_Dry = 0;//20251110 NEWFORM0 3、
-			}
-			break;
-	}
+	//! NEWFORM1 #3-1 屏蔽对应显示
+	// #if NEWTPE1
+	// Work_InletMode = 0;
+	// F_Led_Light = Light_IsWorking;
+	// #else
+	// Light_IsWorking = 1;
+	// F_Led_Inlet = Work_InletMode;
+	// #endif
+	//! NEWFORM1 #4-3 小时制显示
+	// F_Led_Power = 1;
+	// F_Led_Start = 0;
+	// switch(Work_CurrentMenu)
+	// {
+	// 	case MENU_FAST:
+	// 		F_Led_Fast = 1;
+	// 		F_Led_Srandard = 0;
+	// 		#if NEWTPE1
+	// 		F_Led_SelfClean = 0;
+	// 		#endif
+	// 		F_Led_Steam = Work_IsSteamMode;
+	// 		F_Led_Dry = Work_IsDryMode;
+	// 		break;
+	// 	case MENU_STANDARD:
+	// 		F_Led_Fast = 0;
+	// 		F_Led_Srandard = 1;
+	// 		#if NEWTPE1
+	// 		F_Led_SelfClean = 0;
+	// 		#endif
+	// 		F_Led_Steam = Work_IsSteamMode;
+	// 		F_Led_Dry = Work_IsDryMode;
+	// 		break;
+	// 	#if NEWTPE1
+	// 	case MENU_SELFCLEAN:
+	// 		F_Led_Fast = F_Led_Srandard = F_Led_Steam = 0;
+	// 		#if NEWFORM0
+	// 		F_Led_Dry = Work_IsDryMode;
+	// 		#else
+	// 		F_Led_Dry = 0;
+	// 		#endif
+	// 		F_Led_SelfClean = 1;
+	// 		break;
+	// 	#endif
+	// 	default://MENU_STEAM/MENU_DRY/MENU_NULL
+	// 		F_Led_Fast = 0;
+	// 		F_Led_Srandard = 0;
+	// 		#if NEWTPE1
+	// 		F_Led_SelfClean = 0;
+	// 		#endif
+	// 		if((Work_IsSteamMode)||(MENU_STEAM == Work_CurrentMenu))
+	// 		{
+	// 			F_Led_Steam = 1;
+	// 			F_Led_Dry = Work_IsDryMode;
+	// 		}
+	// 		else if((Work_IsDryMode)||(MENU_DRY == Work_CurrentMenu))
+	// 		{
+	// 			F_Led_Steam = 0;
+	// 			F_Led_Dry = 1;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Steam = F_Led_Dry = 0;//20251110 NEWFORM0 3、
+	// 		}
+	// 		break;
+	// }
 }
 
 static void Led_ProgramWork(void)
 {
-	#if NEWTPE1
-	Work_InletMode = 0;
-	F_Led_Light = Light_IsWorking;
-	#else
-	Light_IsWorking = 1;
-	F_Led_Inlet = Work_InletMode;
-	#endif
-	F_Led_Power = 1;
-	F_Led_Start = !(Work_IsPaused & F_Blink500ms);
-	if(STATE_WASHING == Work_CurrentState)
-	{
-		switch(Work_CurrentMenu)
-		{//洗涤结束关机，程序运行过程中，每运行完一个阶段，则相应的按键指示灯熄灭
-		case MENU_FAST:
-			if(Work_CurrentStage < STAGE_STEAM)
-			{
-				F_Led_Fast = 1;
-			}
-			else
-			{
-				F_Led_Fast = 0;
-			}
-			F_Led_Srandard = 0;
-			#if NEWTPE1
-			F_Led_SelfClean = 0;
-			#endif
-			if(Work_CurrentStage < STAGE_DRY)
-			{
-				F_Led_Steam = Work_IsSteamMode;
-			}
-			else
-			{
-				F_Led_Steam = 0;
-			}
-			if(Work_CurrentStage < STAGE_COMPLETE)
-			{
-				F_Led_Dry = Work_IsDryMode;
-			}
-			else
-			{
-				F_Led_Dry = 0;
-			}
-			break;
-		case MENU_STANDARD:
-			if(Work_CurrentStage < STAGE_STEAM)
-			{
-				F_Led_Srandard = 1;
-			}
-			else
-			{
-				F_Led_Srandard = 0;
-			}
-			F_Led_Fast = 0;
-			#if NEWTPE1
-			F_Led_SelfClean = 0;
-			#endif
-			if(Work_CurrentStage < STAGE_DRY)
-			{
-				F_Led_Steam = Work_IsSteamMode;
-			}
-			else
-			{
-				F_Led_Steam = 0;
-			}
-			if(Work_CurrentStage < STAGE_COMPLETE)
-			{
-				F_Led_Dry = Work_IsDryMode;
-			}
-			else
-			{
-				F_Led_Dry = 0;
-			}
-			break;
-		case MENU_STEAM:
-			F_Led_Fast = F_Led_Srandard = 0;
-			#if NEWTPE1
-			F_Led_SelfClean = 0;
-			#endif
-			if(Work_CurrentStage < STAGE_DRY)
-			{
-				F_Led_Steam = 1;
-			}
-			else
-			{
-				F_Led_Steam = 0;
-			}
-			if(Work_CurrentStage < STAGE_COMPLETE)
-			{
-				F_Led_Dry = Work_IsDryMode;
-			}
-			else
-			{
-				F_Led_Dry = 0;
-			}
-			break;
-		#if NEWTPE1
-		case MENU_SELFCLEAN:
-			F_Led_Fast = F_Led_Srandard = F_Led_Steam = 0;
-			#if NEWFORM0
-			if(Work_CurrentStage < STAGE_STEAM)
-			{
-				F_Led_SelfClean = 1;
-			}
-			else
-			{
-				F_Led_SelfClean = 0;
-			}
-			if(Work_CurrentStage < STAGE_COMPLETE)
-			{
-				F_Led_Dry = Work_IsDryMode;
-			}
-			else
-			{
-				F_Led_Dry = 0;
-			}
-			#else
-			F_Led_Dry = 0;
-			F_Led_SelfClean = 1;
-			#endif
-			break;
-		#endif
-		case MENU_DRY:
-			F_Led_Fast = F_Led_Srandard = F_Led_Steam = 0;
-			#if NEWTPE1
-			F_Led_SelfClean = 0;
-			#endif
-			if(Work_CurrentStage < STAGE_COMPLETE)
-			{
-				F_Led_Dry = 1;
-			}
-			else
-			{
-				F_Led_Dry = 0;
-			}
-			break;
-		default://MENU_NULL
-			F_Led_Fast = F_Led_Srandard = F_Led_Steam = F_Led_Dry = 0;
-		#if NEWTPE1
-			F_Led_SelfClean = 0;
-		#endif
-			break;
-		}
-	}
-	else 
-	{
-		F_Led_Fast = F_Led_Srandard = F_Led_Steam = 0;
-		if(STATE_SAVING == Work_CurrentState)
-		{
-			F_Led_Dry = 1;//保管键常亮
-		}
-		else
-		{
-			F_Led_Dry = 0;
-		}
-		#if NEWTPE1
-			F_Led_SelfClean = 0;
-		#endif
-	}
+	//! NEWFORM1 #3-1 屏蔽对应显示
+	// #if NEWTPE1
+	// Work_InletMode = 0;
+	// F_Led_Light = Light_IsWorking;
+	// #else
+	// Light_IsWorking = 1;
+	// F_Led_Inlet = Work_InletMode;
+	// #endif
+	//! NEWFORM1 #4-3 取消运行过熄灭设定
+	// F_Led_Power = 1;
+	// F_Led_Start = !(Work_IsPaused & F_Blink500ms);
+	// if(STATE_WASHING == Work_CurrentState)
+	// {
+	// 	switch(Work_CurrentMenu)
+	// 	{//洗涤结束关机，程序运行过程中，每运行完一个阶段，则相应的按键指示灯熄灭
+	// 	case MENU_FAST:
+	// 		if(Work_CurrentStage < STAGE_STEAM)
+	// 		{
+	// 			F_Led_Fast = 1;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Fast = 0;
+	// 		}
+	// 		F_Led_Srandard = 0;
+	// 		#if NEWTPE1
+	// 		F_Led_SelfClean = 0;
+	// 		#endif
+	// 		if(Work_CurrentStage < STAGE_DRY)
+	// 		{
+	// 			F_Led_Steam = Work_IsSteamMode;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Steam = 0;
+	// 		}
+	// 		if(Work_CurrentStage < STAGE_COMPLETE)
+	// 		{
+	// 			F_Led_Dry = Work_IsDryMode;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Dry = 0;
+	// 		}
+	// 		break;
+	// 	case MENU_STANDARD:
+	// 		if(Work_CurrentStage < STAGE_STEAM)
+	// 		{
+	// 			F_Led_Srandard = 1;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Srandard = 0;
+	// 		}
+	// 		F_Led_Fast = 0;
+	// 		#if NEWTPE1
+	// 		F_Led_SelfClean = 0;
+	// 		#endif
+	// 		if(Work_CurrentStage < STAGE_DRY)
+	// 		{
+	// 			F_Led_Steam = Work_IsSteamMode;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Steam = 0;
+	// 		}
+	// 		if(Work_CurrentStage < STAGE_COMPLETE)
+	// 		{
+	// 			F_Led_Dry = Work_IsDryMode;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Dry = 0;
+	// 		}
+	// 		break;
+	// 	case MENU_STEAM:
+	// 		F_Led_Fast = F_Led_Srandard = 0;
+	// 		#if NEWTPE1
+	// 		F_Led_SelfClean = 0;
+	// 		#endif
+	// 		if(Work_CurrentStage < STAGE_DRY)
+	// 		{
+	// 			F_Led_Steam = 1;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Steam = 0;
+	// 		}
+	// 		if(Work_CurrentStage < STAGE_COMPLETE)
+	// 		{
+	// 			F_Led_Dry = Work_IsDryMode;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Dry = 0;
+	// 		}
+	// 		break;
+	// 	#if NEWTPE1
+	// 	case MENU_SELFCLEAN:
+	// 		F_Led_Fast = F_Led_Srandard = F_Led_Steam = 0;
+	// 		#if NEWFORM0
+	// 		if(Work_CurrentStage < STAGE_STEAM)
+	// 		{
+	// 			F_Led_SelfClean = 1;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_SelfClean = 0;
+	// 		}
+	// 		if(Work_CurrentStage < STAGE_COMPLETE)
+	// 		{
+	// 			F_Led_Dry = Work_IsDryMode;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Dry = 0;
+	// 		}
+	// 		#else
+	// 		F_Led_Dry = 0;
+	// 		F_Led_SelfClean = 1;
+	// 		#endif
+	// 		break;
+	// 	#endif
+	// 	case MENU_DRY:
+	// 		F_Led_Fast = F_Led_Srandard = F_Led_Steam = 0;
+	// 		#if NEWTPE1
+	// 		F_Led_SelfClean = 0;
+	// 		#endif
+	// 		if(Work_CurrentStage < STAGE_COMPLETE)
+	// 		{
+	// 			F_Led_Dry = 1;
+	// 		}
+	// 		else
+	// 		{
+	// 			F_Led_Dry = 0;
+	// 		}
+	// 		break;
+	// 	default://MENU_NULL
+	// 		F_Led_Fast = F_Led_Srandard = F_Led_Steam = F_Led_Dry = 0;
+	// 	#if NEWTPE1
+	// 		F_Led_SelfClean = 0;
+	// 	#endif
+	// 		break;
+	// 	}
+	// }
+	// else 
+	// {
+	// 	F_Led_Fast = F_Led_Srandard = F_Led_Steam = 0;
+	// 	if(STATE_SAVING == Work_CurrentState)
+	// 	{
+	// 		F_Led_Dry = 1;//保管键常亮
+	// 	}
+	// 	else
+	// 	{
+	// 		F_Led_Dry = 0;
+	// 	}
+	// 	#if NEWTPE1
+	// 		F_Led_SelfClean = 0;
+	// 	#endif
+	// }
 }
 
 static void Led_Power_Off(void)
@@ -623,24 +660,27 @@ static void Led_Power_Off(void)
 	Digital_All_Off();
 	Led_All_Off();
 	F_Led_Power = 1;
-	if(!(IOHCON0|IOHCON1))
-	{
-		Light_SetBrightness(3);//IOHCON0 = 0xC0;IOHCON1 = 0x00;
-	}
+	//! NEWFORM1 #3-4 屏蔽半亮
+	// if(!(IOHCON0|IOHCON1))
+	// {
+	// 	Light_SetBrightness(3);//IOHCON0 = 0xC0;IOHCON1 = 0x00;
+	// }
 }
 
 static void Led_Power_On(void)
 {
-	if(IOHCON0|IOHCON1)
-	{
-		IOHCON0 = 0x00;
-		IOHCON1 = 0x00;
-	}
+	//! NEWFORM1 #3-4 屏蔽半亮
+	// if(IOHCON0|IOHCON1)
+	// {
+	// 	IOHCON0 = 0x00;
+	// 	IOHCON1 = 0x00;
+	// }
 }
 
 static void Digital_Null(void)
 {
 	F_Lack = F_Wsah = F_Sterilize = F_Save = 0;
+	//! NEWFORM1 #4-3 缺水与开门故障需要显示阶段
 	#if NEWTPE1
 	F_Lack_Rad = Inlet_Lack;
 	#endif
@@ -671,82 +711,80 @@ void Dot_Set(bit value)
 	F_Dot1 = F_Dot2 = value;
 }
 
+//// static void Leds_Test(void)
+//// {
+//// 	Com1_Buf = Com2_Buf = Com3_Buf = DISP_CHAR_NULL;
+//// #if NEWTPE1
+//// 	F_Lack = F_Wsah = F_Dot1 = F_Dot2 = F_Sterilize = F_Save = F_Lack_Rad = 0;
+//// 	F_Led_Fast = F_Led_Srandard = F_Led_Sterilize = F_Led_SelfClean = F_Led_Start = F_Led_Power = F_Led_Light = 0;
+//// 	if(KEY_FAST)
+//// 	{
+//// 		F_Led_Fast = 1;
+//// 	}
+//// 	if(KEY_POWER)
+//// 	{
+//// 		F_Led_Power = 1;
+//// 	}
+//// 	if(KEY_STERILIZE)
+//// 	{
+//// 		F_Led_Sterilize = 1;
+//// 	}
+//// 	if(KEY_SELFCLEAN)
+//// 	{
+//// 		F_Led_SelfClean = 1;
+//// 	}
+//// 	if(KEY_LIGHT)
+//// 	{
+//// 		F_Led_Light = 1;
+//// 	}	
+//// 	if(KEY_STANDARD)
+//// 	{
+//// 		F_Led_Srandard = 1;
+//// 	}
+//// 	if(KEY_SAVE)
+//// 	{
+//// 		F_Led_Save = 1;
+//// 	}
+//// 	if(KEY_START)
+//// 	{
+//// 		F_Led_Start = 1;
+//// 	}
+//// #else
+//// 	F_Lack = F_Dry = F_Dot1 = F_Dot2 = F_Steam = F_Save = 0;
+//// 	F_Led_Fast = F_Led_Srandard = F_Led_Steam = F_Led_Dry = F_Led_Inlet = F_Led_Start = F_Led_Power = 0;
+//// 	if(KEY_FAST)
+//// 	{
+//// 		F_Led_Fast = 1;
+//// 	}
 
+//// 	if(KEY_STANDARD)
+//// 	{
+//// 		F_Led_Srandard = 1;
+//// 	}
 
-// static void Leds_Test(void)
-// {
-// 	Com1_Buf = Com2_Buf = Com3_Buf = DISP_CHAR_NULL;
-// #if NEWTPE1
-// 	F_Lack = F_Wsah = F_Dot1 = F_Dot2 = F_Sterilize = F_Save = F_Lack_Rad = 0;
-// 	F_Led_Fast = F_Led_Srandard = F_Led_Sterilize = F_Led_SelfClean = F_Led_Start = F_Led_Power = F_Led_Light = 0;
-// 	if(KEY_FAST)
-// 	{
-// 		F_Led_Fast = 1;
-// 	}
-// 	if(KEY_POWER)
-// 	{
-// 		F_Led_Power = 1;
-// 	}
-// 	if(KEY_STERILIZE)
-// 	{
-// 		F_Led_Sterilize = 1;
-// 	}
-// 	if(KEY_SELFCLEAN)
-// 	{
-// 		F_Led_SelfClean = 1;
-// 	}
-// 	if(KEY_LIGHT)
-// 	{
-// 		F_Led_Light = 1;
-// 	}	
-// 	if(KEY_STANDARD)
-// 	{
-// 		F_Led_Srandard = 1;
-// 	}
-// 	if(KEY_SAVE)
-// 	{
-// 		F_Led_Save = 1;
-// 	}
-// 	if(KEY_START)
-// 	{
-// 		F_Led_Start = 1;
-// 	}
-// #else
-// 	F_Lack = F_Dry = F_Dot1 = F_Dot2 = F_Steam = F_Save = 0;
-// 	F_Led_Fast = F_Led_Srandard = F_Led_Steam = F_Led_Dry = F_Led_Inlet = F_Led_Start = F_Led_Power = 0;
-// 	if(KEY_FAST)
-// 	{
-// 		F_Led_Fast = 1;
-// 	}
+//// 	if(KEY_STEAM)
+//// 	{
+//// 		F_Led_Steam = 1;
+//// 	}
 
-// 	if(KEY_STANDARD)
-// 	{
-// 		F_Led_Srandard = 1;
-// 	}
+//// 	if(KEY_DRY)
+//// 	{
+//// 		F_Led_Dry = 1;
+//// 	}
 
-// 	if(KEY_STEAM)
-// 	{
-// 		F_Led_Steam = 1;
-// 	}
+//// 	if(KEY_INLET)
+//// 	{
+//// 		F_Led_Inlet = 1;
+//// 	}
 
-// 	if(KEY_DRY)
-// 	{
-// 		F_Led_Dry = 1;
-// 	}
+//// 	if(KEY_START)
+//// 	{
+//// 		F_Led_Start = 1;
+//// 	}
 
-// 	if(KEY_INLET)
-// 	{
-// 		F_Led_Inlet = 1;
-// 	}
-
-// 	if(KEY_START)
-// 	{
-// 		F_Led_Start = 1;
-// 	}
-
-// 	if(KEY_POWER)
-// 	{
-// 		F_Led_Power = 1;
-// 	}
-// #endif
-// }
+//// 	if(KEY_POWER)
+//// 	{
+//// 		F_Led_Power = 1;
+//// 	}
+//// #endif
+//// }

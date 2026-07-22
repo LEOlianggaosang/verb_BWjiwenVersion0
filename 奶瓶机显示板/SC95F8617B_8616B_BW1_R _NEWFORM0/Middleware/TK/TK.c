@@ -67,6 +67,7 @@ static void TK_MonitorAction(void)
         else//有按键
         {
 			keyStateHoldCount ++;
+
 			if((TK_CNT_POWER_LONG_EARLY == keyStateHoldCount)&&KEY_POWER)
 			{
 				if((STATE_WASHING != Work_CurrentState)&&(STATE_ERROR != Work_CurrentState))

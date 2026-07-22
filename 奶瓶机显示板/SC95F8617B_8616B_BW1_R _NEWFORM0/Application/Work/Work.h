@@ -163,6 +163,8 @@ extern WordFlag WorkAction_Flags;
 #define  Work_IsPowerLostMemory         WorkAction_Flags.f_bits.no11//CONFIG_MENORY_WASHDATA
 #define  Work_TimerTick1s               WorkAction_Flags.f_bits.no12
 #define  Work_ForceDrain                WorkAction_Flags.f_bits.no13
+//! NEWFORM1 #2-1 分离保管与烘干控制
+#define  Work_SaveMode                  WorkAction_Flags.f_bits.no14
 extern WordFlag WorkFuction_Flags;
 #define  WorkFuctionFlag                WorkFuction_Flags.f_word
 #define  Work_EndConditionIsTemperature WorkFuction_Flags.f_bits.no0
