@@ -75,7 +75,7 @@ static void Work_PowerTest(void)
 	#if NEWTPE1
   if(F_Led_Power||F_Led_Start)
   {
-    RelayEnable = RelayEnable =0;
+    RelayEnable = OutputEnable =0;
     Inlet_IsInLetting = 0;
     FlowMCntSet = 0;
     Inlet_ErrReload = 1;
@@ -84,7 +84,7 @@ static void Work_PowerTest(void)
   {
     if(F_Led_Light)
     {//对流量、温度、转速控制作处理20260702
-      RelayEnable = RelayEnable =0;
+      RelayEnable = OutputEnable =0;
       Inlet_IsInLetting = 0;
       FlowMCntSet = 0;
       if(F_Led_SelfClean)
