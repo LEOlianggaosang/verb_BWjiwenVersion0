@@ -4,7 +4,7 @@
  * 
  * @file    ReadSwitch.h
  * @author  lianggaosang@qq.com
- * @brief   ¿ª¹Ø×´Ì¬¿ØÖÆ
+ * @brief   å¼€å…³çŠ¶æ€æ§åˆ¶
  *
  *******************************************************************************
  */
@@ -26,10 +26,10 @@ extern ByteFlag Switch_Flags;
 #define  Signal_ErrIaqs				Switch_Flags.f_bits.no5
 
 /**
- * @brief ĞÅºÅ²¶»ñ
+ * @brief ä¿¡å·æ•è·
  * 
- * @param ÎŞ
- * @return ÎŞ
+ * @param æ— 
+ * @return æ— 
  */
 void Read_Switch(void);
 void Init_Switch(void);

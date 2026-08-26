@@ -2,10 +2,10 @@
 
 void Multiplier_Divider_Test(void);
 /*************************************************************
-ËµÃ÷£º
-1¡¢Options for Target¡®Target1¡¯£ºBL51 Locate->Code Range:0x100£¬ÉÕÂ¼Ñ¡ÏîÇëÑ¡ÔñDISRST£¬¸´Î»½Å×÷ÎªÆÕÍ¨IOÊ¹ÓÃ£»
-2¡¢¸Ä±äTESTµÄ¶¨Òå£¬¿ÉÒÔ·Ö±ğ²âÊÔ¶ÔÓ¦µÄ¹¦ÄÜ£»
-3¡¢×¢Òâ£ºÏÈÔÚFunction.HÀïÃæÑ¡Ôñ²âÊÔĞÍºÅ
+è¯´æ˜ï¼š
+1ã€Options for Targetâ€˜Target1â€™ï¼šBL51 Locate->Code Range:0x100ï¼Œçƒ§å½•é€‰é¡¹è¯·é€‰æ‹©DISRSTï¼Œå¤ä½è„šä½œä¸ºæ™®é€šIOä½¿ç”¨ï¼›
+2ã€æ”¹å˜TESTçš„å®šä¹‰ï¼Œå¯ä»¥åˆ†åˆ«æµ‹è¯•å¯¹åº”çš„åŠŸèƒ½ï¼›
+3ã€æ³¨æ„ï¼šå…ˆåœ¨Function.Hé‡Œé¢é€‰æ‹©æµ‹è¯•å‹å·
 ***************************************************************/
 #define Test  2    //BTM:0 EXTI:1 Timer:2 LCD:3 PWM:4 Uart0:5 SSI:6 ADC:7 IAP:8 Multiplier_Divider:9
 
@@ -14,8 +14,8 @@ void main(void)
 {
 	uint i=0;
 	IO_Init();
-	WDTCON |= 0x10;		    //Çå¿´ÃÅ¹·
-	OPERCON = 0X01;         //CHKSUMÔËËã
+	WDTCON |= 0x10;		    //æ¸…çœ‹é—¨ç‹—
+	OPERCON = 0X01;         //CHKSUMè¿ç®—
 	_nop_();
     _nop_();
     _nop_();
@@ -43,8 +43,8 @@ void main(void)
 		case 7: ADC_Test();
 		break;
 		case 8: 
-//			      IAP_Test(0x1FFF,IapROM);   //²Ù×÷ROM£¬¶ÔµØÖ·0x1FFF½øĞĞ¶ÁĞ´²âÊÔ
-		        IAP_Test(0x7F,IapEPPROM);   //²Ù×÷ROM£¬¶ÔµØÖ·0x7F½øĞĞ¶ÁĞ´²âÊÔ
+//			      IAP_Test(0x1FFF,IapROM);   //æ“ä½œROMï¼Œå¯¹åœ°å€0x1FFFè¿›è¡Œè¯»å†™æµ‹è¯•
+		        IAP_Test(0x7F,IapEPPROM);   //æ“ä½œROMï¼Œå¯¹åœ°å€0x7Fè¿›è¡Œè¯»å†™æµ‹è¯•
 		break;
 		case 9: Multiplier_Divider_Test();
 		break;
@@ -53,20 +53,20 @@ void main(void)
 	}
 }
 
-void Multiplier_Divider_Test(void)   //³Ë³ıÆ÷
+void Multiplier_Divider_Test(void)   //ä¹˜é™¤å™¨
 {
 	while(1)
 	{
 		OPERCON &= ~0x40;
-		//³Ë³ı·¨Æ÷
-		Multiplication(0x55AA, 0xAA55);  //³Ë·¨¼ÆËã
-		if(product == 0x38ff5572)        //ÅĞ¶Ï»ı
+		//ä¹˜é™¤æ³•å™¨
+		Multiplication(0x55AA, 0xAA55);  //ä¹˜æ³•è®¡ç®—
+		if(product == 0x38ff5572)        //åˆ¤æ–­ç§¯
 		{
 			P20 = 0;
 		}
 		
-		Division(0xFFAA5500,0xAA55);     //³ı·¨¼ÆËã
-		if(quotient == 0x18040&&remainder == 0x3FC0)  //ÅĞ¶ÏÉÌºÍÓàÊı
+		Division(0xFFAA5500,0xAA55);     //é™¤æ³•è®¡ç®—
+		if(quotient == 0x18040&&remainder == 0x3FC0)  //åˆ¤æ–­å•†å’Œä½™æ•°
 		{
 			P20 = 1;
 		}

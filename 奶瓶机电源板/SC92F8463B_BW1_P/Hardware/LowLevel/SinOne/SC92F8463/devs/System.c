@@ -62,33 +62,33 @@ unsigned char System_Init(void)
 //char Array[] = {0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff};
 //typedef struct
 //{
-//  char a3;        //¸ßÎ»µØÖ·
-//  char a2;        //´Î¸ßµØÖ·
-//  char a1;        //´ÎµÍµØÖ·
-//  char a0;        //µÍÎ»µØÖ·
+//  char a3;        //é«˜ä½åœ°å€
+//  char a2;        //æ¬¡é«˜åœ°å€
+//  char a1;        //æ¬¡ä½åœ°å€
+//  char a0;        //ä½ä½åœ°å€
 //} Value_Typedef;
 //typedef union
 //{
 //  Value_Typedef reg;
-//  unsigned long int result;  //×îÖÕ½á¹û
+//  unsigned long int result;  //æœ€ç»ˆç»“æœ
 //} Result_Typedef;
 
-//unsigned long int temp = 0x00;  //×îÖÕ½á¹û
+//unsigned long int temp = 0x00;  //æœ€ç»ˆç»“æœ
 //Result_Typedef CRC_Result;
 
 //void CRC_Hardware_Init(void);
 //void CRC_Software_Init(char array[]);
 ///*****************************************************
-//*º¯ÊıÃû³Æ£ºvoid CRC_Hardware_Init(void)
-//*º¯Êı¹¦ÄÜ£ºCRCÓ²¼şĞ£Ñé³õÊ¼»¯
-//*Èë¿Ú²ÎÊı£ºvoid
-//*³ö¿Ú²ÎÊı£ºvoid
+//*å‡½æ•°åç§°ï¼švoid CRC_Hardware_Init(void)
+//*å‡½æ•°åŠŸèƒ½ï¼šCRCç¡¬ä»¶æ ¡éªŒåˆå§‹åŒ–
+//*å…¥å£å‚æ•°ï¼švoid
+//*å‡ºå£å‚æ•°ï¼švoid
 //*****************************************************/
 //void CRC_Hardware_Init(void)
 //{
 //  bit EABIT = EA;
 //  EA = 0;
-//  OPERCON |= 0x01;  //Æô¶¯Ó²¼şĞ£Ñé
+//  OPERCON |= 0x01;  //å¯åŠ¨ç¡¬ä»¶æ ¡éªŒ
 //  _nop_();
 //  _nop_();
 //  _nop_();
@@ -103,26 +103,26 @@ unsigned char System_Init(void)
 //  _nop_();
 
 //  CRCINX = 0x00;
-//  CRC_Result.reg.a0 = CRCREG;   //µÍÁ½byte½á¹û´æ·Å
-//  CRC_Result.reg.a1 = CRCREG;   //´ÎµÍÁ½byte½á¹û´æ·Å
-//  CRC_Result.reg.a2 = CRCREG;   //´Î¸ßÁ½byte½á¹û´æ·Å
-//  CRC_Result.reg.a3 = CRCREG;   //¸ßÁ½byte½á¹û´æ·Å
-//  temp = CRC_Result.result;     //×îÖÕÔËËã½á¹û
+//  CRC_Result.reg.a0 = CRCREG;   //ä½ä¸¤byteç»“æœå­˜æ”¾
+//  CRC_Result.reg.a1 = CRCREG;   //æ¬¡ä½ä¸¤byteç»“æœå­˜æ”¾
+//  CRC_Result.reg.a2 = CRCREG;   //æ¬¡é«˜ä¸¤byteç»“æœå­˜æ”¾
+//  CRC_Result.reg.a3 = CRCREG;   //é«˜ä¸¤byteç»“æœå­˜æ”¾
+//  temp = CRC_Result.result;     //æœ€ç»ˆè¿ç®—ç»“æœ
 //  EA = EABIT;
 //}
 
 ///*****************************************************
-//*º¯ÊıÃû³Æ£ºvoid CRC_Software_Init(char array[])
-//*º¯Êı¹¦ÄÜ£ºCRCÈí¼şĞ£Ñé³õÊ¼»¯
-//*Èë¿Ú²ÎÊı£ºvoid
-//*³ö¿Ú²ÎÊı£ºvoid
+//*å‡½æ•°åç§°ï¼švoid CRC_Software_Init(char array[])
+//*å‡½æ•°åŠŸèƒ½ï¼šCRCè½¯ä»¶æ ¡éªŒåˆå§‹åŒ–
+//*å…¥å£å‚æ•°ï¼švoid
+//*å‡ºå£å‚æ•°ï¼švoid
 //*****************************************************/
 //void CRC_Software_Init(char array[])
 //{
 //  int i = 0;
 //  bit EABIT = EA;
 //  EA = 0;
-//  OPERCON |= 0x02;             //Æô¶¯Èí¼şĞ£Ñé
+//  OPERCON |= 0x02;             //å¯åŠ¨è½¯ä»¶æ ¡éªŒ
 //  _nop_();
 //  _nop_();
 //  _nop_();
@@ -135,9 +135,9 @@ unsigned char System_Init(void)
 //  _nop_();
 //  _nop_();
 //  _nop_();
-//  for(i = 0; i < 16; i++)  //Ğ£Ñé·¶Î§
+//  for(i = 0; i < 16; i++)  //æ ¡éªŒèŒƒå›´
 //  {
-//    CRCREG = array[i];   //°ÑÒªĞ£ÑéµÄµØÖ·Öµ·Åµ½¼Ä´æÆ÷
+//    CRCREG = array[i];   //æŠŠè¦æ ¡éªŒçš„åœ°å€å€¼æ”¾åˆ°å¯„å­˜å™¨
 //    _nop_();
 //    _nop_();
 //    _nop_();
@@ -152,44 +152,44 @@ unsigned char System_Init(void)
 //    _nop_();
 //  }
 //  CRCINX = 0x00;
-//  CRC_Result.reg.a0 = CRCREG;   //µÍÁ½byte½á¹û´æ·Å
-//  CRC_Result.reg.a1 = CRCREG;   //´ÎµÍÁ½byte½á¹û´æ·Å
-//  CRC_Result.reg.a2 = CRCREG;   //´Î¸ßÁ½byte½á¹û´æ·Å
-//  CRC_Result.reg.a3 = CRCREG;   //¸ßÁ½byte½á¹û´æ·Å
-//  temp = CRC_Result.result;     //×îÖÕÔËËã½á¹û
+//  CRC_Result.reg.a0 = CRCREG;   //ä½ä¸¤byteç»“æœå­˜æ”¾
+//  CRC_Result.reg.a1 = CRCREG;   //æ¬¡ä½ä¸¤byteç»“æœå­˜æ”¾
+//  CRC_Result.reg.a2 = CRCREG;   //æ¬¡é«˜ä¸¤byteç»“æœå­˜æ”¾
+//  CRC_Result.reg.a3 = CRCREG;   //é«˜ä¸¤byteç»“æœå­˜æ”¾
+//  temp = CRC_Result.result;     //æœ€ç»ˆè¿ç®—ç»“æœ
 //  EA = EABIT;
 //}
 
 //void BTM_Init(void);
 ///*****************************************************
-//*º¯ÊıÃû³Æ£ºvoid BTM_Init(void)
-//*º¯Êı¹¦ÄÜ£ºBTM³õÊ¼»¯
-//*Èë¿Ú²ÎÊı£ºvoid
-//*³ö¿Ú²ÎÊı£ºvoid
+//*å‡½æ•°åç§°ï¼švoid BTM_Init(void)
+//*å‡½æ•°åŠŸèƒ½ï¼šBTMåˆå§‹åŒ–
+//*å…¥å£å‚æ•°ï¼švoid
+//*å‡ºå£å‚æ•°ï¼švoid
 //*****************************************************/
 //void BTM_Init(void)
 //{
-////	BTMCON = 0x00;  //²»¿ªÆô
-////	BTMCON = 0x80;  //Ã¿15.625ms²úÉúÒ»¸öÖĞ¶Ï
-////	BTMCON = 0x81;	//Ã¿31.25ms²úÉúÒ»¸öÖĞ¶Ï
-////	BTMCON = 0x82;	//Ã¿62.5ms²úÉúÒ»¸öÖĞ¶Ï
-////	BTMCON = 0x83;	//Ã¿125ms²úÉúÒ»¸öÖĞ¶Ï
-//	BTMCON = 0x84;	//Ã¿0.25s²úÉúÒ»¸öÖĞ¶Ï
-////	BTMCON = 0x85;	//Ã¿0.5s²úÉúÒ»¸öÖĞ¶Ï
-////	BTMCON = 0x86;	//Ã¿1s²úÉúÒ»¸öÖĞ¶Ï
-////	BTMCON = 0x87;	//Ã¿2s²úÉúÒ»¸öÖĞ¶Ï
-////  BTMCON = 0x88;	//Ã¿4s²úÉúÒ»¸öÖĞ¶Ï
-//	IE1 |= 0x04;       //¿ªÆôBTMÖĞ¶Ï
-//	EA = 1;           //¿ªÆô×ÜÖĞ¶Ï
+////	BTMCON = 0x00;  //ä¸å¼€å¯
+////	BTMCON = 0x80;  //æ¯15.625msäº§ç”Ÿä¸€ä¸ªä¸­æ–­
+////	BTMCON = 0x81;	//æ¯31.25msäº§ç”Ÿä¸€ä¸ªä¸­æ–­
+////	BTMCON = 0x82;	//æ¯62.5msäº§ç”Ÿä¸€ä¸ªä¸­æ–­
+////	BTMCON = 0x83;	//æ¯125msäº§ç”Ÿä¸€ä¸ªä¸­æ–­
+//	BTMCON = 0x84;	//æ¯0.25säº§ç”Ÿä¸€ä¸ªä¸­æ–­
+////	BTMCON = 0x85;	//æ¯0.5säº§ç”Ÿä¸€ä¸ªä¸­æ–­
+////	BTMCON = 0x86;	//æ¯1säº§ç”Ÿä¸€ä¸ªä¸­æ–­
+////	BTMCON = 0x87;	//æ¯2säº§ç”Ÿä¸€ä¸ªä¸­æ–­
+////  BTMCON = 0x88;	//æ¯4säº§ç”Ÿä¸€ä¸ªä¸­æ–­
+//	IE1 |= 0x04;       //å¼€å¯BTMä¸­æ–­
+//	EA = 1;           //å¼€å¯æ€»ä¸­æ–­
 
 //}
 ///*****************************************************
-//*º¯ÊıÃû³Æ£ºvoid BTM_Int(void) interrupt 9
-//*º¯Êı¹¦ÄÜ£ºÖĞ¶Ïº¯Êı
-//*Èë¿Ú²ÎÊı£ºvoid
-//*³ö¿Ú²ÎÊı£ºvoid
+//*å‡½æ•°åç§°ï¼švoid BTM_Int(void) interrupt 9
+//*å‡½æ•°åŠŸèƒ½ï¼šä¸­æ–­å‡½æ•°
+//*å…¥å£å‚æ•°ï¼švoid
+//*å‡ºå£å‚æ•°ï¼švoid
 //*****************************************************/
 //void BTM_Int(void) interrupt 9
 //{
-//		P01 = ~P01;	//IO¿Ú·­×ª
+//		P01 = ~P01;	//IOå£ç¿»è½¬
 //}

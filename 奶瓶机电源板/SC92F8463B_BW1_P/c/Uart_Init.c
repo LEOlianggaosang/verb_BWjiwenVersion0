@@ -1,13 +1,13 @@
 #include "H/Function_Init.H" 
-uint UART_RxData[5];//·¢ËÍ5¸ö8Î»×Ô¶¨ÒåÊı¾İ//·¢ËÍ5¸ö8Î»×Ô¶¨ÒåÊı¾İ£¨ÈôÒªĞŞ¸ÄÊı¾İ¸öÊıĞèĞŞ¸ÄÏàÓ¦Êı×é´óĞ¡ºÍ·¢ËÍ/½ÓÊÕforÑ­»·´óĞ¡£©
+uint UART_RxData[5];//å‘é€5ä¸ª8ä½è‡ªå®šä¹‰æ•°æ®//å‘é€5ä¸ª8ä½è‡ªå®šä¹‰æ•°æ®ï¼ˆè‹¥è¦ä¿®æ”¹æ•°æ®ä¸ªæ•°éœ€ä¿®æ”¹ç›¸åº”æ•°ç»„å¤§å°å’Œå‘é€/æ¥æ”¶forå¾ªç¯å¤§å°ï¼‰
 void Uart0_Init(uint Freq,unsigned long int baud);
-bit UartSendFlag = 0; //·¢ËÍÖĞ¶Ï±êÖ¾Î»
-bit UartReceiveFlag = 0; //½ÓÊÕÖĞ¶Ï±êÖ¾Î»
+bit UartSendFlag = 0; //å‘é€ä¸­æ–­æ ‡å¿—ä½
+bit UartReceiveFlag = 0; //æ¥æ”¶ä¸­æ–­æ ‡å¿—ä½
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid Uart0_Test(void)
-*º¯Êı¹¦ÄÜ£ºUart0²âÊÔ
-*Èë¿Ú²ÎÊı£ºvoid
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid Uart0_Test(void)
+*å‡½æ•°åŠŸèƒ½ï¼šUart0æµ‹è¯•
+*å…¥å£å‚æ•°ï¼švoid
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 void Uart0_Test(void)
 {
@@ -31,36 +31,36 @@ void Uart0_Test(void)
 	}
 }
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid Uart0_Init(uint Freq,unsigned long int baud)
-*º¯Êı¹¦ÄÜ£ºUart0ÖĞ¶Ï³õÊ¼»¯
-*Èë¿Ú²ÎÊı£ºFreq-Ö÷Æµ£¬baud-²¨ÌØÂÊ
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid Uart0_Init(uint Freq,unsigned long int baud)
+*å‡½æ•°åŠŸèƒ½ï¼šUart0ä¸­æ–­åˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼šFreq-ä¸»é¢‘ï¼Œbaud-æ³¢ç‰¹ç‡
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
-void Uart0_Init(uint Freq,unsigned long int baud)    //Ñ¡ÔñTimer1×÷Îª²¨ÌØÂÊĞÅºÅ·¢ÉúÆ÷
+void Uart0_Init(uint Freq,unsigned long int baud)    //é€‰æ‹©Timer1ä½œä¸ºæ³¢ç‰¹ç‡ä¿¡å·å‘ç”Ÿå™¨
 {
-	P1CON &= 0xF3;   //TX/RXÉèÖÃÎªÊäÈë´øÉÏÀ­
+	P1CON &= 0xF3;   //TX/RXè®¾ç½®ä¸ºè¾“å…¥å¸¦ä¸Šæ‹‰
 	P1PH  |= 0x0C;
 	
-	SCON  |= 0X50;   //ÉèÖÃÍ¨ĞÅ·½Ê½ÎªÄ£Ê½Ò»£¬ÔÊĞí½ÓÊÕ
+	SCON  |= 0X50;   //è®¾ç½®é€šä¿¡æ–¹å¼ä¸ºæ¨¡å¼ä¸€ï¼Œå…è®¸æ¥æ”¶
 	TMCON |= 0X02;
 	TMOD  |= 0X20;
 	PCON  |= 0X80;	//SMOD=1
-	TH1 = (Freq*1000000/baud)>>8;	  //²¨ÌØÂÊÎªT1µÄÒç³öÊ±¼ä£»
+	TH1 = (Freq*1000000/baud)>>8;	  //æ³¢ç‰¹ç‡ä¸ºT1çš„æº¢å‡ºæ—¶é—´ï¼›
 	TL1 = Freq*1000000/baud;
 	TR1 = 0;
 	ET1 = 0;
-	EUART = 1;     //¿ªÆôUart0ÖĞ¶Ï
+	EUART = 1;     //å¼€å¯Uart0ä¸­æ–­
 	EA = 1;
 }
 /*
-void Uart0_Init(uint Freq,unsigned long int baud)    //Ñ¡ÔñTimer2×÷Îª²¨ÌØÂÊĞÅºÅ·¢ÉúÆ÷
+void Uart0_Init(uint Freq,unsigned long int baud)    //é€‰æ‹©Timer2ä½œä¸ºæ³¢ç‰¹ç‡ä¿¡å·å‘ç”Ÿå™¨
 {
-    P1CON &= 0xF3;   //TXÉèÖÃÎªÇ¿ÍÆÍìÊä³ö¸ß£¬RXÉèÖÃÎªÊäÈë´øÉÏÀ­
+    P1CON &= 0xF3;   //TXè®¾ç½®ä¸ºå¼ºæ¨æŒ½è¾“å‡ºé«˜ï¼ŒRXè®¾ç½®ä¸ºè¾“å…¥å¸¦ä¸Šæ‹‰
 	P1CON |= 0x08;
 	P1PH  |= 0x04;
 	P13 = 1;
 
-	SCON  |= 0X50;   //ÉèÖÃÍ¨ĞÅ·½Ê½ÎªÄ£Ê½Ò»£¬ÔÊĞí½ÓÊÕ
+	SCON  |= 0X50;   //è®¾ç½®é€šä¿¡æ–¹å¼ä¸ºæ¨¡å¼ä¸€ï¼Œå…è®¸æ¥æ”¶
 	TMCON |= 0X04;
 	T2MOD = 0X00;
 	T2CON = 0X30;
@@ -68,16 +68,16 @@ void Uart0_Init(uint Freq,unsigned long int baud)    //Ñ¡ÔñTimer2×÷Îª²¨ÌØÂÊĞÅºÅ·
 	RCAP2L = Freq*1000000/baud%256;
 	TR2 = 0;
 	ET2 = 0;
-	EUART = 1;     //¿ªÆôUart0ÖĞ¶Ï
+	EUART = 1;     //å¼€å¯Uart0ä¸­æ–­
 	EA = 1;
 }
 */
 
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid UartInt(void) interrupt 4
-*º¯Êı¹¦ÄÜ£ºUart0ÖĞ¶Ïº¯Êı
-*Èë¿Ú²ÎÊı£ºvoid
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid UartInt(void) interrupt 4
+*å‡½æ•°åŠŸèƒ½ï¼šUart0ä¸­æ–­å‡½æ•°
+*å…¥å£å‚æ•°ï¼švoid
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 void UartInt(void) interrupt 4
 {

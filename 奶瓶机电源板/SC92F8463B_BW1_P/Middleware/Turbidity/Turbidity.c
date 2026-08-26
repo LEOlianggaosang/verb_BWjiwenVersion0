@@ -4,7 +4,7 @@
  *  
  * @file    Turbidity.c
  * @author  Chen Jianjun (cjj5424@163.com)
- * @brief   ×Ç¶È¿ØÖÆ
+ * @brief   æµŠåº¦æ§åˆ¶
  * 
  *******************************************************************************
  */
@@ -24,9 +24,9 @@
 **  Global Variables Define
 ********************************************************************************
 */
-UCHAR_XDATA zhuodu_AdValue=0;//< µ±Ç°²ÉÑùµÄ×Ç¶È´«¸ĞÆ÷µÄADÖµ
-USHORT_XDATA zhuodudianya = 0;//µ±Ç°²ÉÑùµÄ×Ç¶È´«¸ĞÆ÷µÄµçÑ¹Öµ
-//×Ç¶È±í.¿ÉÓÃµ±Ç°µÄADÖµÎª¸Ã±íµÄË÷ÒıÈ¡µÃµ±Ç°µÄ×Ç¶ÈÖµ.
+UCHAR_XDATA zhuodu_AdValue=0;//< å½“å‰é‡‡æ ·çš„æµŠåº¦ä¼ æ„Ÿå™¨çš„ADå€¼
+USHORT_XDATA zhuodudianya = 0;//å½“å‰é‡‡æ ·çš„æµŠåº¦ä¼ æ„Ÿå™¨çš„ç”µå‹å€¼
+//æµŠåº¦è¡¨.å¯ç”¨å½“å‰çš„ADå€¼ä¸ºè¯¥è¡¨çš„ç´¢å¼•å–å¾—å½“å‰çš„æµŠåº¦å€¼.
 
 #ifdef R5F100_ENABLED
 USHORT_XDATA zhuodu[] =
@@ -302,7 +302,7 @@ void zhuodu_Read(void)
 {
 	static UCHAR_XDATA sampleCount2 = 0;
 	static USHORT_XDATA adValueSum2 = 0;
-	Set_Led(IR_LED, MD_FALSE);//´ò¿ªLED,ÓëÈıĞÇ°åµÄ¿Ú²»Í¬
+	Set_Led(IR_LED, MD_FALSE);//æ‰“å¼€LED,ä¸ä¸‰æ˜Ÿæ¿çš„å£ä¸åŒ
 	singleSample(TURBIDITY,&adValueSum2);
 	sampleCount2 ++;
 
@@ -312,7 +312,7 @@ void zhuodu_Read(void)
 		adValueSum2 >>= 6;
 
 		zhuodu_AdValue = (UCHAR)adValueSum2;
-		zhuodudianya  = zhuodu[zhuodu_AdValue];//µ±Ç°×Ç¶ÈAD×ª»»³ÉµçÑ¹
+		zhuodudianya  = zhuodu[zhuodu_AdValue];//å½“å‰æµŠåº¦ADè½¬æ¢æˆç”µå‹
 		adValueSum2 = 0;
 	}
 }

@@ -5,7 +5,7 @@
  * @author  lgx
  * @version 1.0
  * @date    2024.12.7
- * @brief   Ä£Äâ´®¿ÚÍ¨ĞÅÄ£¿é
+ * @brief   æ¨¡æ‹Ÿä¸²å£é€šä¿¡æ¨¡å—
  * 
  *******************************************************************************
  *
@@ -40,34 +40,34 @@ extern ByteFlag IoUart_Flags;
 
 
 /**
- * @brief Ä£Äâ´®¿ÚÍ¨ĞÅÄ£¿é³õÊ¼»¯
+ * @brief æ¨¡æ‹Ÿä¸²å£é€šä¿¡æ¨¡å—åˆå§‹åŒ–
  * 
- * @param ÎŞ
- * @return ÎŞ
+ * @param æ— 
+ * @return æ— 
  */
 void Init_IoUartSimulate(void);
 
 /**
- * @brief ½ÓÊÕĞ£ÑéºÍ
+ * @brief æ¥æ”¶æ ¡éªŒå’Œ
  * 
- * @param ÎŞ
+ * @param æ— 
  * @return bit ret
  */
 bit IoUart_HasReceived(void);
 
 /**
- * @brief ·¢ËÍÊ¹ÄÜ
+ * @brief å‘é€ä½¿èƒ½
  * 
- * @param ÎŞ
- * @return ÎŞ
+ * @param æ— 
+ * @return æ— 
  */
 void IoUart_SandEnable( unsigned char* txbuf, unsigned short txnum );
 
 /**
- * @brief ½ÓÊÕÊ¹ÄÜ
+ * @brief æ¥æ”¶ä½¿èƒ½
  * 
- * @param ÎŞ
- * @return ÎŞ
+ * @param æ— 
+ * @return æ— 
  */
 void IoUart_ReceivedEnable( unsigned char* rxbuf, unsigned short rxnum );
 

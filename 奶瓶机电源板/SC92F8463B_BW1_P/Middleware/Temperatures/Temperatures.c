@@ -4,7 +4,7 @@
  * 
  * @file    Temperatures.c
  * @author  lianggaosang@qq.com
- * @brief   ÎÂ¶È¿ØÖÆ
+ * @brief   æ¸©åº¦æŽ§åˆ¶
  * 
  *******************************************************************************
  */
@@ -23,8 +23,8 @@
 ********************************************************************************
 */
 ByteFlag U_AdErrFlag = {0};
-UCHAR_XDATA Temperature_Value = 25;     ///< µ±Ç°ÎÂ¶ÈÖµ
-UCHAR_XDATA Temperature_AdValue = 0;    ///< µ±Ç°²ÉÑùµÄÎÂ¶È´«¸ÐÆ÷µÄADÖµ
+UCHAR_XDATA Temperature_Value = 25;     ///< å½“å‰æ¸©åº¦å€¼
+UCHAR_XDATA Temperature_AdValue = 0;    ///< å½“å‰é‡‡æ ·çš„æ¸©åº¦ä¼ æ„Ÿå™¨çš„ADå€¼
 /*
 ********************************************************************************
 **  Private Datas
@@ -32,7 +32,7 @@ UCHAR_XDATA Temperature_AdValue = 0;    ///< µ±Ç°²ÉÑùµÄÎÂ¶È´«¸ÐÆ÷µÄADÖµ
 */
 static UCHAR_XDATA ADC_Temperature[18];
 
-//ÎÂ¶È±í.¿ÉÓÃµ±Ç°µÄADÖµÎª¸Ã±íµÄË÷ÒýÈ¡µÃµ±Ç°µÄÎÂ¶ÈÖµ(Êý×éÏÂ±ê=(AD/16 - 10))
+//æ¸©åº¦è¡¨.å¯ç”¨å½“å‰çš„ADå€¼ä¸ºè¯¥è¡¨çš„ç´¢å¼•å–å¾—å½“å‰çš„æ¸©åº¦å€¼(æ•°ç»„ä¸‹æ ‡=(AD/16 - 10))
 #if (R100K_25C == NTC_Type)
 static const UCHAR code  temperatures[] =
 {
@@ -86,12 +86,12 @@ void Init_Temperatures(void)
 }
 
 /**
- * @brief »ñµÃµ±Ç°µÄÎÂ¶ÈÖµ
+ * @brief èŽ·å¾—å½“å‰çš„æ¸©åº¦å€¼
  * 
- * ÔÚÖ÷ÏµÍ³Ñ­»·ÖÐµ÷ÓÃ¸Ãº¯Êý»ñÈ¡µ±Ç°µÄÎÂ¶ÈÖµ²¢±£´æÔÚTemperature_ValueÖÐ.
- * @param ÎÞ
- * @exception ÎÂ¶È´«¸ÐÆ÷¹ÊÕÏ
- * @return ÉèÖÃÈ«¾Ö±äÁ¿ Temperature_Value,Temperature_AdValue
+ * åœ¨ä¸»ç³»ç»Ÿå¾ªçŽ¯ä¸­è°ƒç”¨è¯¥å‡½æ•°èŽ·å–å½“å‰çš„æ¸©åº¦å€¼å¹¶ä¿å­˜åœ¨Temperature_Valueä¸­.
+ * @param æ— 
+ * @exception æ¸©åº¦ä¼ æ„Ÿå™¨æ•…éšœ
+ * @return è®¾ç½®å…¨å±€å˜é‡ Temperature_Value,Temperature_AdValue
  */
 void Temperature_Read(void)
 {

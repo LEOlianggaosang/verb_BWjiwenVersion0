@@ -1,15 +1,15 @@
 #include "H/Function_Init.H"
 
-u32 product = 0;//³Ë»ı
-u32 quotient= 0;//ÉÌ
-u16 remainder = 0;//ÓàÊı
+u32 product = 0;//ä¹˜ç§¯
+u32 quotient= 0;//å•†
+u16 remainder = 0;//ä½™æ•°
 Result_union result;
 
 /****************************************************
-*º¯ÊıÃû³Æ£ºMultiplication(u16 faciend, u16 Multiplier)
-*º¯Êı¹¦ÄÜ£º³Ë·¨ÔËËã
-*Èë¿Ú²ÎÊı£ºfaciend£¬Multiplier
-*³ö¿Ú²ÎÊı£ºÎŞ
+*å‡½æ•°åç§°ï¼šMultiplication(u16 faciend, u16 Multiplier)
+*å‡½æ•°åŠŸèƒ½ï¼šä¹˜æ³•è¿ç®—
+*å…¥å£å‚æ•°ï¼šfaciendï¼ŒMultiplier
+*å‡ºå£å‚æ•°ï¼šæ— 
 ****************************************************/
 void Multiplication(u16 faciend, u16 Multiplier)
 {
@@ -18,7 +18,7 @@ void Multiplication(u16 faciend, u16 Multiplier)
 	EXBL = Multiplier;
 	EXBH = Multiplier>>8;
 
-	OPERCON |= 0x80;      //¿ªÊ¼¼ÆËã
+	OPERCON |= 0x80;      //å¼€å§‹è®¡ç®—
 	while(OPERCON & 0x80);
 
 	result.reg.a0 = EXA0;
@@ -30,10 +30,10 @@ void Multiplication(u16 faciend, u16 Multiplier)
 }	
 
 /****************************************************
-*º¯ÊıÃû³Æ£ºDivision(u32 dividend,u16 divisor)
-*º¯Êı¹¦ÄÜ£º³ı·¨ÔËËã
-*Èë¿Ú²ÎÊı£ºdividend£¬divisor
-*³ö¿Ú²ÎÊı£ºÎŞ
+*å‡½æ•°åç§°ï¼šDivision(u32 dividend,u16 divisor)
+*å‡½æ•°åŠŸèƒ½ï¼šé™¤æ³•è¿ç®—
+*å…¥å£å‚æ•°ï¼šdividendï¼Œdivisor
+*å‡ºå£å‚æ•°ï¼šæ— 
 ****************************************************/
 void Division(u32 dividend,u16 divisor)
 {

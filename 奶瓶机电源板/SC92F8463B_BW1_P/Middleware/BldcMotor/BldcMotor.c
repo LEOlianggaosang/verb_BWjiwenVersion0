@@ -5,7 +5,7 @@
 #include "Work\Work.h"
 /**
  * ----------------------------- Message Format --------------------------------
- * 0x21     CMD     NPAR     PAR1     PAR2     ¡­     CKS_H     CKS_L     0x42
+ * 0x21     CMD     NPAR     PAR1     PAR2     â€¦     CKS_H     CKS_L     0x42
  * -----------------------------------------------------------------------------
  */
 
@@ -80,16 +80,16 @@ void Motor_SetData(Command_t command,unsigned char parameter)
  */
 static void Motor_Reset(void)
 {
-	SendDatasBuf[0] = 0x21;//Í·,¹Ì¶¨Îª0x21 
+	SendDatasBuf[0] = 0x21;//å¤´,å›ºå®šä¸º0x21 
 	/* command */
-	SendDatasBuf[1] = 0x13;//ÃüÁî,Æô¶¯»òÔİÍ£ 
+	SendDatasBuf[1] = 0x13;//å‘½ä»¤,å¯åŠ¨æˆ–æš‚åœ 
 	/* number of parameter */
-	SendDatasBuf[2] = 0x03;//¹Ì¶¨Îª0x03 
+	SendDatasBuf[2] = 0x03;//å›ºå®šä¸º0x03 
 	/* parameter  */
-	SendDatasBuf[3] = 0;//×ªËÙ,Õ¼¿Õ±È0%~100%£¬¶ÔÓ¦0~0x64 
-	SendDatasBuf[4] = 0;//×ªËÙÉÏÉıÊ±¼ä£¬0~15 Ãë£¬¶ÔÓ¦0~0x0F£» 
-	SendDatasBuf[5] = 0x01;//Ô¤Áô,¹Ì¶¨Îª0x01 
-	//Ğ£Ñé 
+	SendDatasBuf[3] = 0;//è½¬é€Ÿ,å ç©ºæ¯”0%~100%ï¼Œå¯¹åº”0~0x64 
+	SendDatasBuf[4] = 0;//è½¬é€Ÿä¸Šå‡æ—¶é—´ï¼Œ0~15 ç§’ï¼Œå¯¹åº”0~0x0Fï¼› 
+	SendDatasBuf[5] = 0x01;//é¢„ç•™,å›ºå®šä¸º0x01 
+	//æ ¡éªŒ 
 	SendDatasBuf[6] = 0x13 ^ 0x03 ^ 0x00  ^ 0x00 ^ 0x01 ;   
 	/* end byte */
 	SendDatasBuf[7] = 0x42;
@@ -107,9 +107,9 @@ static void Motor_St(void)
 	/* number of parameter */
 	SendDatasBuf[2] = 0x03;
 	/* parameter 1 */
-	SendDatasBuf[3] = current_parameter;//×ªËÙ,Õ¼¿Õ±È0%~100%£¬¶ÔÓ¦0~0x64 
-	SendDatasBuf[4] = 0x07;//×ªËÙÉÏÉıÊ±¼ä£¬0~15 Ãë£¬¶ÔÓ¦0~0x0F£» 
-	SendDatasBuf[5] = 0x01;//Ô¤Áô,¹Ì¶¨Îª0x01 
+	SendDatasBuf[3] = current_parameter;//è½¬é€Ÿ,å ç©ºæ¯”0%~100%ï¼Œå¯¹åº”0~0x64 
+	SendDatasBuf[4] = 0x07;//è½¬é€Ÿä¸Šå‡æ—¶é—´ï¼Œ0~15 ç§’ï¼Œå¯¹åº”0~0x0Fï¼› 
+	SendDatasBuf[5] = 0x01;//é¢„ç•™,å›ºå®šä¸º0x01 
 	SendDatasBuf[6] = 0x13 ^ 0x03^ current_parameter ^ 0x07 ^ 0x01  ;   
 	/* end byte */
 	SendDatasBuf[7] = 0x42;
@@ -126,9 +126,9 @@ static void Motor_Rsr(void)
 	SendDatasBuf[1] = 0x15;
 	SendDatasBuf[2] = 0x03;
 	/* parameter 1 */
-	SendDatasBuf[3] = current_parameter;//×ªËÙ,Õ¼¿Õ±È0%~100%£¬¶ÔÓ¦0~0x64 
-	SendDatasBuf[4] = 0x07;//×ªËÙÉÏÉıÊ±¼ä£¬0~15 Ãë£¬¶ÔÓ¦0~0x0F£» 
-	SendDatasBuf[5] = 0x01;//Ô¤Áô,¹Ì¶¨Îª0x01 
+	SendDatasBuf[3] = current_parameter;//è½¬é€Ÿ,å ç©ºæ¯”0%~100%ï¼Œå¯¹åº”0~0x64 
+	SendDatasBuf[4] = 0x07;//è½¬é€Ÿä¸Šå‡æ—¶é—´ï¼Œ0~15 ç§’ï¼Œå¯¹åº”0~0x0Fï¼› 
+	SendDatasBuf[5] = 0x01;//é¢„ç•™,å›ºå®šä¸º0x01 
 	SendDatasBuf[6] = 0x15 ^ 0x03 ^ 0x07^ current_parameter ^ 0x01 ;   
 	/* end byte */
 	SendDatasBuf[7] = 0x42;
@@ -163,7 +163,7 @@ void Motor_Control(void)
 	Motor_St();
 #endif	
 	
-	if (RELAY_WP_ENABLE == 0) //Ï´µÓÃ»¿ªÊ±£¬²»·¢ËÍ 
+	if (RELAY_WP_ENABLE == 0) //æ´—æ¶¤æ²¡å¼€æ—¶ï¼Œä¸å‘é€ 
 	{
 		return;
 	}

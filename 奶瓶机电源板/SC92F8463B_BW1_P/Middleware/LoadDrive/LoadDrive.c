@@ -4,7 +4,7 @@
  *
  * @file    LoadDrive.c
  * @author  lianggaosang@qq.com
- * @brief   ¼ÌµçÆ÷¿ØÖÆ
+ * @brief   ç»§ç”µå™¨æ§åˆ¶
  *
  *******************************************************************************
  */
@@ -126,7 +126,7 @@ void Load_Driver(void)
 		SetPin(WP, Load_Ml);
 		SetPin(INP, Load_Ip);//SetPin(INP, 1);
 		SetPin(IV, Load_Ev1);
-		//³§²âIOÇı¶¯£¬·Ç³§²âÓÅÏÈÄ£Äâ´®¿ÚÇı¶¯
+		//å‚æµ‹IOé©±åŠ¨ï¼Œéå‚æµ‹ä¼˜å…ˆæ¨¡æ‹Ÿä¸²å£é©±åŠ¨
 		#if NEWTYPE1
 		SetPin(FAN, Load_Fan);
 		if(F_FCTing)
@@ -227,13 +227,13 @@ static void OutputEn(void)
 {
 	if(F_WDIsCommunicating && F_WDHasCommunicated)
 	{
-		//·¢ÈÈÅÌÇı¶¯
+		//å‘çƒ­ç›˜é©±åŠ¨
 		Load_R = F_RelayHEAT;
-		//ÅÅË®±ÃÇı¶¯
+		//æ’æ°´æ³µé©±åŠ¨
 		Load_Ps = F_RelayDP;
-		//PTCÇı¶¯
+		//PTCé©±åŠ¨
 		Load_Ptc = F_RelayPTC;
-		//Ï´µÓ±ÃÇı¶¯//ÏŞÖÆÏ´µÓÊ±¿ªÃÅÅçË®
+		//æ´—æ¶¤æ³µé©±åŠ¨//é™åˆ¶æ´—æ¶¤æ—¶å¼€é—¨å–·æ°´
 		if(GetPin(DOOR))
 		{//20251203 if(Signal_DoorSwitch)//20251213 if(GetPin(DOOR))
 			Load_Ml = 0;
@@ -242,11 +242,11 @@ static void OutputEn(void)
 		{
 			Load_Ml = F_OutputWP;
 		}
-		//½ø·ç»úÇı¶¯
+		//è¿›é£æœºé©±åŠ¨
 		Load_Fan = F_OutputFANIN;
-		//Èä¶¯±ÃÇı¶¯//ÏŞÖÆÈä¶¯±ÃÅäÖÃ
+		//è •åŠ¨æ³µé©±åŠ¨//é™åˆ¶è •åŠ¨æ³µé…ç½®
 		Load_Mp = F_OutputMP & F_MovePumpEn;
-		//½øË®Çı¶¯//ÏŞÖÆÁ÷Á¿¼ì²â//ÏŞÖÆ½øË®·½Ê½//Load_Ip = F_OutputIP;
+		//è¿›æ°´é©±åŠ¨//é™åˆ¶æµé‡æ£€æµ‹//é™åˆ¶è¿›æ°´æ–¹å¼//Load_Ip = F_OutputIP;
 		if((F_IsInLetting && (FlowMCnt <= FlowMCntSet))||F_InLetMovement)
 		{
 			Load_Ev1 = F_OutputIV & F_IvEn;
@@ -257,9 +257,9 @@ static void OutputEn(void)
 			Load_Ip = 0;
 			Load_Ev1 = 0;	
 		}
-		//ÅÅ·ç»úÇı¶¯//ÏŞÖÆÅÅ·ç»úÅäÖÃ
+		//æ’é£æœºé©±åŠ¨//é™åˆ¶æ’é£æœºé…ç½®
 		Load_Fan2 = F_OutputFANOUT & F_OutFanEn;
-		//Í²µÆÇı¶¯//ÏŞÖÆÒ¹µÆÅäÖÃ//¼æÈİÒ¹µÆÇı¶¯Í²µÆ
+		//ç­’ç¯é©±åŠ¨//é™åˆ¶å¤œç¯é…ç½®//å…¼å®¹å¤œç¯é©±åŠ¨ç­’ç¯
 		if(F_NlEn)
 		{
 			if(NL_State!=0)
@@ -275,7 +275,7 @@ static void OutputEn(void)
 		{
 			Load_Led = F_OutputUV;
 		}
-		//³ôÑõÇı¶¯//ÏŞÖÆ³ôÑõÅäÖÃ//ÏŞÖÆ½øË®·§¹²ÓÃ//20260430
+		//è‡­æ°§é©±åŠ¨//é™åˆ¶è‡­æ°§é…ç½®//é™åˆ¶è¿›æ°´é˜€å…±ç”¨//20260430
 		if((F_O3En)&&(0==F_IvEn))
 		{
 			Load_Ev1 = F_OutputO3;

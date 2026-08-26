@@ -19,10 +19,10 @@ typedef union
 	u32 Result;
 }Result_union;
 
-extern void Multiplication(u16 faciend, u16 Multiplier);//³Ë·¨ÔËËãº¯Êı
-extern void Division(u32 dividend,u16 divisor);//³ı·¨ÔËËãº¯Êı
-extern u32 product;//³Ë»ı
-extern u32 quotient;//ÉÌ
-extern u16 remainder;//ÓàÊı
+extern void Multiplication(u16 faciend, u16 Multiplier);//ä¹˜æ³•è¿ç®—å‡½æ•°
+extern void Division(u32 dividend,u16 divisor);//é™¤æ³•è¿ç®—å‡½æ•°
+extern u32 product;//ä¹˜ç§¯
+extern u32 quotient;//å•†
+extern u16 remainder;//ä½™æ•°
 #endif
 

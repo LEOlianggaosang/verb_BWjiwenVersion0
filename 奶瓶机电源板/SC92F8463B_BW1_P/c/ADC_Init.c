@@ -4,10 +4,10 @@ void ADC_Init(uint Channel,uchar ADCFreq);
 unsigned int ADC_AverageValue(void);
 unsigned int ADCValue = 0x0000;
 bit AdcFlag = 0;
-/***********ADC²ÉÑùÆµÂÊÑ¡Ôñ*************/
+/***********ADCé‡‡æ ·é¢‘ç‡é€‰æ‹©*************/
 enum ADCFreq {F32=0,F24,F16,F12,F8,F6,F4,F3};
 
-/***********ADC²ÉÑù¿ÚÑ¡Ôñ*************/
+/***********ADCé‡‡æ ·å£é€‰æ‹©*************/
 #if (IC_MODEL == SC92F8463B)
 enum Channel {AIN0=0,AIN1,AIN2,AIN3,AIN4,AIN5,AIN6,AIN7,AIN8,AIN9,VDD4=31};
 #endif
@@ -21,10 +21,10 @@ enum Channel {AIN2=2,AIN3,AIN4,AIN8=8,AIN9,VDD4=31};
 #endif
 
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid ADC_Test(void)
-*º¯Êı¹¦ÄÜ£ºADC²âÊÔ
-*Èë¿Ú²ÎÊı£ºvoid
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid ADC_Test(void)
+*å‡½æ•°åŠŸèƒ½ï¼šADCæµ‹è¯•
+*å…¥å£å‚æ•°ï¼švoid
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 void ADC_Test(void)
 {
@@ -35,24 +35,24 @@ void ADC_Test(void)
 	}
 }
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid ADC_Init(uint Channel,uchar ADCFreq)
-*º¯Êı¹¦ÄÜ£ºADC³õÊ¼»¯
-*Èë¿Ú²ÎÊı£ºvoid
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid ADC_Init(uint Channel,uchar ADCFreq)
+*å‡½æ•°åŠŸèƒ½ï¼šADCåˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼švoid
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 void ADC_Init(uint Channel,uchar ADCFreq)
 {
-	ADCCON = 0X80|Channel;		//¿ªÆôADC£¬ADC²ÉÑùÆµÂÊÎª2M ,Ñ¡ÔñChannelÎ»ADC²ÉÑù¿Ú
+	ADCCON = 0X80|Channel;		//å¼€å¯ADCï¼ŒADCé‡‡æ ·é¢‘ç‡ä¸º2M ,é€‰æ‹©Channelä½ADCé‡‡æ ·å£
 	if(Channel<8)
 	{
-		ADCCFG0 = 1<<Channel;   //ÉèÖÃChannel×÷Îª²ÉÑù¿Ú
+		ADCCFG0 = 1<<Channel;   //è®¾ç½®Channelä½œä¸ºé‡‡æ ·å£
 	}
 	else
 	{
-		ADCCFG1 = 1<<(Channel-8);   //ÉèÖÃChannel×÷Îª²ÉÑù¿Ú
+		ADCCFG1 = 1<<(Channel-8);   //è®¾ç½®Channelä½œä¸ºé‡‡æ ·å£
 	}
 	ADCCFG2 = ADCFreq;
-	IE |= 0X40;        //¿ªÆôADCÖĞ¶Ï
+	IE |= 0X40;        //å¼€å¯ADCä¸­æ–­
 	EA = 1;
 }
 
@@ -63,8 +63,8 @@ unsigned int ADC_AverageValue()
 	unsigned int ADC_ValueSum = 0, ADC_ValueMax = 0 ,ADC_ValueMin = 0x01 << 12 ,ADC_ValueMean = 0 ,ADC_ValueTad = 0;
 	for(i=0;i<10;i++ )
 	{	
-		ADCCON |= 0X40;   //¿ªÊ¼ADC×ª»»
-	  while(!AdcFlag);	         		 //µÈ´ı ADC×ª»»Íê³É;
+		ADCCON |= 0X40;   //å¼€å§‹ADCè½¬æ¢
+	  while(!AdcFlag);	         		 //ç­‰å¾… ADCè½¬æ¢å®Œæˆ;
 		AdcFlag = 0;
 		ADC_ValueTad = (ADCVH<<4)+(ADCVL>>4);
 		if(ADC_ValueTad>ADC_ValueMax)
@@ -85,6 +85,6 @@ unsigned int ADC_AverageValue()
 
 void ADC_Interrupt(void) interrupt 6
 {
-	ADCCON&=~(0X20);  //ÇåÖĞ¶Ï±êÖ¾Î»
+	ADCCON&=~(0X20);  //æ¸…ä¸­æ–­æ ‡å¿—ä½
 	AdcFlag = 1;
 }

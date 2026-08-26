@@ -530,6 +530,7 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
                 //开机短鸣一声，关机长鸣一声
             ? STATE_RESET
                 //复位到关机短鸣一声
+            电源板蜂鸣类型
         todo #1-2 开门处理：待机/运行/保管/故障
             Work_DoorOpenDelaySecondCount
                 //关门、厂测、保管、运行进入赋值延迟1s开始运行与判断开门故障
@@ -589,34 +590,55 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
                 //菜单键只能选取4种程序，无法复选取消
                 //叠加功能键作为选取菜使用，默认叠加烘干与保管，不叠加蒸汽
                 //开门无法启动
+                //保持待机关机不触发强排
             ? STATE_WASHING
             MENU_DRY
                 //增加按键无效提示
-                //烘干菜单特有分支：关机不强排，无法取消保管
+                //烘干菜单特有分支：关机不强排，无法取消保管/dryModeEnable
                 //取消按键改变叠加功能更新总时间
-                //蒸汽阶段前可配置叠加蒸汽
-                //保管前可配置叠加保管
+                //蒸汽阶段前可配置叠加蒸汽/dryModeEnable
+                //保管前可配置叠加保管/dryModeEnable
             ? STATE_DRAIN
+                //保持按键无效音，保持无法退出
             ? STATE_ERROR
-            ? STATE_SAVING
+                //开门与其他故障保持无效音
+                //进水故障可按键恢复
+            ? STATE_FINISHED
                 //增加按键无效提示
+                //保持待机关机不触发强排
             ? STATE_SAVING
                 //更改前进键位置
         todo #4-2 更改工作规则
             MenuList
+                //dryModeEnable 此按键能否可选判断：保管功能
+                Key_MonitorAction(STATE_WASHING)
+                    //dryMode 能否认为存在叠加功能：烘干阶段
+                runMinCountDown
+            Work_StageStartTimeMode[MAX_MENU_NUMBER][STAGE_END+1]
             //? 时间计算问题：上限/配时/走时/延时/非零
             Work_StageStartTimeMode
             Work_NextStep
                 //跳步配时清算，非零
             Work_Control
                 //取消按键改变叠加功能更新总时间入口
-            runMinCountDown
-                //阶段上下限处理
             ? STATE_STANDBY
                 //总时间不叠加，菜单固定总时间
                 //待机检测NTC，10分钟休眠
             ? STATE_WASHING
                 //走时延时跳步处理
+            runMinCountDown
+                //阶段上下限处理
+                //实现洗涤、蒸汽、烘干分别独立显示时间
+                //Work_CurrentStage
+                //IsSteamMune(Work_CurrentMenu)
+                //IsDryMune(Work_CurrentMenu)
+                //无效化IsNormalMune(MenuOption Mune)
+                函数内增加静态变量跳阶段强制更新到阶段时间最大值
+            ? STATE_ERROR
+                //其他故障启动自动排水
+                //放权给故障处理
+            ? STATE_FINISHED
+                //缩短为2秒过度
         todo #4-3 更改显示规则
             //? 模块化 DigitalMinCount
             DigitalMinCount(UCHAR flesh1, UCHAR flesh2, UINT num);
@@ -654,7 +676,7 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
                 //电源键亮，程序/功能灭，运行闪烁
                 //数码管状态闪烁，时间运行冒号闪烁，5s交替显示已进水量
                 //可按键恢复
-                //借用NL_100msCnt计数
+                //借用NL_100msCnt计数，交替显示已进水量
             ERROR
             DigitalErrorCode
                 //电源键亮，程序/功能灭，运行灭
@@ -667,6 +689,9 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
                 //电源键亮，程序/功能熄灭，保管亮，运行亮
                 //数码管状态闪烁，显示剩余保管时间
     * #5 处理逻辑
+        todo #5-1 故障处理更改
+        todo #5-2 保管参数更改
+        todo #5-3 步骤功能函数
     * #6 时序
             CONFIG_T2_STANDARD
 * 3、定位
@@ -691,7 +716,9 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
         // ! Work_Control(STATE_STANDBY) #3-3
         ! Work_Control(STATE_STANDBY) #4-2
         ! Work_Control(STATE_WASHING) #3-3
+        ! Work_Control(STATE_FINISHED) #4-2
         ! wash_heat_temp3() #3-3
+        ! runMinCountDown() #4-2
         ! Init_Variable_When_Goto_Standby() #1-1 #2-1 #3-3
         ! Init_Variable_When_Close_Power() #2-1 #2-2 #3-3
         ! complete() #2-1 #2-2 #3-3

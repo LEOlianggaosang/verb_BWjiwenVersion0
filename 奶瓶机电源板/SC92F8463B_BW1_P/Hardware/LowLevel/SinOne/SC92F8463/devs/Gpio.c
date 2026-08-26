@@ -96,7 +96,7 @@ void Gpio_Init(Gpio_InitTypeDef *gpio)
 				P2PH |= gpio->pin;
 			}		
 			break;
-		//没有P3P4
+		//娌℃湁P3P4
 		case PORT5:
 			if (gpio->mode == GPIO_MODE_INPUT)
 			{
@@ -168,7 +168,7 @@ void Gpio_Set(Gpio_InitTypeDef *gpio, unsigned char status)
 				P2 &= (~gpio->pin);
 			}
 			break;
-		//8575没有P3P4
+		//8575娌℃湁P3P4
 		case PORT5:
 			if (status == ON)
 			{
@@ -213,7 +213,7 @@ unsigned char Gpio_Get(Gpio_InitTypeDef *gpio)
 		case PORT2:
 			status = P2 & gpio->pin;
 			break;
-		//8575没有P3P4
+		//8575娌℃湁P3P4
 		case PORT5:
 			status = P5 & gpio->pin;
 			break;

@@ -58,7 +58,7 @@ MD_STATUS Uart_Hardware_ReceiveData(eHardwareSerialName name,  unsigned char* rx
 
 #ifdef SC92F8463B_ENABLED
 
-/*UART0*///·ÂÕæ¿Ú Ôİ²»ÓÃUART
+/*UART0*///ä»¿çœŸå£ æš‚ä¸ç”¨UART
 /*SCON*/
 #define SCON_SM0 	0x80
 #define SCON_SM1	0x40

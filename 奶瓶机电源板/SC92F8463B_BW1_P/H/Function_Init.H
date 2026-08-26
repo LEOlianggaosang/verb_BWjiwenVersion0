@@ -9,8 +9,8 @@
 typedef unsigned          char uint8_t;
 typedef unsigned short     int uint16_t;
 typedef unsigned           int uint32_t;
-#define IapROM  0x00	  //0x00£ºÑ¡ÔñROMÇø²Ù×÷  0x02£ºÑ¡ÔñEEPROMÇø²Ù×÷
-#define IapEPPROM  0x02	  //0x00£ºÑ¡ÔñROMÇø²Ù×÷  0x02£ºÑ¡ÔñEEPROMÇø²Ù×÷
+#define IapROM  0x00	  //0x00ï¼šé€‰æ‹©ROMåŒºæ“ä½œ  0x02ï¼šé€‰æ‹©EEPROMåŒºæ“ä½œ
+#define IapEPPROM  0x02	  //0x00ï¼šé€‰æ‹©ROMåŒºæ“ä½œ  0x02ï¼šé€‰æ‹©EEPROMåŒºæ“ä½œ
 
 extern void IO_Init(void);
 extern void BTM_Test(void);
@@ -24,7 +24,7 @@ extern void ADC_Test(void);
 extern void IAP_Test(uint Address,uchar IAPArea);
 
 /*****************************************
-ËµÃ÷£ºÑ¡Ôñ²âÊÔIC
+è¯´æ˜ï¼šé€‰æ‹©æµ‹è¯•IC
 *****************************************/
 #define SC92F8463B  0
 #define SC92F8462B  1

@@ -1,10 +1,10 @@
 //************************************************************
-//  Copyright (c) ÉîÛÚÊĞÈüÔªÎ¢µç×ÓÓĞÏŞ¹«Ë¾
-//	ÎÄ¼şÃû³Æ	: TKDrv.H
-//	¾Ö²¿º¯ÊıÁĞ±í:
-//  ×îºó¸üÕıÈÕÆÚ:
-// 	°æ±¾		: V1.0
-// 	¸ü¸Ä¼ÇÂ¼	: romÇ°256byte½ûÖ¹²é±í,Òò´ËÔÚ±àÒëµÄÊ±ºò£¬ÉèÖÃkeil->option for Target->BL51 Locate->Code Range:0x100
+//  Copyright (c) æ·±åœ³å¸‚èµ›å…ƒå¾®ç”µå­æœ‰é™å…¬å¸
+//	æ–‡ä»¶åç§°	: TKDrv.H
+//	å±€éƒ¨å‡½æ•°åˆ—è¡¨:
+//  æœ€åæ›´æ­£æ—¥æœŸ:
+// 	ç‰ˆæœ¬		: V1.0
+// 	æ›´æ”¹è®°å½•	: romå‰256byteç¦æ­¢æŸ¥è¡¨,å› æ­¤åœ¨ç¼–è¯‘çš„æ—¶å€™ï¼Œè®¾ç½®keil->option for Target->BL51 Locate->Code Range:0x100
 //*************************************************************
 #ifndef _TKDRV_H_
 #define _TKDRV_H_
@@ -62,8 +62,8 @@ extern unsigned long	int xdata NGKeyValueFlag;
 extern unsigned int xdata NGKeyValue;  					
 #endif 
 
-void TK_Scan(void);              					// TKÉ¨Ãè                
-UCHAR TK_Value(unsigned long int Flag);   					// ¼üÖµ×ª»»º¯Êı         
-void TK_Init(void);												// Òı³öµÄ³õÊ¼»¯·ÅÔÚsys
+void TK_Scan(void);              					// TKæ‰«æ                
+UCHAR TK_Value(unsigned long int Flag);   					// é”®å€¼è½¬æ¢å‡½æ•°         
+void TK_Init(void);												// å¼•å‡ºçš„åˆå§‹åŒ–æ”¾åœ¨sys
 
 #endif

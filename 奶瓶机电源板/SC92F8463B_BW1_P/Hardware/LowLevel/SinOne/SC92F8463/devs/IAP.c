@@ -91,25 +91,25 @@ void IAP_eepromRestoreData(unsigned char *dataPtr, unsigned char NumByte)
 //******************************************************************************
 
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid IAPWrite(uchar Addr,uchar Value,uchar IAPArea)
-*º¯Êı¹¦ÄÜ£ºIAPĞ´³õÊ¼»¯
-*Èë¿Ú²ÎÊı£ºAddr,Value,IAPArea
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid IAPWrite(uchar Addr,uchar Value,uchar IAPArea)
+*å‡½æ•°åŠŸèƒ½ï¼šIAPå†™åˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼šAddr,Value,IAPArea
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
-//IAPĞ´²Ù×÷
+//IAPå†™æ“ä½œ
 static void IAPWrite(unsigned int Addr,unsigned char Value,unsigned char IAPArea)
 {	
 	unsigned char 	tempADER = IAPADE;
   bit temp = EA;
 	
 	EA = 0;
-  IAPADE = IAPArea;   //IAPArea=0x00£ºÑ¡ÔñROMÇø²Ù×÷  IAPArea=0x02£ºÑ¡ÔñEEPROMÇø²Ù×÷
-	IAPDAT = Value;     //Ğ´ÈëÊı¾İData
-	IAPADH = (unsigned char)((Addr >> 8));   //Ğ´ÈëµØÖ·µÄ¸ß8Î»
-	IAPADL = (unsigned char)Addr;            //Ğ´ÈëµØÖ·µÄµÍ8Î»
-	IAPKEY = 0x40;		//IAP¿ªÆô±£»¤¿ØÖÆÊ±¼ä
-  IAPCTL = 0X10;      //Ö´ĞĞ¡°Ğ´Èë»ò¿ì²Á³ı²Ù×÷ÃüÁî¡±ºó£¬½øÈëflash±à³Ì²Ù×÷
-	IAPCTL |= 0x02;     //Ö´ĞĞ¡°Ğ´Èë»ò¿ì²Á³ı²Ù×÷ÃüÁî¡±
+  IAPADE = IAPArea;   //IAPArea=0x00ï¼šé€‰æ‹©ROMåŒºæ“ä½œ  IAPArea=0x02ï¼šé€‰æ‹©EEPROMåŒºæ“ä½œ
+	IAPDAT = Value;     //å†™å…¥æ•°æ®Data
+	IAPADH = (unsigned char)((Addr >> 8));   //å†™å…¥åœ°å€çš„é«˜8ä½
+	IAPADL = (unsigned char)Addr;            //å†™å…¥åœ°å€çš„ä½8ä½
+	IAPKEY = 0x40;		//IAPå¼€å¯ä¿æŠ¤æ§åˆ¶æ—¶é—´
+  IAPCTL = 0X10;      //æ‰§è¡Œâ€œå†™å…¥æˆ–å¿«æ“¦é™¤æ“ä½œå‘½ä»¤â€åï¼Œè¿›å…¥flashç¼–ç¨‹æ“ä½œ
+	IAPCTL |= 0x02;     //æ‰§è¡Œâ€œå†™å…¥æˆ–å¿«æ“¦é™¤æ“ä½œå‘½ä»¤â€
   _nop_();
   _nop_();
   _nop_();
@@ -126,13 +126,13 @@ static void IAPWrite(unsigned int Addr,unsigned char Value,unsigned char IAPArea
 	EA = temp;
 }
 ///**************************************************
-//*º¯ÊıÃû³Æ:void IAP_ProgramByte(unsigned long Address, unsigned char Data, unsigned char IAP_MemType)
-//*º¯Êı¹¦ÄÜ:IAPĞ´ÈëÒ»¸ö×Ö½Ú
-//*Èë¿Ú²ÎÊı:
-//unsigned long:Address:IAP²Ù×÷µØÖ·
-//unsigned char:Data:Ğ´ÈëµÄÊı¾İ
-//unsigned char:IAP_MemType:IAP²Ù×÷¶ÔÏó
-//*³ö¿Ú²ÎÊı:void
+//*å‡½æ•°åç§°:void IAP_ProgramByte(unsigned long Address, unsigned char Data, unsigned char IAP_MemType)
+//*å‡½æ•°åŠŸèƒ½:IAPå†™å…¥ä¸€ä¸ªå­—èŠ‚
+//*å…¥å£å‚æ•°:
+//unsigned long:Address:IAPæ“ä½œåœ°å€
+//unsigned char:Data:å†™å…¥çš„æ•°æ®
+//unsigned char:IAP_MemType:IAPæ“ä½œå¯¹è±¡
+//*å‡ºå£å‚æ•°:void
 //**************************************************/
 //void IAP_ProgramByte(unsigned long Address, unsigned char Data, unsigned char IAP_MemType)
 //{
@@ -165,10 +165,10 @@ static void IAPWrite(unsigned int Addr,unsigned char Value,unsigned char IAPArea
 //******************************************************************************
 
 ///*****************************************************
-//*º¯ÊıÃû³Æ£ºvoid IAPPageErase(uint Addr,uchar IAPArea)
-//*º¯Êı¹¦ÄÜ£ºIAPÒ³²Á³ı
-//*Èë¿Ú²ÎÊı£ºAddr,IAPArea
-//*³ö¿Ú²ÎÊı£ºvoid
+//*å‡½æ•°åç§°ï¼švoid IAPPageErase(uint Addr,uchar IAPArea)
+//*å‡½æ•°åŠŸèƒ½ï¼šIAPé¡µæ“¦é™¤
+//*å…¥å£å‚æ•°ï¼šAddr,IAPArea
+//*å‡ºå£å‚æ•°ï¼švoid
 //*****************************************************/
 //static void IAPPageErase(unsigned int Addr,unsigned char IAPArea)
 //{
@@ -177,8 +177,8 @@ static void IAPWrite(unsigned int Addr,unsigned char Value,unsigned char IAPArea
 //	EA = 0;
 //	IAPADE = IAPArea;
 //	
-//	IAPADH = (unsigned char)((Addr >> 8)); //Ğ´Èë´ı²Á³ıÊ×µØÖ·¸ßÎ»
-//  IAPADL = (unsigned char)Addr;          //Ğ´Èë´ı²Á³ıÊ×µØÖ·µÍÎ»
+//	IAPADH = (unsigned char)((Addr >> 8)); //å†™å…¥å¾…æ“¦é™¤é¦–åœ°å€é«˜ä½
+//  IAPADL = (unsigned char)Addr;          //å†™å…¥å¾…æ“¦é™¤é¦–åœ°å€ä½ä½
 //	
 //  IAPKEY = 0x40;
 //  IAPCTL = 0x20;
@@ -199,12 +199,12 @@ static void IAPWrite(unsigned int Addr,unsigned char Value,unsigned char IAPArea
 //  EA = temp;	
 //}
 ///**************************************************
-//*º¯ÊıÃû³Æ:void IAP_SectorErase(unsigned char IAP_MemType, unsigned long IAP_SectorEraseAddress)
-//*º¯Êı¹¦ÄÜ:IAPÉÈÇø²Á³ı
-//*Èë¿Ú²ÎÊı:
-//unsigned char:IAP_MemType:IAP²Ù×÷¶ÔÏó
-//unsigned long:IAP_SectorEraseAddress:IAPÉÈÇø²Á³ıÄ¿±êµØÖ·
-//*³ö¿Ú²ÎÊı:void
+//*å‡½æ•°åç§°:void IAP_SectorErase(unsigned char IAP_MemType, unsigned long IAP_SectorEraseAddress)
+//*å‡½æ•°åŠŸèƒ½:IAPæ‰‡åŒºæ“¦é™¤
+//*å…¥å£å‚æ•°:
+//unsigned char:IAP_MemType:IAPæ“ä½œå¯¹è±¡
+//unsigned long:IAP_SectorEraseAddress:IAPæ‰‡åŒºæ“¦é™¤ç›®æ ‡åœ°å€
+//*å‡ºå£å‚æ•°:void
 //**************************************************/
 //void IAP_SectorErase(unsigned char IAP_MemType, unsigned long IAP_SectorEraseAddress)
 //{
@@ -212,8 +212,8 @@ static void IAPWrite(unsigned int Addr,unsigned char Value,unsigned char IAPArea
 //  bit temp = EA;
 //  EA = 0;
 //  IAPADE = IAP_MemType;
-//  IAPADH = (unsigned char)(IAP_SectorEraseAddress >> 8); //²Á³ıIAPÄ¿±êµØÖ·¸ßÎ»Öµ
-//  IAPADL = (unsigned char)IAP_SectorEraseAddress;        //²Á³ıIAPÄ¿±êµØÖ·µÍÎ»Öµ
+//  IAPADH = (unsigned char)(IAP_SectorEraseAddress >> 8); //æ“¦é™¤IAPç›®æ ‡åœ°å€é«˜ä½å€¼
+//  IAPADL = (unsigned char)IAP_SectorEraseAddress;        //æ“¦é™¤IAPç›®æ ‡åœ°å€ä½ä½å€¼
 //  IAPKEY = 0x40;
 //  IAPCTL = 0x20;
 //  IAPCTL |= 0x02;
@@ -236,47 +236,47 @@ static void IAPWrite(unsigned int Addr,unsigned char Value,unsigned char IAPArea
 //******************************************************************************
 
 /*****************************************************
-*º¯ÊıÃû³Æ£ºuchar IAPRead(uchar Addr,uchar IAPArea)
-*º¯Êı¹¦ÄÜ£ºIAP¶Á³õÊ¼»¯
-*Èë¿Ú²ÎÊı£ºAddr,IAPArea
-*³ö¿Ú²ÎÊı£ºReadValue
+*å‡½æ•°åç§°ï¼šuchar IAPRead(uchar Addr,uchar IAPArea)
+*å‡½æ•°åŠŸèƒ½ï¼šIAPè¯»åˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼šAddr,IAPArea
+*å‡ºå£å‚æ•°ï¼šReadValue
 *****************************************************/
 
 static unsigned char IAPRead(unsigned int Addr,unsigned char IAPArea)
 {
 	unsigned char xdata ReadValue = 0x00;
    bit temp = EA;
-  //±£´æROMBNK¡¢IAPADE¡¢EA
+  //ä¿å­˜ROMBNKã€IAPADEã€EA
   unsigned char tempADER = IAPADE;
 	EA = 0;
 	IAPADE = IAPArea;
-	ReadValue = *(IapAddr+Addr); //¶ÁÈ¡µÄÊı¾İ
-  //²Ù×÷½áÊø»Ö¸´ROMBNK¡¢IAPADE¡¢EA£¬±ÜÃâMOVCÎ»ÖÃ³ö´í
+	ReadValue = *(IapAddr+Addr); //è¯»å–çš„æ•°æ®
+  //æ“ä½œç»“æŸæ¢å¤ROMBNKã€IAPADEã€EAï¼Œé¿å…MOVCä½ç½®å‡ºé”™
   IAPADE = tempADER;
 	EA = temp;
 	return ReadValue;
 }
 
 ///**************************************************
-//*º¯ÊıÃû³Æ£ºunsigned char IAP_Read(unsigned long IAP_IapAddr, unsigned char area)
-//*º¯Êı¹¦ÄÜ£ºµ¥Byte¶ÁÈ¡
-//*Èë¿Ú²ÎÊı£º
-//IAP_IapAddr:ĞèÒª²Á³ıµÄµØÖ·
-//area:²Ù×÷¶ÔÏó,APROMÎª00,EEPROMÎª02
-//*³ö¿Ú²ÎÊı£ºvoid
+//*å‡½æ•°åç§°ï¼šunsigned char IAP_Read(unsigned long IAP_IapAddr, unsigned char area)
+//*å‡½æ•°åŠŸèƒ½ï¼šå•Byteè¯»å–
+//*å…¥å£å‚æ•°ï¼š
+//IAP_IapAddr:éœ€è¦æ“¦é™¤çš„åœ°å€
+//area:æ“ä½œå¯¹è±¡,APROMä¸º00,EEPROMä¸º02
+//*å‡ºå£å‚æ•°ï¼švoid
 //**************************************************/
 //unsigned char IAP_Read(unsigned long IAP_IapAddr, unsigned char area)
 //{
 //  unsigned char IAP_IapData;
-//  //±£´æROMBNK¡¢IAPADE¡¢EA
+//  //ä¿å­˜ROMBNKã€IAPADEã€EA
 //  unsigned char tempADER = IAPADE;
 //  bit temp = EA;
 
-//  EA = 0;             //¹Ø±ÕÖĞ¶Ï
+//  EA = 0;             //å…³é—­ä¸­æ–­
 //  IAPADE = area;
 //  IAP_IapData = *(POINT + IAP_IapAddr);
 
-//  //²Ù×÷½áÊø»Ö¸´ROMBNK¡¢IAPADE¡¢EA£¬±ÜÃâMOVCÎ»ÖÃ³ö´í
+//  //æ“ä½œç»“æŸæ¢å¤ROMBNKã€IAPADEã€EAï¼Œé¿å…MOVCä½ç½®å‡ºé”™
 //  IAPADE = tempADER;
 //  EA = temp;
 //  return IAP_IapData;
@@ -290,15 +290,15 @@ static unsigned char IAPRead(unsigned int Addr,unsigned char IAPArea)
 
 //void IAP_Test(void)
 //{
-//  unsigned char IapReadData1, IapReadData2;				//¶¨Òå´¢´æ¶Á³öÊı¾İµÄ±äÁ¿
+//  unsigned char IapReadData1, IapReadData2;				//å®šä¹‰å‚¨å­˜è¯»å‡ºæ•°æ®çš„å˜é‡
 
-//  IAP_SectorErase(IAP_APROM, 0x7EFF);    		      //ÉÈÇø²Á³ı
-//  IAP_ProgramByte(0x7EFF, 0x55, IAP_APROM);			//ÍùAPROM 0x7EFFµØÖ·Ğ´Èë0x55
-//  IapReadData1 = IAP_Read(0x7EFF, IAP_APROM);	  //¶ÁÈ¡APROM 0x7EFFµØÖ·Êı¾İ
+//  IAP_SectorErase(IAP_APROM, 0x7EFF);    		      //æ‰‡åŒºæ“¦é™¤
+//  IAP_ProgramByte(0x7EFF, 0x55, IAP_APROM);			//å¾€APROM 0x7EFFåœ°å€å†™å…¥0x55
+//  IapReadData1 = IAP_Read(0x7EFF, IAP_APROM);	  //è¯»å–APROM 0x7EFFåœ°å€æ•°æ®
 
-//  IAP_SectorErase(IAP_EEPROM, 0x70);    		      //ÉÈÇø²Á³ı
-//  IAP_ProgramByte(0x70, 0xAA, IAP_EEPROM);			//ÍùEEPROM 0x70µØÖ·Ğ´Èë0xAA
-//  IapReadData2 = IAP_Read(0x70, IAP_EEPROM);		//¶ÁÈ¡EEPROM 0x70µØÖ·Êı¾İ
+//  IAP_SectorErase(IAP_EEPROM, 0x70);    		      //æ‰‡åŒºæ“¦é™¤
+//  IAP_ProgramByte(0x70, 0xAA, IAP_EEPROM);			//å¾€EEPROM 0x70åœ°å€å†™å…¥0xAA
+//  IapReadData2 = IAP_Read(0x70, IAP_EEPROM);		//è¯»å–EEPROM 0x70åœ°å€æ•°æ®
 //  while(1)
 //  {
 //    if((IapReadData1 == 0x55) && (IapReadData2 == 0xAA))

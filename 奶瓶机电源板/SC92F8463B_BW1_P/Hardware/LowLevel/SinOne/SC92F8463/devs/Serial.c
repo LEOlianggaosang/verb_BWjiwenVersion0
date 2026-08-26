@@ -62,14 +62,14 @@ volatile unsigned char  UART1hasReceived;
 
 
 void UART0_Init( void )
-{//œ‘ æ∞Â
+{//ÊòæÁ§∫Êùø
 	P1CON &= ~0x0c;   //TX/RX, P13,P12 input mode//SOC 1111 0011
 	P1PH |= 0x0c;			//0000 1100
 	//**********
 	// UART0 set to uart mode1
 	SCON |= UART0_SCON_MODE;		//01XX XXXX
 	// mode 1: 1 start bit , 8 data, 1 stop bit
-	//SCON  |= 0X50;   //…Ë÷√Õ®–≈∑Ω ΩŒ™ƒ£ Ω“ª£¨‘ –ÌΩ” ’
+	//SCON  |= 0X50;   //ËÆæÁΩÆÈÄö‰ø°ÊñπÂºè‰∏∫Ê®°Âºè‰∏ÄÔºåÂÖÅËÆ∏Êé•Êî∂
 	// enable UART0 receive data
 	UART0_REN_OFF;		//xxx1 xxxx
 	//**********
@@ -101,36 +101,36 @@ void UART0_Init( void )
 //	gpUART0RxAddress = & SendDatasBuf;
 }
 ///*****************************************************
-//*∫Ø ˝√˚≥∆£∫void Uart0_Init(uint Freq,unsigned long int baud)
-//*∫Ø ˝π¶ƒ‹£∫Uart0÷–∂œ≥ı ºªØ
-//*»Îø⁄≤Œ ˝£∫Freq-÷˜∆µ£¨baud-≤®Ãÿ¬ 
-//*≥ˆø⁄≤Œ ˝£∫void
+//*ÂáΩÊï∞ÂêçÁß∞Ôºövoid Uart0_Init(uint Freq,unsigned long int baud)
+//*ÂáΩÊï∞ÂäüËÉΩÔºöUart0‰∏≠Êñ≠ÂàùÂßãÂåñ
+//*ÂÖ•Âè£ÂèÇÊï∞ÔºöFreq-‰∏ªÈ¢ëÔºåbaud-Ê≥¢ÁâπÁéá
+//*Âá∫Âè£ÂèÇÊï∞Ôºövoid
 //*****************************************************/
-//void Uart0_Init(uint Freq,unsigned long int baud)    //—°‘ÒTimer1◊˜Œ™≤®Ãÿ¬ –≈∫≈∑¢…˙∆˜
+//void Uart0_Init(uint Freq,unsigned long int baud)    //ÈÄâÊã©Timer1‰Ωú‰∏∫Ê≥¢ÁâπÁéá‰ø°Âè∑ÂèëÁîüÂô®
 //{
-//	P1CON &= 0xF3;   //TX/RX…Ë÷√Œ™ ‰»Î¥¯…œ¿≠
+//	P1CON &= 0xF3;   //TX/RXËÆæÁΩÆ‰∏∫ËæìÂÖ•Â∏¶‰∏äÊãâ
 //	P1PH  |= 0x0C;
 //	
-//	SCON  |= 0X50;   //…Ë÷√Õ®–≈∑Ω ΩŒ™ƒ£ Ω“ª£¨‘ –ÌΩ” ’
+//	SCON  |= 0X50;   //ËÆæÁΩÆÈÄö‰ø°ÊñπÂºè‰∏∫Ê®°Âºè‰∏ÄÔºåÂÖÅËÆ∏Êé•Êî∂
 //	TMCON |= 0X02;
 //	TMOD  |= 0X20;
 //	PCON  |= 0X80;	//SMOD=1
-//	TH1 = (Freq*1000000/baud)>>8;	  //≤®Ãÿ¬ Œ™T1µƒ“Á≥ˆ ±º‰£ª
+//	TH1 = (Freq*1000000/baud)>>8;	  //Ê≥¢ÁâπÁéá‰∏∫T1ÁöÑÊ∫¢Âá∫Êó∂Èó¥Ôºõ
 //	TL1 = Freq*1000000/baud;
 //	TR1 = 0;
 //	ET1 = 0;
-//	EUART = 1;     //ø™∆ÙUart0÷–∂œ
+//	EUART = 1;     //ÂºÄÂêØUart0‰∏≠Êñ≠
 //	EA = 1;
 //}
 ///*
-//void Uart0_Init(uint Freq,unsigned long int baud)    //—°‘ÒTimer2◊˜Œ™≤®Ãÿ¬ –≈∫≈∑¢…˙∆˜
+//void Uart0_Init(uint Freq,unsigned long int baud)    //ÈÄâÊã©Timer2‰Ωú‰∏∫Ê≥¢ÁâπÁéá‰ø°Âè∑ÂèëÁîüÂô®
 //{
-//    P1CON &= 0xF3;   //TX…Ë÷√Œ™«øÕ∆ÕÏ ‰≥ˆ∏ﬂ£¨RX…Ë÷√Œ™ ‰»Î¥¯…œ¿≠
+//    P1CON &= 0xF3;   //TXËÆæÁΩÆ‰∏∫Âº∫Êé®ÊåΩËæìÂá∫È´òÔºåRXËÆæÁΩÆ‰∏∫ËæìÂÖ•Â∏¶‰∏äÊãâ
 //	P1CON |= 0x08;
 //	P1PH  |= 0x04;
 //	P13 = 1;
 
-//	SCON  |= 0X50;   //…Ë÷√Õ®–≈∑Ω ΩŒ™ƒ£ Ω“ª£¨‘ –ÌΩ” ’
+//	SCON  |= 0X50;   //ËÆæÁΩÆÈÄö‰ø°ÊñπÂºè‰∏∫Ê®°Âºè‰∏ÄÔºåÂÖÅËÆ∏Êé•Êî∂
 //	TMCON |= 0X04;
 //	T2MOD = 0X00;
 //	T2CON = 0X30;
@@ -138,27 +138,27 @@ void UART0_Init( void )
 //	RCAP2L = Freq*1000000/baud%256;
 //	TR2 = 0;
 //	ET2 = 0;
-//	EUART = 1;     //ø™∆ÙUart0÷–∂œ
+//	EUART = 1;     //ÂºÄÂêØUart0‰∏≠Êñ≠
 //	EA = 1;
 //}
 //*/
 
 #if NEWTYPE1
 void UART1_Init( void )
-{//œ‘ æ∞Â
+{//ÊòæÁ§∫Êùø
 	P2CON &= ~0x03;   //TX2/RX2, P20,P21 input mode//WASHDISH 1111 1100
 	P2PH |= 0x03;			//0000 0011
 	//**********
 	// USCI set to uart mode
-	OTCON |= SSMOD_UART;    //¥Æ––Ω”ø⁄SSI—°‘ÒUartÕ®–≈
+	OTCON |= SSMOD_UART;    //‰∏≤Ë°åÊé•Âè£SSIÈÄâÊã©UartÈÄö‰ø°
 	// mode 1: 1 start bit , 8 data, 1 stop bit
 	// disable receive data
 	SSCON0 &= ~(SSCON0_SM1|SSCON0_SM2|SSCON0_TB8|SSCON0_RB8);
 	UART1_REN_OFF;
-	SSCON1 = UART_BAUDL;   //≤®Ãÿ¬ µÕŒªøÿ÷∆
-	SSCON2 = UART_BAUDH;   //≤®Ãÿ¬ ∏ﬂŒªøÿ÷∆
+	SSCON1 = UART_BAUDL;   //Ê≥¢ÁâπÁéá‰Ωé‰ΩçÊéßÂà∂
+	SSCON2 = UART_BAUDH;   //Ê≥¢ÁâπÁéáÈ´ò‰ΩçÊéßÂà∂
 	//**********
-	IE1 |= 0x01;      //ø™∆ÙSSI÷–∂œ     
+	IE1 |= 0x01;      //ÂºÄÂêØSSI‰∏≠Êñ≠     
 	IP1 &= ~(0x01);
 	//**********
 //	UART1isSendBuzy = 0;
@@ -168,20 +168,20 @@ void UART1_Init( void )
 }
 #else
 void UART1_Init( void )
-{//πÿ±’¥Æø⁄
+{//ÂÖ≥Èó≠‰∏≤Âè£
 	// P2CON &= ~0x03;   //TX2/RX2, P20,P21 input mode//WASHDISH 1111 1100
 	// P2PH |= 0x03;			//0000 0011
 	// //**********
 	// // USCI set to uart mode
-	// OTCON |= SSMOD_UART;    //¥Æ––Ω”ø⁄SSI—°‘ÒUartÕ®–≈
+	// OTCON |= SSMOD_UART;    //‰∏≤Ë°åÊé•Âè£SSIÈÄâÊã©UartÈÄö‰ø°
 	// // mode 1: 1 start bit , 8 data, 1 stop bit
 	// // disable receive data
 	// SSCON0 &= ~(SSCON0_SM1|SSCON0_SM2|SSCON0_TB8|SSCON0_RB8);
 	// UART1_REN_OFF;
-	// SSCON1 = UART_BAUDL;   //≤®Ãÿ¬ µÕŒªøÿ÷∆
-	// SSCON2 = UART_BAUDH;   //≤®Ãÿ¬ ∏ﬂŒªøÿ÷∆
+	// SSCON1 = UART_BAUDL;   //Ê≥¢ÁâπÁéá‰Ωé‰ΩçÊéßÂà∂
+	// SSCON2 = UART_BAUDH;   //Ê≥¢ÁâπÁéáÈ´ò‰ΩçÊéßÂà∂
 	// //**********
-	// IE1 |= 0x01;      //ø™∆ÙSSI÷–∂œ     
+	// IE1 |= 0x01;      //ÂºÄÂêØSSI‰∏≠Êñ≠     
 	// IP1 &= ~(0x01);
 	//**********
 	// UART1isSendBuzy = 0;
@@ -191,21 +191,21 @@ void UART1_Init( void )
 }
 #endif
 ///*****************************************************
-//*∫Ø ˝√˚≥∆£∫void Uart1_Init(uint Freq,unsigned long int baud)
-//*∫Ø ˝π¶ƒ‹£∫Uart1÷–∂œ≥ı ºªØ
-//*»Îø⁄≤Œ ˝£∫Freq-÷˜∆µ£¨baud-≤®Ãÿ¬ 
-//*≥ˆø⁄≤Œ ˝£∫void
+//*ÂáΩÊï∞ÂêçÁß∞Ôºövoid Uart1_Init(uint Freq,unsigned long int baud)
+//*ÂáΩÊï∞ÂäüËÉΩÔºöUart1‰∏≠Êñ≠ÂàùÂßãÂåñ
+//*ÂÖ•Âè£ÂèÇÊï∞ÔºöFreq-‰∏ªÈ¢ëÔºåbaud-Ê≥¢ÁâπÁéá
+//*Âá∫Âè£ÂèÇÊï∞Ôºövoid
 //*****************************************************/
 //void Uart1_Init(uint Freq,unsigned long int baud)
 //{
-//	P2CON &= 0xFC;   //TX/RX…Ë÷√Œ™ ‰»Î¥¯…œ¿≠
+//	P2CON &= 0xFC;   //TX/RXËÆæÁΩÆ‰∏∫ËæìÂÖ•Â∏¶‰∏äÊãâ
 //	P2PH  |= 0x03;
 //	
-//	OTCON |= 0xC0;    //¥Æ––Ω”ø⁄SSI—°‘ÒUart1Õ®–≈
-//	SSCON0 = 0x50;   //…Ë÷√Õ®–≈∑Ω ΩŒ™ƒ£ Ω“ª£¨‘ –ÌΩ” ’
-//	SSCON1 = Freq*1000000/baud;   //≤®Ãÿ¬ µÕŒªøÿ÷∆
-//	SSCON2 = (Freq*1000000/baud)>>8;   //≤®Ãÿ¬ ∏ﬂŒªøÿ÷∆
-//	IE1 |= 0x01;      //ø™∆ÙSSI÷–∂œ
+//	OTCON |= 0xC0;    //‰∏≤Ë°åÊé•Âè£SSIÈÄâÊã©Uart1ÈÄö‰ø°
+//	SSCON0 = 0x50;   //ËÆæÁΩÆÈÄö‰ø°ÊñπÂºè‰∏∫Ê®°Âºè‰∏ÄÔºåÂÖÅËÆ∏Êé•Êî∂
+//	SSCON1 = Freq*1000000/baud;   //Ê≥¢ÁâπÁéá‰Ωé‰ΩçÊéßÂà∂
+//	SSCON2 = (Freq*1000000/baud)>>8;   //Ê≥¢ÁâπÁéáÈ´ò‰ΩçÊéßÂà∂
+//	IE1 |= 0x01;      //ÂºÄÂêØSSI‰∏≠Êñ≠
 //    EA = 1;	
 //}
 void UART0_Start( void )
@@ -326,7 +326,7 @@ MD_STATUS UART1_SendData( unsigned char* txbuf, unsigned short txnum )
 //		if(gUART0RxLen > gUART0RxCnt)
 //		{
 //			*gpUART0RxAddress = SBUF;
-//			if (*gpUART0RxAddress == '\n')//20230628 ø® ±
+//			if (*gpUART0RxAddress == '\n')//20230628 Âç°Êó∂
 //			{
 //				CALL_UART0_Receive( );
 //			}
@@ -347,7 +347,7 @@ MD_STATUS UART1_SendData( unsigned char* txbuf, unsigned short txnum )
 #if NEWTYPE1
 
 // void UART0Int(void) interrupt 4
-// {//µ∆∞ÂÕ®–≈
+// {//ÁÅØÊùøÈÄö‰ø°
 // 	if(TI)//SCON & SCON_TI
 // 	{
 // 		TI = 0;//UART0_TI_ON
@@ -371,7 +371,7 @@ MD_STATUS UART1_SendData( unsigned char* txbuf, unsigned short txnum )
 // 		if(gUART0RxLen > gUART0RxCnt)
 // 		{
 // 			*gpUART0RxAddress = SBUF;
-// 			if (*gpUART0RxAddress == '\n')//20230628 ø® ±
+// 			if (*gpUART0RxAddress == '\n')//20230628 Âç°Êó∂
 // 			{
 // 				CALL_UART0_Receive( );
 // 			}
@@ -390,7 +390,7 @@ MD_STATUS UART1_SendData( unsigned char* txbuf, unsigned short txnum )
 // }
 
 void UART0Int(void) interrupt 4
-{//FCT∆Ù∂Ø
+{//FCTÂêØÂä®
 	static unsigned char UART0RxBuffer = 0;
 	if(TI)
 	{
@@ -481,7 +481,7 @@ void UART0Int(void) interrupt 4
 }
 #else
 void UART0Int(void) interrupt 4
-{//œ‘ æ∞Â
+{//ÊòæÁ§∫Êùø
 	static unsigned char UART0RxBuffer = 0;
 	if(TI)
 	{
@@ -574,7 +574,7 @@ void UART0Int(void) interrupt 4
 
 #if NEWTYPE1
 void UART1Int(void) interrupt 7
-{//œ‘ æ∞Â
+{//ÊòæÁ§∫Êùø
 	static unsigned char UART1RxBuffer = 0;
 	if(SSCON0 & SSCON0_TI)
 	{
@@ -665,7 +665,7 @@ void UART1Int(void) interrupt 7
 }
 #else
 void UART1Int(void) interrupt 7
-{//πÿ±’¥Æø⁄
+{//ÂÖ≥Èó≠‰∏≤Âè£
 	if(SSCON0 & SSCON0_TI)
 	{
 		UART1_TI_OFF;
@@ -689,7 +689,7 @@ void UART1Int(void) interrupt 7
 		if(gUART1RxLen > gUART1RxCnt)
 		{
 			*gpUART1RxAddress = SSDAT;
-			if (*gpUART1RxAddress == '\n')//20230628 ø® ±
+			if (*gpUART1RxAddress == '\n')//20230628 Âç°Êó∂
 			{
 				CALL_UART1_Receive( );
 			}
@@ -734,7 +734,7 @@ void UART1Int(void) interrupt 7
 // 		if(gUART1RxLen > gUART1RxCnt)
 // 		{
 // 			*gpUART1RxAddress = SSDAT;
-// 			if (*gpUART1RxAddress == '\n')//20230628 ø® ±
+// 			if (*gpUART1RxAddress == '\n')//20230628 Âç°Êó∂
 // 			{
 // 				CALL_UART1_Receive( );
 // 			}

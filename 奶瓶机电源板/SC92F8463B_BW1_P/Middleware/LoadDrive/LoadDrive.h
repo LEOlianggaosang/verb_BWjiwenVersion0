@@ -4,7 +4,7 @@
  *
  * @file    LoadDrive.h
  * @author  lianggaosang@qq.com
- * @brief   ¼ÌµçÆ÷¿ØÖÆ
+ * @brief   ç»§ç”µå™¨æ§åˆ¶
  *
  *******************************************************************************
  */
@@ -14,10 +14,10 @@
 #include "product_config.h"
 
 /**
- * @name Êä³öÊ¹ÄÜ±êÖ¾Î»
+ * @name è¾“å‡ºä½¿èƒ½æ ‡å¿—ä½
  */
 ///@{
-//Êä³öÊ¹ÄÜ
+//è¾“å‡ºä½¿èƒ½
 extern WordFlag Load_Enables;//debug
 #define  LoadEnable         Load_Enables.f_word
 #define  Load_R             Load_Enables.f_bits.no0
@@ -33,10 +33,10 @@ extern WordFlag Load_Enables;//debug
 
 extern UCHAR_XDATA	FlowMPreSecErrCnt;
 /**
- * @brief ¼ÌµçÆ÷Çı¶¯
+ * @brief ç»§ç”µå™¨é©±åŠ¨
  * 
- * @param ÎŞ
- * @return ÎŞ
+ * @param æ— 
+ * @return æ— 
  */
 void Load_Driver(void);
 void Init_Load(void);

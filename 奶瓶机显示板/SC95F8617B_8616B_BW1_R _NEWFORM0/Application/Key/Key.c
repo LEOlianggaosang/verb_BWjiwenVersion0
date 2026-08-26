@@ -538,6 +538,8 @@ static void Key_MonitorAction(void)
 				Key_ActionType = KEY_ACTION_RELEASING;
 			}
 			//! NEWFORM1 #4-1 增加无效音
+			//! 开门与其他故障保持无效音
+			//! 进水故障可按键恢复
 			if(KEY_START&&(KEY_ACT_LONG||KEY_ACT_SHORT))
 			{
 				if(Inlet_Lack)

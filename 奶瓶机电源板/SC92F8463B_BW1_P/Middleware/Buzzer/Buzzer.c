@@ -28,9 +28,9 @@ static const struct BuzzInfo buzzDatas[] =
   {3, 15, 30},        //BUZZ_ENTERCHECK,
   {1, 10, 50},        //BUZZ_KEY_VALID,
   {2,  8, 15},        //BUZZ_KEY_INVALID,
-  {5, 10, 40},        //BUZZ_ALARM,//2√ÎœÏ5…˘
-  {3, 10, 50},        //BUZZ_END,//Ω· ¯œÏ»˝…˘
-  {10,10, 30},        //‘§¡Ù
+  {5, 10, 40},        //BUZZ_ALARM,
+  {3, 10, 50},        //BUZZ_END,
+  {10,10, 30},        //BUZZ_DOOROPEN
 };
 
 static BuzzType  xdata currentBuzzType = BUZZ_SILENCE;
@@ -39,7 +39,7 @@ static UCHAR xdata buzzTimesBuf = 0;
 static UCHAR xdata buzzOnNumBuf = 0;
 static UCHAR xdata buzzOffNumBuf = 0;
 
-//≥ı ºªØ
+//¬≥√µ√ä¬º¬ª¬Ø
 void Init_Buzz(void)
 {
 	Stop_Buzzer();
@@ -47,7 +47,7 @@ void Init_Buzz(void)
 	// SetPin(BUZC,ON);
 }
 
-//÷¥––
+//√ñ¬¥√ê√ê
 void Buzz_Control(void)
 {
 	static UCHAR buzzindex = 0;
@@ -66,7 +66,7 @@ void Buzz_Control(void)
 				currentBuzzType = BUZZ_SILENCE;
 			}
 
-			//if ((buzzTimesBuf > 0)&&(!Signal_SoundIsSetted))//æ≤“Ù≤π∂°
+			//if ((buzzTimesBuf > 0)&&(!Signal_SoundIsSetted))
 			if (buzzTimesBuf > 0)
 			{
 				buzzCount ++;
@@ -103,7 +103,7 @@ void Buzz_Control(void)
 	}
 }
 
-//…Ë÷√
+//√â√®√ñ√É
 void Buzz_SetType(BuzzType type)
 {
 	// currentBuzzType = type;

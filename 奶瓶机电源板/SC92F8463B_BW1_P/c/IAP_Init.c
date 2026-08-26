@@ -1,24 +1,24 @@
 #include "H/Function_Init.H"
 
-//#define IapROM  0x00	  //0x00£ºÑ¡ÔñROMÇø²Ù×÷  0x02£ºÑ¡ÔñEEPROMÇø²Ù×÷
-//#define IapEPPROM  0x02	  //0x00£ºÑ¡ÔñROMÇø²Ù×÷  0x02£ºÑ¡ÔñEEPROMÇø²Ù×÷
+//#define IapROM  0x00	  //0x00ï¼šé€‰æ‹©ROMåŒºæ“ä½œ  0x02ï¼šé€‰æ‹©EEPROMåŒºæ“ä½œ
+//#define IapEPPROM  0x02	  //0x00ï¼šé€‰æ‹©ROMåŒºæ“ä½œ  0x02ï¼šé€‰æ‹©EEPROMåŒºæ“ä½œ
 unsigned char code *IapAddr = 0x00;
 
 void IAPWrite(uint Addr,uchar Value,uchar IAPArea);
 uchar IAPRead(uint Addr,uchar IAPArea);
-uchar IapReadData = 0x00;   //´æ·Å¶ÁÈ¡µÄIAPÊı¾İ
+uchar IapReadData = 0x00;   //å­˜æ”¾è¯»å–çš„IAPæ•°æ®
 
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid IAP_Test(uchar Address,uchar IAPArea)
-*º¯Êı¹¦ÄÜ£ºIAP²âÊÔ
-*Èë¿Ú²ÎÊı£ºAddress,IAPArea
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid IAP_Test(uchar Address,uchar IAPArea)
+*å‡½æ•°åŠŸèƒ½ï¼šIAPæµ‹è¯•
+*å…¥å£å‚æ•°ï¼šAddress,IAPArea
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 void IAP_Test(uint Address,uchar IAPArea)
 {
 	IAPWrite(Address,0xff,IAPArea);
 	IapReadData = IAPRead(Address,IAPArea);
-	IAPADE = 0x00;       //IAPÖ¸ÕëÖ¸»ØROMÇø
+	IAPADE = 0x00;       //IAPæŒ‡é’ˆæŒ‡å›ROMåŒº
 	while(1)
 	{
 		if(IapReadData == 0xff)
@@ -33,22 +33,22 @@ void IAP_Test(uint Address,uchar IAPArea)
 }
 
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid IAPWrite(uchar Addr,uchar Value,uchar IAPArea)
-*º¯Êı¹¦ÄÜ£ºIAPĞ´³õÊ¼»¯
-*Èë¿Ú²ÎÊı£ºAddr,Value,IAPArea
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid IAPWrite(uchar Addr,uchar Value,uchar IAPArea)
+*å‡½æ•°åŠŸèƒ½ï¼šIAPå†™åˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼šAddr,Value,IAPArea
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
-//IAPĞ´²Ù×÷
+//IAPå†™æ“ä½œ
 void IAPWrite(uint Addr,uchar Value,uchar IAPArea)
 {	
 	EA = 0;
-	IAPDAT = Value;      //Ğ´ÈëÊı¾İData
-	IAPADH = ((Addr>>8)&0X7F);   //Ğ´ÈëµØÖ·µÄ¸ß5Î»
-	IAPADL = Addr;               //Ğ´ÈëµØÖ·µÄµÍ8Î»
+	IAPDAT = Value;      //å†™å…¥æ•°æ®Data
+	IAPADH = ((Addr>>8)&0X7F);   //å†™å…¥åœ°å€çš„é«˜5ä½
+	IAPADL = Addr;               //å†™å…¥åœ°å€çš„ä½8ä½
 	
-	IAPADE = IAPArea;  //IAPArea=0x00£ºÑ¡ÔñROMÇø²Ù×÷  IAPArea=0x02£ºÑ¡ÔñEEPROMÇø²Ù×÷
-	IAPKEY = 240;		   //IAP¿ªÆô±£»¤¿ØÖÆÊ±¼ä
-	IAPCTL = 0x06;     //CPU hold timeÎª2ms£¬Ğ´Èë²Ù×÷ÃüÁî
+	IAPADE = IAPArea;  //IAPArea=0x00ï¼šé€‰æ‹©ROMåŒºæ“ä½œ  IAPArea=0x02ï¼šé€‰æ‹©EEPROMåŒºæ“ä½œ
+	IAPKEY = 240;		   //IAPå¼€å¯ä¿æŠ¤æ§åˆ¶æ—¶é—´
+	IAPCTL = 0x06;     //CPU hold timeä¸º2msï¼Œå†™å…¥æ“ä½œå‘½ä»¤
 	_nop_();
 	_nop_();
 	_nop_();
@@ -65,22 +65,22 @@ void IAPWrite(uint Addr,uchar Value,uchar IAPArea)
 	_nop_();
 	_nop_();
 	_nop_();
-	IAPADE = 0x00;      //MOVCÖ¸ÏòROM
+	IAPADE = 0x00;      //MOVCæŒ‡å‘ROM
 	EA = 1;
 }
 /*****************************************************
-*º¯ÊıÃû³Æ£ºuchar IAPRead(uchar Addr,uchar IAPArea)
-*º¯Êı¹¦ÄÜ£ºIAP¶Á³õÊ¼»¯
-*Èë¿Ú²ÎÊı£ºAddr,IAPArea
-*³ö¿Ú²ÎÊı£ºReadValue
+*å‡½æ•°åç§°ï¼šuchar IAPRead(uchar Addr,uchar IAPArea)
+*å‡½æ•°åŠŸèƒ½ï¼šIAPè¯»åˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼šAddr,IAPArea
+*å‡ºå£å‚æ•°ï¼šReadValue
 *****************************************************/
 uchar IAPRead(uint Addr,uchar IAPArea)
 {
 	uchar ReadValue = 0x00;
 	EA = 0;
 	IAPADE = IAPArea;
-	ReadValue = *(IapAddr+Addr); //¶ÁÈ¡µÄÊı¾İ
-	IAPADE = 0x00;               //MOVCÖ¸ÏòROM
+	ReadValue = *(IapAddr+Addr); //è¯»å–çš„æ•°æ®
+	IAPADE = 0x00;               //MOVCæŒ‡å‘ROM
 	EA = 1;
 	return ReadValue;
 }

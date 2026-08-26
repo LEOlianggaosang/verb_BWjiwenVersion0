@@ -21,10 +21,10 @@
 //bit AdcFlag = 0;
 //unsigned int ADCValue = 0x0000;
 ///*****************************************************
-//*º¯ÊıÃû³Æ£ºvoid ADC_Test(void)
-//*º¯Êı¹¦ÄÜ£ºADC²âÊÔ
-//*Èë¿Ú²ÎÊı£ºvoid
-//*³ö¿Ú²ÎÊı£ºvoid
+//*å‡½æ•°åç§°ï¼švoid ADC_Test(void)
+//*å‡½æ•°åŠŸèƒ½ï¼šADCæµ‹è¯•
+//*å…¥å£å‚æ•°ï¼švoid
+//*å‡ºå£å‚æ•°ï¼švoid
 //*****************************************************/
 //void ADC_Test(void)
 //{
@@ -35,26 +35,26 @@
 //	}
 //}
 ///*****************************************************
-//*º¯ÊıÃû³Æ£ºvoid ADC_Init(uint Channel,uchar ADCFreq)
-//*º¯Êı¹¦ÄÜ£ºADC³õÊ¼»¯
-//*Èë¿Ú²ÎÊı£ºvoid
-//*³ö¿Ú²ÎÊı£ºvoid
+//*å‡½æ•°åç§°ï¼švoid ADC_Init(uint Channel,uchar ADCFreq)
+//*å‡½æ•°åŠŸèƒ½ï¼šADCåˆå§‹åŒ–
+//*å…¥å£å‚æ•°ï¼švoid
+//*å‡ºå£å‚æ•°ï¼švoid
 //*****************************************************/
 //void ADC_Init(uint Channel,uchar ADCFreq)
 //{
-//	//ADCCON = 0X80|Channel;		//¿ªÆôADC£¬ADC²ÉÑùÆµÂÊÎª2M ,Ñ¡ÔñChannelÎ»ADC²ÉÑù¿Ú
-//	ADCCON = Channel;			//Ñ¡ÔñChannelÎ»ADC²ÉÑù¿Ú
+//	//ADCCON = 0X80|Channel;		//å¼€å¯ADCï¼ŒADCé‡‡æ ·é¢‘ç‡ä¸º2M ,é€‰æ‹©Channelä½ADCé‡‡æ ·å£
+//	ADCCON = Channel;			//é€‰æ‹©Channelä½ADCé‡‡æ ·å£
 //	if(Channel<8)
 //	{
-//		ADCCFG0 = 1<<Channel;   //ÉèÖÃChannel×÷Îª²ÉÑù¿Ú
+//		ADCCFG0 = 1<<Channel;   //è®¾ç½®Channelä½œä¸ºé‡‡æ ·å£
 //	}
 //	else
 //	{
-//		ADCCFG1 = 1<<(Channel-8);   //ÉèÖÃChannel×÷Îª²ÉÑù¿Ú
+//		ADCCFG1 = 1<<(Channel-8);   //è®¾ç½®Channelä½œä¸ºé‡‡æ ·å£
 //	}
 //	//ADCCFG2 = 0X08|ADCFreq;		//36+14fadc
 //	ADCCFG2 = ADCFreq;					//6+14fadc
-//	//IE |= 0X40;        //¿ªÆôADCÖĞ¶Ï
+//	//IE |= 0X40;        //å¼€å¯ADCä¸­æ–­
 //	EA = 1;
 //}
 
@@ -83,8 +83,8 @@ void AD_Init( void )
 //	unsigned int ADC_ValueSum = 0, ADC_ValueMax = 0 ,ADC_ValueMin = 0x01 << 12 ,ADC_ValueMean = 0 ,ADC_ValueTad = 0;
 //	for(i=0;i<10;i++ )
 //	{	
-//		ADCCON |= 0X40;   //¿ªÊ¼ADC×ª»»
-//	  while(!AdcFlag);	         		 //µÈ´ı ADC×ª»»Íê³É;
+//		ADCCON |= 0X40;   //å¼€å§‹ADCè½¬æ¢
+//	  while(!AdcFlag);	         		 //ç­‰å¾… ADCè½¬æ¢å®Œæˆ;
 //		AdcFlag = 0;
 //		ADC_ValueTad = (ADCVH<<4)+(ADCVL>>4);
 //		if(ADC_ValueTad>ADC_ValueMax)
@@ -104,16 +104,16 @@ void AD_Init( void )
 
 //void ADC_Interrupt(void) interrupt 6
 //{
-//	ADCCON&=~(0X20);  //ÇåÖĞ¶Ï±êÖ¾Î»
+//	ADCCON&=~(0X20);  //æ¸…ä¸­æ–­æ ‡å¿—ä½
 //	AdcFlag = 1;
 //}
 
 
 /**
- * @brief Æô¶¯AD×ª»¯Æ÷
+ * @brief å¯åŠ¨ADè½¬åŒ–å™¨
  * 
- * @param ÎŞ
- * @return ÎŞ
+ * @param æ— 
+ * @return æ— 
  */
 void AD_Start( void )
 {
@@ -121,10 +121,10 @@ void AD_Start( void )
 	ADCCON |= 0X80;
 }
 /**
- * @brief ½«×ª»¯µÄ½á¹û±£´æÔÚbufferÖ¸ÕëËùÖ¸ÏòµÄµØÖ·.
+ * @brief å°†è½¬åŒ–çš„ç»“æœä¿å­˜åœ¨bufferæŒ‡é’ˆæ‰€æŒ‡å‘çš„åœ°å€.
  * 
- * @param buffer:Òª´æ·Å×ª»¯½á¹ûµÄµØÖ·
- * @return ÎŞ
+ * @param buffer:è¦å­˜æ”¾è½¬åŒ–ç»“æœçš„åœ°å€
+ * @return æ— 
  */
 //void AD_Read( unsigned char* buffer )
 //{
@@ -132,10 +132,10 @@ void AD_Start( void )
 //}
 
 /**
- * @brief Í£Ö¹AD×ª»¯
+ * @brief åœæ­¢ADè½¬åŒ–
  * 
- * @param ÎŞ
- * @return ÎŞ
+ * @param æ— 
+ * @return æ— 
  */
 void AD_Stop( void )
 {
@@ -143,10 +143,10 @@ void AD_Stop( void )
 }
 
 /**
- * @brief Ê¹ÄÜ±È½ÏÆ÷²Ù×÷
+ * @brief ä½¿èƒ½æ¯”è¾ƒå™¨æ“ä½œ
  * 
- * @param ÎŞ
- * @return ÎŞ
+ * @param æ— 
+ * @return æ— 
  */
 void AD_ComparatorOn( void )
 {
@@ -155,10 +155,10 @@ void AD_ComparatorOn( void )
 }
 
 /**
- * @brief Í£Ö¹±È½ÏÆ÷²Ù×÷
+ * @brief åœæ­¢æ¯”è¾ƒå™¨æ“ä½œ
  * 
- * @param ÎŞ
- * @return ÎŞ
+ * @param æ— 
+ * @return æ— 
  */
 void AD_ComparatorOff( void )
 {
@@ -167,10 +167,10 @@ void AD_ComparatorOff( void )
 }
 
 /**
- * @brief Ñ¡ÔñÄ£ÄâÊäÈëÍ¨µÀ
+ * @brief é€‰æ‹©æ¨¡æ‹Ÿè¾“å…¥é€šé“
  * 
- * @param channel:Ä£ÄâÊäÈëÍ¨µÀ
- * @return ÎŞ
+ * @param channel:æ¨¡æ‹Ÿè¾“å…¥é€šé“
+ * @return æ— 
  */
 void AD_SelectADChannel( enum Channel name )
 {

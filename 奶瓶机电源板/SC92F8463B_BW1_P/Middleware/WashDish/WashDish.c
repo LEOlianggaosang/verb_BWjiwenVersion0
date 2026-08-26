@@ -4,7 +4,7 @@
  * 
 * @file    WashDish.c
 * @author  lianggaosang@qq.com
-* @brief   ÄÌÆ¿»ú»ú´®¿ÚÍ¨ĞÅ
+* @brief   å¥¶ç“¶æœºæœºä¸²å£é€šä¿¡
 * 
 *******************************************************************************
 */
@@ -145,7 +145,7 @@ static void Fct_SendDatas(void);
 */
 void Init_WashDish(void)
 {
-	Uart_ReceiveData(SERIAL_DISPLAY, ReceiveDatasBuf, MESSAGE_DATA_LENGTH);//ÖØÖÃ»º´æÊı×éÖ¸Õë£¬´ò¿ª½ÓÊÕÔÊĞí
+	Uart_ReceiveData(SERIAL_DISPLAY, ReceiveDatasBuf, MESSAGE_DATA_LENGTH);//é‡ç½®ç¼“å­˜æ•°ç»„æŒ‡é’ˆï¼Œæ‰“å¼€æ¥æ”¶å…è®¸
 	Uart_Start(SERIAL_DISPLAY);
 	#if CONFIG_FCT_UART
 	Uart_ReceiveData(SERIAL_FCT, Fct_ReceiveDatasBuf, MESSAGE_DATA_LENGTH);
@@ -154,7 +154,7 @@ void Init_WashDish(void)
 	WashDishFlag = 0;
 	Test_WaitFctActionCount = 60;
 }
-//Ã¿´Î½ÓÊÕÒ»×éÊı¾İºó¹Ø±Õ£¬ĞèÒªÊÖ¶¯´ò¿ª½ÓÊÕÔÊĞí
+//æ¯æ¬¡æ¥æ”¶ä¸€ç»„æ•°æ®åå…³é—­ï¼Œéœ€è¦æ‰‹åŠ¨æ‰“å¼€æ¥æ”¶å…è®¸
 /*
 *------------------------------------------------------------------------------
 */
@@ -176,7 +176,7 @@ void WashDish_Control(void)
 			{
 				bSUM += ReceiveDatasBuf[i];
 			}
-			//Í¨ĞÅ×´Ì¬´¦Àí
+			//é€šä¿¡çŠ¶æ€å¤„ç†
 			if(bSUM == ReceiveDatasBuf[ReceiveDatasBuf[3]-1])
 			{
 				DispError_100msCnt = 0;
@@ -194,10 +194,10 @@ void WashDish_Control(void)
 	if(Uart_IsReceivedDataDone(SERIAL_FCT))
 	{
 //		if((!F_WDIsCommunicating)&&(!F_FCTing))
-//		{//Á¬½Ó
+//		{//è¿æ¥
 //			F_WDHasCommunicated = 0;
 		if((!F_WDHasCommunicated)&&(!F_FCTing))
-		{//¶Ì½Ó
+		{//çŸ­æ¥
 			Buzz_SetType(BUZZ_ENTERCHECK);
 			F_FCTing = 1;
 			Test_FctingActionCount0 = 1;
@@ -310,7 +310,7 @@ static void WashDish_ReceiveDatas(void)
 			}
 			else
 			{
-				if((!F_BuzzReceived)||(!F_IsBuzzing)||(BUZZ_SILENCE == WD_BeepState))//WD_BeepState!=0xffÇÒF_BuzzReceived==0
+				if((!F_BuzzReceived)||(!F_IsBuzzing)||(BUZZ_SILENCE == WD_BeepState))//WD_BeepState!=0xffä¸”F_BuzzReceived==0
 				{
 					
 					F_BuzzReceived = 1;
@@ -431,7 +431,7 @@ static void WashDish_FleshDatas(void)
 		// 	Power_SendDatasBuf[3] = 10;
 		// 	Power_SendDatasBuf[4] = C_TRANS_FCT;
 		// 	break;
-		default://Ê¹µçÔ´°åÖØĞÂÎÕÊÖ//#define		C_TRANS_NONE	0x00
+		default://ä½¿ç”µæºæ¿é‡æ–°æ¡æ‰‹//#define		C_TRANS_NONE	0x00
 			SendDatasBuf[3] = 10;
 			SendDatasBuf[4] = C_TRANS_FIRST;
 			SendDatasBuf[5] = (unsigned char)VERSION_NUMBER;

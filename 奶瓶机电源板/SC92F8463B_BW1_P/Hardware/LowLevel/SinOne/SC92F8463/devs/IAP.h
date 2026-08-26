@@ -18,7 +18,7 @@
 #define IAP_APROM 0x00
 #define IAP_UniqueID 0x01
 #define IAP_EEPROM 0x02
-#define IAP_LDROM 0x03          //Ö»ÓĞAPROMºÍEEPROMÔÊĞíIAPĞ´²Ù×÷
+#define IAP_LDROM 0x03          //åªæœ‰APROMå’ŒEEPROMå…è®¸IAPå†™æ“ä½œ
 /*----------------------------------------------------------------------------------------------*/
 /* user function prototypes                                                                    */
 /*----------------------------------------------------------------------------------------------*/

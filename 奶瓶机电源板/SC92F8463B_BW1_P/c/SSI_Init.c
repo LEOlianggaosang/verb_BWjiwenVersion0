@@ -1,31 +1,31 @@
 #include "H/Function_Init.H"
 
-//Ñ¡ÔñÈıºÏÒ»Ä£Ê½£º
+//é€‰æ‹©ä¸‰åˆä¸€æ¨¡å¼ï¼š
 #define  Uart1  0
 #define  TWI    1
 #define  SPI    2
 
 #define  SSI_Mode  Uart1
-#define SPI_Mode 1 //0:Ö÷»ú¹¤×÷Ä£Ê½   1£º´Ó»ú¹¤×÷Ä£Ê½
+#define SPI_Mode 1 //0:ä¸»æœºå·¥ä½œæ¨¡å¼   1ï¼šä»æœºå·¥ä½œæ¨¡å¼
 
 void Uart1_Init(uint Freq,unsigned long int baud);
 void TWI_Init(void);
 void SPI_Init(void);
 
-bit Uart1SendFlag = 0;    //Uart·¢ËÍÖĞ¶Ï±êÖ¾Î»
-bit Uart1ReceiveFlag = 0; //Uart½ÓÊÕÖĞ¶Ï±êÖ¾Î»
-bit SPIFlag = 0;          //SPIÊı¾İ´«ÊäÍê³É±êÖ¾Î»
-bit TWIFlag = 0;          //ÖĞ¶Ï±êÖ¾Î»
-uint8_t TxXferCount1 = 0;  //SPI·¢ËÍÊı¾İÊıÄ¿
-uint8_t RxXferCount1 = 0;  //SPI½ÓÊÜÊı¾İÊıÄ¿
+bit Uart1SendFlag = 0;    //Uartå‘é€ä¸­æ–­æ ‡å¿—ä½
+bit Uart1ReceiveFlag = 0; //Uartæ¥æ”¶ä¸­æ–­æ ‡å¿—ä½
+bit SPIFlag = 0;          //SPIæ•°æ®ä¼ è¾“å®Œæˆæ ‡å¿—ä½
+bit TWIFlag = 0;          //ä¸­æ–­æ ‡å¿—ä½
+uint8_t TxXferCount1 = 0;  //SPIå‘é€æ•°æ®æ•°ç›®
+uint8_t RxXferCount1 = 0;  //SPIæ¥å—æ•°æ®æ•°ç›®
 uint8_t Uart1_RxData[5];
 uint8_t SPI1_Master_SendData[8] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08};
 volatile uint8_t SPI1_Slaver_ReceiveData[8];
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid SSI_Test(void)
-*º¯Êı¹¦ÄÜ£ºSSI²âÊÔ
-*Èë¿Ú²ÎÊı£ºvoid
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid SSI_Test(void)
+*å‡½æ•°åŠŸèƒ½ï¼šSSIæµ‹è¯•
+*å…¥å£å‚æ•°ï¼švoid
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 void SSI_Test(void)
 {
@@ -60,28 +60,28 @@ void SSI_Test(void)
 		SPI_Init();
 	while(1)
 	{
-#if (SPI_Mode == 0)  //Ö÷»ú
+#if (SPI_Mode == 0)  //ä¸»æœº
 				TxXferCount1 = 0;
-				while(TxXferCount1 <  8)//ÅĞ¶ÏÊÇ·ñ½ÓÊÕËùÓĞÊı¾İ
+				while(TxXferCount1 <  8)//åˆ¤æ–­æ˜¯å¦æ¥æ”¶æ‰€æœ‰æ•°æ®
 				{
 				 
 					SSDAT = SPI1_Master_SendData[TxXferCount1];
 					while(!SPIFlag);
 		      SPIFlag = 0;	
-					TxXferCount1 ++;	//·¢ËÍÊı¾İÁ¿¼ÆÊı
+					TxXferCount1 ++;	//å‘é€æ•°æ®é‡è®¡æ•°
 				}
 				{  int time = 1000;
             while(time--);
         }
 #endif
-#if (SPI_Mode == 1)  //´Ó»ú
+#if (SPI_Mode == 1)  //ä»æœº
 			while(RxXferCount1 <8)
 				{
-					/* µÈ´ıSPIÖĞ¶Ï±êÖ¾Î»ÖÃÆğ */
+					/* ç­‰å¾…SPIä¸­æ–­æ ‡å¿—ä½ç½®èµ· */
 					while(!SPIFlag);
 	      	SPIFlag = 0;	
-					SPI1_Slaver_ReceiveData[RxXferCount1] = SSDAT;			//¶ÁÈ¡Êı¾İ
-					RxXferCount1++;	//½ÓÊÕÊı¾İÁ¿¼ÆÊı¼Ó1       
+					SPI1_Slaver_ReceiveData[RxXferCount1] = SSDAT;			//è¯»å–æ•°æ®
+					RxXferCount1++;	//æ¥æ”¶æ•°æ®é‡è®¡æ•°åŠ 1       
 				}
 				RxXferCount1 = 0;
 				{  int time = 100;
@@ -94,75 +94,75 @@ void SSI_Test(void)
 #endif	
 }
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid Uart1_Init(uint Freq,unsigned long int baud)
-*º¯Êı¹¦ÄÜ£ºUart1ÖĞ¶Ï³õÊ¼»¯
-*Èë¿Ú²ÎÊı£ºFreq-Ö÷Æµ£¬baud-²¨ÌØÂÊ
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid Uart1_Init(uint Freq,unsigned long int baud)
+*å‡½æ•°åŠŸèƒ½ï¼šUart1ä¸­æ–­åˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼šFreq-ä¸»é¢‘ï¼Œbaud-æ³¢ç‰¹ç‡
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 void Uart1_Init(uint Freq,unsigned long int baud)
 {
-	P2CON &= 0xFC;   //TX/RXÉèÖÃÎªÊäÈë´øÉÏÀ­
+	P2CON &= 0xFC;   //TX/RXè®¾ç½®ä¸ºè¾“å…¥å¸¦ä¸Šæ‹‰
 	P2PH  |= 0x03;
 	
-	OTCON |= 0xC0;    //´®ĞĞ½Ó¿ÚSSIÑ¡ÔñUart1Í¨ĞÅ
-	SSCON0 = 0x50;   //ÉèÖÃÍ¨ĞÅ·½Ê½ÎªÄ£Ê½Ò»£¬ÔÊĞí½ÓÊÕ
-	SSCON1 = Freq*1000000/baud;   //²¨ÌØÂÊµÍÎ»¿ØÖÆ
-	SSCON2 = (Freq*1000000/baud)>>8;   //²¨ÌØÂÊ¸ßÎ»¿ØÖÆ
-	IE1 |= 0x01;      //¿ªÆôSSIÖĞ¶Ï
+	OTCON |= 0xC0;    //ä¸²è¡Œæ¥å£SSIé€‰æ‹©Uart1é€šä¿¡
+	SSCON0 = 0x50;   //è®¾ç½®é€šä¿¡æ–¹å¼ä¸ºæ¨¡å¼ä¸€ï¼Œå…è®¸æ¥æ”¶
+	SSCON1 = Freq*1000000/baud;   //æ³¢ç‰¹ç‡ä½ä½æ§åˆ¶
+	SSCON2 = (Freq*1000000/baud)>>8;   //æ³¢ç‰¹ç‡é«˜ä½æ§åˆ¶
+	IE1 |= 0x01;      //å¼€å¯SSIä¸­æ–­
     EA = 1;	
 }
 
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid TWI_Init(void)
-*º¯Êı¹¦ÄÜ£ºTWI³õÊ¼»¯
-*Èë¿Ú²ÎÊı£ºvoid
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid TWI_Init(void)
+*å‡½æ•°åŠŸèƒ½ï¼šTWIåˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼švoid
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 void TWI_Init(void)
 {
-	OTCON |= 0x80;  //Ñ¡ÔñTWIÄ£Ê½
-	SSCON0 = 0x80;  // ---- x---  0Îª²»ÔÊĞí½ÓÊÕ£¬1ÎªÔÊĞí½ÓÊÕ
-	SSCON1 = 0x01;  //xxxx xxxy  xÎªµØÖ·¼Ä´æÆ÷£¬yÎª0½ûÖ¹/1ÔÊĞíÍ¨ÓÃµØÖ·ÏìÓ¦
+	OTCON |= 0x80;  //é€‰æ‹©TWIæ¨¡å¼
+	SSCON0 = 0x80;  // ---- x---  0ä¸ºä¸å…è®¸æ¥æ”¶ï¼Œ1ä¸ºå…è®¸æ¥æ”¶
+	SSCON1 = 0x01;  //xxxx xxxy  xä¸ºåœ°å€å¯„å­˜å™¨ï¼Œyä¸º0ç¦æ­¢/1å…è®¸é€šç”¨åœ°å€å“åº”
 	IE1 |= 0x01;
 	EA = 1;
 }
 
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid SPI_Init(void)
-*º¯Êı¹¦ÄÜ£ºSPI³õÊ¼»¯
-*Èë¿Ú²ÎÊı£ºvoid
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid SPI_Init(void)
+*å‡½æ•°åŠŸèƒ½ï¼šSPIåˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼švoid
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 void SPI_Init(void)
 {
-	OTCON |= 0X40;  //Ñ¡ÔñSPIÄ£Ê½
+	OTCON |= 0X40;  //é€‰æ‹©SPIæ¨¡å¼
 #if (SPI_Mode == 0)	
- {  SSCON0 = 0x2F; }   //ÉèÖÃSPIÎªÖ÷Éè±¸£¬SCK¿ÕÏĞÊ±¼äÎªµÍµçÆ½£¬SCKÖÜÆÚµÚ¶şÑØ²É¼¯Êı¾İ£¬Ê±ÖÓËÙÂÊÎªFsys/512  
+ {  SSCON0 = 0x2F; }   //è®¾ç½®SPIä¸ºä¸»è®¾å¤‡ï¼ŒSCKç©ºé—²æ—¶é—´ä¸ºä½ç”µå¹³ï¼ŒSCKå‘¨æœŸç¬¬äºŒæ²¿é‡‡é›†æ•°æ®ï¼Œæ—¶é’Ÿé€Ÿç‡ä¸ºFsys/512  
 #elif (SPI_Mode == 1)	
- {  SSCON0 = 0x0F;   }   //ÉèÖÃSPIÎª´ÓÉè±¸£¬SCK¿ÕÏĞÊ±¼äÎªµÍµçÆ½£¬SCKÖÜÆÚµÚ¶şÑØ²É¼¯Êı¾İ£¬Ê±ÖÓËÙÂÊÎªFsys/512  
+ {  SSCON0 = 0x0F;   }   //è®¾ç½®SPIä¸ºä»è®¾å¤‡ï¼ŒSCKç©ºé—²æ—¶é—´ä¸ºä½ç”µå¹³ï¼ŒSCKå‘¨æœŸç¬¬äºŒæ²¿é‡‡é›†æ•°æ®ï¼Œæ—¶é’Ÿé€Ÿç‡ä¸ºFsys/512  
 #endif 
-  SSCON1 = 0x00;   //²»ÔÊĞí·¢ËÍÖĞ¶Ï
-	SSCON0 |= 0x80; //¿ªÆôSPI
+  SSCON1 = 0x00;   //ä¸å…è®¸å‘é€ä¸­æ–­
+	SSCON0 |= 0x80; //å¼€å¯SPI
 	IE1 |= 0x01;
 	EA = 1;
 }
 
 
 /*****************************************************
-*º¯ÊıÃû³Æ£ºvoid TWI/SPI/UART1_Int() interrupt 7
-*º¯Êı¹¦ÄÜ£ºSSIÖĞ¶Ïº¯Êı
-*Èë¿Ú²ÎÊı£ºvoid
-*³ö¿Ú²ÎÊı£ºvoid
+*å‡½æ•°åç§°ï¼švoid TWI/SPI/UART1_Int() interrupt 7
+*å‡½æ•°åŠŸèƒ½ï¼šSSIä¸­æ–­å‡½æ•°
+*å…¥å£å‚æ•°ï¼švoid
+*å‡ºå£å‚æ•°ï¼švoid
 *****************************************************/
 #if (SSI_Mode == Uart1)
-void Uart1_Int() interrupt 7   //Uart1ÖĞ¶Ïº¯Êı
+void Uart1_Int() interrupt 7   //Uart1ä¸­æ–­å‡½æ•°
 {
-	if(SSCON0&0x02)    //·¢ËÍ±êÖ¾Î»ÅĞ¶Ï
+	if(SSCON0&0x02)    //å‘é€æ ‡å¿—ä½åˆ¤æ–­
 	{
 		SSCON0 &= 0xFD;
 		Uart1SendFlag = 1;
 	}
-	if((SSCON0&0x01))  //½ÓÊÕ±êÖ¾Î»ÅĞ¶Ï
+	if((SSCON0&0x01))  //æ¥æ”¶æ ‡å¿—ä½åˆ¤æ–­
 	{
 		SSCON0 &= 0xFE;
 		Uart1ReceiveFlag = 1;
@@ -171,24 +171,24 @@ void Uart1_Int() interrupt 7   //Uart1ÖĞ¶Ïº¯Êı
 #endif
 
 #if (SSI_Mode == TWI)
-void TWI_Int() interrupt 7     //TWIÖĞ¶Ïº¯Êı
+void TWI_Int() interrupt 7     //TWIä¸­æ–­å‡½æ•°
 {
 	if(SSCON0&0x40)
 	{
-		SSCON0 &= 0xbf;  //ÖĞ¶ÏÇåÁã
+		SSCON0 &= 0xbf;  //ä¸­æ–­æ¸…é›¶
 		TWIFlag = 1;
 	}	
 }
 #endif 
 
 #if (SSI_Mode == SPI)
-void SpiInt(void) interrupt 7    //SPIÖĞ¶Ïº¯Êı
+void SpiInt(void) interrupt 7    //SPIä¸­æ–­å‡½æ•°
 {	  
-	if(SSCON1&0X08)    //·¢ËÍ»º´æÆ÷¿Õ±êÖ¾ÅĞ¶Ï
+	if(SSCON1&0X08)    //å‘é€ç¼“å­˜å™¨ç©ºæ ‡å¿—åˆ¤æ–­
 	{
 		SSCON1 &= ~0X08;
 	}
-	if(SSCON1&0X80)    //Êı¾İ´«Êä±êÖ¾Î»ÅĞ¶Ï
+	if(SSCON1&0X80)    //æ•°æ®ä¼ è¾“æ ‡å¿—ä½åˆ¤æ–­
 	{
 		SSCON1 &= ~0X80;
 		SPIFlag = 1;

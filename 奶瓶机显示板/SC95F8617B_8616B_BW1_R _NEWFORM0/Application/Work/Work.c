@@ -50,6 +50,9 @@ const stMenuPara  MenuList[] =
 	{MENU_NULL,		0,		0,		0,		0,		0}
 };
 //! NEWFORM1 #4-2 更新叠加功能，默认烘干，烘干可选定义为保管可选
+//! dryModeEnable 此按键能否可选判断：保管功能
+//! 烘干菜单无法取消保管
+//! dryMode 能否认为存在叠加功能：烘干阶段
 // const stMenuPara  MenuList[] = 
 // {
 // 	{MENU_FAST,		0,		1,		0,		1, 		1},
@@ -552,7 +555,9 @@ void Work_Control(void)
 		case STATE_FINISHED:
 			if(Work_TimerTick1s)
 			{
-				if(++EndCnt >= 10)
+				if(++EndCnt >= 2)
+				//! NEWFORM1 #4-2 缩短为2秒
+				// if(++EndCnt >= 10)
 				{
 					// Work_CurrentState  = STATE_DRAIN;
 					Work_ClosePowerInit	= MD_TRUE;
@@ -1618,65 +1623,93 @@ static void runMinCountDown(void)
 {//Work_TimerTick1s
 	UCHAR upperRangeTimeInCurrentStage;
 	UCHAR lowerRangeTimeInCurrentStage;
+	//! NEWFORM1 #4-2 跳阶段强制更新时间上限一次
+	static UCHAR last_stage = 0;
+	if(STAGE_PRE == Work_CurrentStage)
+	{
+		last_stage = STAGE_PRE;
+	}
+	else if(last_stage != Work_CurrentStage)
+	{
+		last_stage = Work_CurrentStage;
+		Work_LeftMinToEnd = upperRangeTimeInCurrentStage;
+		runSecCount = 0;
+	}
+// // if(Work_CurrentStage < STAGE_COMPLETE)
+// // {//(20251127 1-0-1-66-end)
+	if((STAGE_STEAM == Work_CurrentStage)&&(IsSteamMune(Work_CurrentMenu)))
+	{
+		upperRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)MENU_STEAM][Work_CurrentStage];
+		lowerRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)MENU_STEAM][Work_CurrentStage + 1];
+	}
+	else if((STAGE_DRY == Work_CurrentStage)&&(IsDryMune(Work_CurrentMenu)))
+	{
+		upperRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage];
+		lowerRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage + 1];
+	}
+	else
+	{
+		upperRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)Work_CurrentMenu][Work_CurrentStage];
+		lowerRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)Work_CurrentMenu][Work_CurrentStage + 1];
+	}
 
-	// if(Work_CurrentStage < STAGE_COMPLETE)
-	// {//(20251127 1-0-1-66-end)
-		if (IsNormalMune(Work_CurrentMenu))
-		{
-			upperRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)Work_CurrentMenu][Work_CurrentStage];
-			lowerRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)Work_CurrentMenu][Work_CurrentStage + 1];
-		}
-		else
-		{
-			upperRangeTimeInCurrentStage = lowerRangeTimeInCurrentStage = 0;
-		}
+	//! NEWFORM1 #4-2 实现洗涤、蒸汽、烘干分别独立显示时间
+	// 	if (IsNormalMune(Work_CurrentMenu))
+	// 	{
+	// 		upperRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)Work_CurrentMenu][Work_CurrentStage];
+	// 		lowerRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)Work_CurrentMenu][Work_CurrentStage + 1];
+	// 	}
+	// 	else
+	// 	{
+	// 		upperRangeTimeInCurrentStage = lowerRangeTimeInCurrentStage = 0;
+	// 	}
 
-		if(IsSteamMune(Work_CurrentMenu))
-		{
-			upperRangeTimeInCurrentStage += Work_StageStartTimeMode[(UCHAR)MENU_STEAM][Work_CurrentStage];
-			lowerRangeTimeInCurrentStage += Work_StageStartTimeMode[(UCHAR)MENU_STEAM][Work_CurrentStage + 1];
-		}
+	// 	if(IsSteamMune(Work_CurrentMenu))
+	// 	{
+	// 		upperRangeTimeInCurrentStage += Work_StageStartTimeMode[(UCHAR)MENU_STEAM][Work_CurrentStage];
+	// 		lowerRangeTimeInCurrentStage += Work_StageStartTimeMode[(UCHAR)MENU_STEAM][Work_CurrentStage + 1];
+	// 	}
 
-		if(IsDryMune(Work_CurrentMenu))
-		{
-			upperRangeTimeInCurrentStage += Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage];
-			lowerRangeTimeInCurrentStage += Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage + 1];
-			if(Work_TempCompensation)
+	// 	if(IsDryMune(Work_CurrentMenu))
+	// 	{
+	// 		upperRangeTimeInCurrentStage += Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage];
+	// 		lowerRangeTimeInCurrentStage += Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage + 1];
+	// 		if(Work_TempCompensation)
+	// 		{
+	// 			if(Work_CurrentStage < STAGE_COMPLETE)
+	// 			{	
+	// 				upperRangeTimeInCurrentStage += 10;
+	// 			}
+
+	// 			if(Work_CurrentStage < STAGE_DRY)
+	// 			{	
+	// 				lowerRangeTimeInCurrentStage += 10;
+	// 			}
+	// 		}
+	// 	}
+	//20251126 少于配时扣足配时，大于配时不再走时，非进水最大延时跳步，阶段走时上下限
+	if (Work_LeftMinToEnd > upperRangeTimeInCurrentStage)
+	{
+		Work_LeftMinToEnd = upperRangeTimeInCurrentStage;
+	}
+	else //(20251127 1-0-1-66-end)
+	if (Work_LeftMinToEnd > lowerRangeTimeInCurrentStage)
+	{
+		if((!Work_TimeHaltEnable)&&(Work_TimerTick1s))//(20251127 1-0-1-66-end)
+		{//20251110 NEWFORM0 13.2 20251126
+			if (++runSecCount >= 60)
 			{
-				if(Work_CurrentStage < STAGE_COMPLETE)
-				{	
-					upperRangeTimeInCurrentStage += 10;
-				}
-
-				if(Work_CurrentStage < STAGE_DRY)
-				{	
-					lowerRangeTimeInCurrentStage += 10;
-				}
+				runSecCount = 0;
+				Work_LeftMinToEnd --;
 			}
 		}
-		//20251126 少于配时扣足配时，大于配时不再走时，非进水最大延时跳步，阶段走时上下限
-		if (Work_LeftMinToEnd > upperRangeTimeInCurrentStage)
-		{
-			Work_LeftMinToEnd = upperRangeTimeInCurrentStage;
-		}
-		else //(20251127 1-0-1-66-end)
-		if (Work_LeftMinToEnd > lowerRangeTimeInCurrentStage)
-		{
-			if((!Work_TimeHaltEnable)&&(Work_TimerTick1s))//(20251127 1-0-1-66-end)
-			{//20251110 NEWFORM0 13.2 20251126
-				if (++runSecCount >= 60)
-				{
-					runSecCount = 0;
-					Work_LeftMinToEnd --;
-				}
-			}
-		}
-		else
-		{
-			Work_LeftMinToEnd = lowerRangeTimeInCurrentStage;
-			//20251110 NEWFORM0 13.2 20251126
-		}
-	// }
+	}
+	else
+	{
+		Work_LeftMinToEnd = lowerRangeTimeInCurrentStage;
+		//20251110 NEWFORM0 13.2 20251126
+	}
+// }
 
 	if(Work_LeftMinToEnd <= 1)
 	{//20251110 NEWFORM0 10.6//(20251127 1-0-1-66-end)

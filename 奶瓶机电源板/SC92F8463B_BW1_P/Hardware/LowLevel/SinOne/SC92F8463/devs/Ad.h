@@ -19,10 +19,10 @@
 //								 ADCHANNEL3, ADCHANNEL4, ADCHANNEL5, 
 //								 ADCHANNEL6, ADCHANNEL7, ADCHANNEL8,
 //								 ADCHANNEL9};
-/***********ADC采样频率选择*************/
+/***********ADC閲囨牱棰戠巼閫夋嫨*************/
 enum ADCFreq {F32=0,F24,F16,F12,F8,F6,F4,F3};
 
-/***********ADC采样口选择*************/
+/***********ADC閲囨牱鍙ｉ�夋嫨*************/
 #ifdef SC92F8463B_ENABLED
 enum Channel {AIN0=0,AIN1,AIN2,AIN3,AIN4,AIN5,AIN6,AIN7,AIN8,AIN9,VDD4=31};
 #endif

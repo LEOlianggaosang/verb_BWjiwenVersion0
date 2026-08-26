@@ -5,7 +5,7 @@
 * @author  lgx
 * @version 1.0
 * @date    2024.12.7
-* @brief   ƒ£ƒ‚¥Æø⁄Õ®–≈ƒ£øÈ
+* @brief   Ê®°Êãü‰∏≤Âè£ÈÄö‰ø°Ê®°Âùó
 * 
 */
  /*
@@ -61,7 +61,7 @@ static void Tx_Reload_Rx(bit value);
  *------------------------------------------------------------------------------
  */
 void IoUartSimulate_Timer(void)
-{//5ms÷–∂œµ˜”√∫Ø ˝
+{//5ms‰∏≠Êñ≠Ë∞ÉÁî®ÂáΩÊï∞
     if((IoUart_TxStart)&&(0==IoUart_TxHasSand))
     {//TX
         // if(IoUart_RxStart)
@@ -72,7 +72,7 @@ void IoUartSimulate_Timer(void)
         // else
         {
             if(IoUart_TxByteStart)
-            {//∆ ºŒª
+            {//Ëµ∑Âßã‰Ωç
                 IoUart_TxValue = 0;
                 IoUart_TxByteStart = 0;
                 TxBit_Cnt = 0;
@@ -80,7 +80,7 @@ void IoUartSimulate_Timer(void)
             else
             {
                 if(++TxBit_Cnt>8)
-                {//Õ£÷πŒª
+                {//ÂÅúÊ≠¢‰Ωç
                     if(++TxByte_Cnt>=gSimulateUartTxLen)
                     {
                         IoUart_TxHasSand = 1;
@@ -92,7 +92,7 @@ void IoUartSimulate_Timer(void)
                     IoUart_TxValue = 1;
                 }
                 else
-                {// ˝æ›Œª
+                {//Êï∞ÊçÆ‰Ωç
 										if((*(gpSimulateUartTxAddress+TxByte_Cnt))&(0x01<<(TxBit_Cnt-1)))
 										{
 											IoUart_TxValue = 1;
@@ -107,7 +107,7 @@ void IoUartSimulate_Timer(void)
         }   
     
         if((IoUart_TxOutput != IoUart_TxValue)&&(!F_FCTing))//20251115
-        {// ‰≥ˆ
+        {//ËæìÂá∫
             IoUart_Location = IoUart_TxOutput = IoUart_TxValue;
         }
     }
@@ -154,7 +154,7 @@ void IoUartSimulate_Timer(void)
     //                         TxBit_Cnt = 0;
     //                         IoUart_RxByteStart = 0;
     //                         if(IoUart_Location)
-    //                         {//Õ£÷πŒª
+    //                         {//ÂÅúÊ≠¢‰Ωç
     //                             *(gpSimulateUartRxAddress+RxByte_Cnt) = IoUartRxDate;
     //                             if(++RxByte_Cnt>=gSimulateUartRxLen)
     //                             {
@@ -165,7 +165,7 @@ void IoUartSimulate_Timer(void)
     //                 }
     //             }
     //             else
-    //             {//∆ ºŒª
+    //             {//Ëµ∑Âßã‰Ωç
     //                 if(0==IoUart_Location)
     //                 {
     //                     IoUart_RxByteStart = 1;
@@ -182,7 +182,7 @@ void IoUartSimulate_Timer(void)
  *------------------------------------------------------------------------------
  */
 static void Tx_Reload_Rx(bit value)
-{//P23«–ªªŒ™ ‰»Î…œ¿≠
+{//P23ÂàáÊç¢‰∏∫ËæìÂÖ•‰∏äÊãâ
     
     if(value)
     {//tx->rx

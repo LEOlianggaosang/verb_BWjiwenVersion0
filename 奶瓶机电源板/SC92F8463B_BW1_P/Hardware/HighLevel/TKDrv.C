@@ -1,16 +1,16 @@
 //************************************************************
-//  Copyright (c) ��������Ԫ΢�������޹�˾
-//	�ļ�����	: TKDrv.c ����ο����ؿ��ļ��ֲ������
-//	����		: 
-//	ģ�鹦��	: TouchKey 
-//	�ֲ������б�:
-//  ����������:
-// 	�汾		: V1.0
+//  Copyright (c) 深圳市赛元微电子有限公司
+//	文件名称	: TKDrv.c （请参考触控库文件手册操作）
+//	作者		: 
+//	模块功能	: TouchKey 
+//	局部函数列表:
+//  最后更正日期:
+// 	版本		: V1.0
 //***************************************************
 #include "TKDrv.H"
 
-UCHAR xdata exKeyValue = 0;   							//�ɴ��ذ���״ֵ̬��ת��//����ֵ
-unsigned long int xdata exKeyValueFlag = 0;   				//���ذ���״ֵ̬
+UCHAR xdata exKeyValue = 0;   							//由触控按键状态值所转换//按键值
+unsigned long int xdata exKeyValueFlag = 0;   				//触控按键状态值
 #if	CONFIG_TK_NG_DEBUG
 unsigned long	int xdata NGKeyValueFlag = 0;  
 unsigned int xdata NGKeyValue = 0;  
@@ -18,19 +18,19 @@ static void NGKeyValueRead(void);
 #endif
 
 /**************************************************
-*�������ƣ�TK_Scan(void)
-*�������ܣ�TKɨ��
-*��ڲ�����void	 
-*���ڲ�����BOOL
-*����˵������ο����ؿ�ʹ���ֲ���в���
+*函数名称：TK_Scan(void)
+*函数功能：TK扫描
+*入口参数：void	 
+*出口参数：BOOL
+*功能说明：请参考触控库使用手册进行操作
 **************************************************/
 void TK_Scan(void)
 {
-	if(SOCAPI_TouchKeyStatus & 0x80)	//��Ҫ����2:  ������ɨ��һ�ֱ�־���Ƿ����TouchKeyScan()һ��Ҫ���ݴ˱�־λ�����
-	{//ɨ�����
+	if(SOCAPI_TouchKeyStatus & 0x80)	//重要步骤2:  触摸键扫描一轮标志，是否调用TouchKeyScan()一定要根据此标志位置起后
+	{//扫描完成
 		exKeyValueFlag = TouchKeyScan();
-		exKeyValue = TK_Value(exKeyValueFlag);  		//��ֵת��
-		SOCAPI_TouchKeyStatus &= ~ (0x80);	//��Ҫ����3: �����־λ�� ��Ҫ�ⲿ�����
+		exKeyValue = TK_Value(exKeyValueFlag);  		//键值转换
+		SOCAPI_TouchKeyStatus &= ~ (0x80);	//重要步骤3: 清除标志位， 需要外部清除。
 		TouchKeyRestart();
 #if	CONFIG_TK_NG_DEBUG
 		if(exKeyValueFlag != NGKeyValueFlag)
@@ -43,11 +43,11 @@ void TK_Scan(void)
 	}
 }
 /**************************************************
-*�������ƣ�void TK_value(void)
-*�������ܣ���ֵת������
-*��ڲ�����void	 
-*���ڲ�����UCHAR
-*����˵������ο����ؿ�ʹ���ֲ���в���
+*函数名称：void TK_value(void)
+*函数功能：键值转换函数
+*入口参数：void	 
+*出口参数：UCHAR
+*功能说明：请参考触控库使用手册进行操作
 **************************************************/
 UCHAR TK_Value(unsigned long int Flag)
 {
