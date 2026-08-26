@@ -25,21 +25,37 @@
 /***********************************************************************************************************************
 Typedef definitions
 ***********************************************************************************************************************/
+//! NEWFORM1 #5-1 更改故障代码
 typedef enum
 {
   ERROR_NULL,//E0
-  ERROR_TDS,//E1//20251110 NEWFORM0 8.5
+  ERROR_LACK,//E1 //! 改回E1且不显示
   ERROR_INLET,//E2
   ERROR_HEATER,//E3
-  ERROR_RT,//E4
+  ERROR_OVER,//E4 //! 溢流硬件支持预留，改回E4与柜机保持一致，删除TDS故障添加
   ERROR_SERIAL,//E5 
-  ERROR_DOOR,//OPE(6)
-  ERROR_LACK,//不显示(7)//20251110 NEWFORM0 8.5
-  ERROR_FAN,//e12
+  ERROR_RT,//E6 //! 改回E6与柜机保持一致
+  ERROR_DOOR,//E7 //! 不显示，也不显示OPE
+  ERROR_FAN,//E8
   // ERROR_DRAIN, 
   // ERROR_PMAM, 
-  ERROR_OVER
 }ErrorCode;
+//!
+// typedef enum
+// {
+//   ERROR_NULL,//E0
+//   ERROR_TDS,//E1//20251110 NEWFORM0 8.5
+//   ERROR_INLET,//E2
+//   ERROR_HEATER,//E3
+//   ERROR_RT,//E4
+//   ERROR_SERIAL,//E5 
+//   ERROR_DOOR,//OPE(6)
+//   ERROR_LACK,//不显示(7)//20251110 NEWFORM0 8.5
+//   ERROR_FAN,//e12
+//   // ERROR_DRAIN, 
+//   // ERROR_PMAM, 
+//   ERROR_OVER
+// }ErrorCode;
 /***********************************************************************************************************************
 Global variable
 ***********************************************************************************************************************/

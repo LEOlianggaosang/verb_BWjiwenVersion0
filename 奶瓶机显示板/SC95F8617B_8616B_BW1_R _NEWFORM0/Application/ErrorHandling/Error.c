@@ -33,32 +33,44 @@ static void errorRecovery(void);
 static void errorNoHandler(void);
 static void errorLackHandler(void);
 static void errorInletHandler(void);
-static void errorTdsHandler(void);//20251110 NEWFORM0 8.5
+// static void errorTdsHandler(void);//20251110 NEWFORM0 8.5 //! NEWFORM1 #5-1
 static void errorHeaterHandler(void);
 static void errorRtHandler(void);
 static void errorSerialHandler(void);
 static void errorDoorHandler(void);
 static void errorFanHandler(void);//#if CONFIG_FB_CHECK//20251204
 // static void errorDrainHandler(void);
-// static void errorOverHandler(void);
+static void errorOverHandler(void); //! NEWFORM1 #5-1
 // static void errorPmamHandler(void);
 
 static const Error errors[] =
-
+//! NEWFORM1 #5-1 按顺序更改故障代码,等级/可恢复性/处理/优先级/触发条件/是否显示代码
 {
     {0,errorNoHandler},
-    {1,errorTdsHandler},//20251110 NEWFORM0 8.5
-    {4,errorInletHandler},  
-    {3,errorHeaterHandler}, 
-    {3,errorRtHandler},
-    {5,errorSerialHandler},
-    {2,errorDoorHandler},  
-    {1,errorLackHandler},   //20251110 NEWFORM0 8.5
-    {3,errorFanHandler},    //#if CONFIG_FB_CHECK//20251204
-    // {4,errorDrainHandler},       
-    // {4,errorPmamHandler},           
-    // {5,errorOverHandler},            
+    {1,errorLackHandler}, //level1，按键恢复，无动作，可被替代，条件出现，不显示代码
+    {4,errorInletHandler},  //level4，不可恢复，运行屏蔽处理/负载动作，可被替代，条件出现，显示代码
+    {3,errorHeaterHandler},  //level3，不可恢复，运行屏蔽处理，可被替代，条件出现，显示代码
+    {5,errorOverHandler}, //最高等级，不可恢复，负载动作，不可被替代，持续检测，显示代码
+    {5,errorSerialHandler}, //最高等级，自动恢复，锁定动作，不可被替代，持续检测，显示代码
+    {3,errorRtHandler}, //level3，无动作，不可恢复，运行屏蔽处理，可被替代，持续检测
+    {2,errorDoorHandler},  //level2，自动恢复，无动作，可被替代，持续检测，不显示代码
+    {3,errorFanHandler},  //level3，不可恢复，运行屏蔽处理，可被替代，条件出现，显示代码
 };
+//! 
+// {
+//     {0,errorNoHandler},
+//     {1,errorTdsHandler},//20251110 NEWFORM0 8.5
+//     {4,errorInletHandler},  
+//     {3,errorHeaterHandler}, 
+//     {3,errorRtHandler},
+//     {5,errorSerialHandler},
+//     {2,errorDoorHandler},  
+//     {1,errorLackHandler},   //20251110 NEWFORM0 8.5
+//     {3,errorFanHandler},    //#if CONFIG_FB_CHECK//20251204
+//     // {4,errorDrainHandler},       
+//     // {4,errorPmamHandler},           
+//     // {5,errorOverHandler},            
+// };
 
 ErrorCode Error_CurrentCode = ERROR_NULL;
 static UCHAR_XDATA rebuzCount = 0;
@@ -74,13 +86,28 @@ void Error_SetCode(ErrorCode errorCode)
     if (errors[errorCode].priority > errors[Error_CurrentCode].priority)
     {
         Error_CurrentCode = errorCode;
-        BeepState = BUZZ_ALARM;
+        //! NEWFORM1 #5-1 开门蜂鸣特殊处理
+        if(ERROR_DOOR == errorCode)
+        {
+            BeepState = BUZZ_KEY_VALID;
+        }
+        else
+        {
+            BeepState = BUZZ_ALARM;
+        }
+        // !
+        // BeepState = BUZZ_ALARM;
         rebuzCount = 60;
     }
 }
 
 void Error_Handling(void)
 {
+    // !    处理函数
+    // ! 4个条件性持续检测故障：通信/开门/进水/风机
+    // ! 三个条件返回：厂测，关机，已消除
+    // ! 专属状态独立控制负载：处理函数与重复蜂鸣机制
+    // ! 故障函数：处理方式/可恢复性/进水特殊处理
     if (F_Error1s != F_Base1s)
     {
         F_Error1s = F_Base1s;
@@ -128,6 +155,15 @@ void Error_Handling(void)
                 drainCount = 0;
                 #endif
             }
+
+            //! NEWFORM1 #5-1 取消TDS回增溢流,增加入口,增加处理函数,增加通信协议,增加宏定义
+            #if CONFIG_OVER_CHECK
+            if(Err_Over)
+            {
+                Error_SetCode(ERROR_OVER);
+                drainCount = 0;
+            }
+            #endif
 
             #if CONFIG_FB_CHECK//20251204
             if((Output_FAN_IN)&&(P_FeedBackCnt < 50))
@@ -249,10 +285,28 @@ static void errorHeaterHandler(void)
     //无需处理 不能恢复
 }
 
-static void errorTdsHandler(void)
-{//20251110 NEWFORM0 8.5
-    //无需处理 不能恢复
+//! NEWFORM1 #5-1 取消TDS回增溢流
+static void errorOverHandler(void)
+{
+    if(0==drainCount)
+    {
+        drainCount = 40;
+    }
+
+    if(drainCount>20)
+    {
+        Relay_DP = MD_TRUE;
+    }
+    else
+    {
+        Relay_DP = MD_FALSE;
+    }
 }
+// !
+// static void errorTdsHandler(void)
+// {//20251110 NEWFORM0 8.5
+//     //无需处理 不能恢复
+// }
 
 static void errorRtHandler(void)
 {   //自动恢复

@@ -207,6 +207,8 @@ static void Power_ReceiveDatas(void)
 			AdErr_ReShort = F_MiddleData_1;
 			AdErr_ReOpen = F_MiddleData_2;
 			// AdErrFlag = Power_ReceiveDatasBuf[8];
+			//! NEWFORM1 #5-1 增加溢流标志位
+			Err_Over = F_MiddleData_5;
 			Temperature_Value = Power_ReceiveDatasBuf[9];
 			Temperature_AdValue = (Power_ReceiveDatasBuf[10]<<8) + Power_ReceiveDatasBuf[11];
 			P_AdValue = (Power_ReceiveDatasBuf[12]<<8) + Power_ReceiveDatasBuf[13];

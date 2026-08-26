@@ -80,8 +80,10 @@ extern ByteFlag AdErr_Flags;
 #define  AdErr_ErrRe               AdErr_Flags.f_bits.no0
 #define  AdErr_ReShort             AdErr_Flags.f_bits.no1
 #define  AdErr_ReOpen              AdErr_Flags.f_bits.no2
-#define  Err_Heat                  AdErr_Flags.f_bits.no3
-#define  Err_FanFeedBack           AdErr_Flags.f_bits.no4//#if CONFIG_FB_CHECK//20251204
+#define  Err_Heat                  AdErr_Flags.f_bits.no3// ! 显示板主动判断存放
+#define  Err_FanFeedBack           AdErr_Flags.f_bits.no4//#if CONFIG_FB_CHECK//20251204// ! 显示板主动判断存放
+//! NEWFORM1 #5-1 增加溢流标志位
+#define  Err_Over                   AdErr_Flags.f_bits.no5// ! 电源板上报
 //*************************************************
 extern UCHAR_XDATA 		P_Version_Number;
 extern UCHAR_XDATA 		Temperature_Value;

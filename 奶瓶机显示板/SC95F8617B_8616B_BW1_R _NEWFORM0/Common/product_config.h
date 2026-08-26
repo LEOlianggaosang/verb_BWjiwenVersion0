@@ -55,6 +55,7 @@
 #define CONFIG_NIGHT_LIGHT                  1//串口控制多色夜灯
 #define CONFIG_FCT_UART                     1//烧录口串口通信进入
 #define CONFIG_FB_CHECK                     1//20251204
+#define CONFIG_OVER_CHECK                   0// ! 增加溢流宏定义       
 //APP_DEAL*********************************************************************
 #define CONFIG_DISPLAY_FLESH                1
 #define CONFIG_KEYACTION_DIVICE             1
@@ -531,6 +532,14 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
             ? STATE_RESET
                 //复位到关机短鸣一声
             电源板蜂鸣类型
+                //BUZZ_POWERON 后续改为和旋音//可只蜂鸣一声
+                //BUZZ_POWEROFF 后续增加和旋音//可只蜂鸣一声
+                //BUZZ_ENTERCHECK 改为长鸣
+                //BUZZ_ALARM 蜂鸣6声报警
+                //BUZZ_END 蜂鸣三声结束
+                //BUZZ_DOOROPEN 开门只需要蜂鸣一声无需循环，未使用
+                //Signal_SoundIsSetted 未使用
+
         todo #1-2 开门处理：待机/运行/保管/故障
             Work_DoorOpenDelaySecondCount
                 //关门、厂测、保管、运行进入赋值延迟1s开始运行与判断开门故障
@@ -690,10 +699,32 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
                 //数码管状态闪烁，显示剩余保管时间
     * #5 处理逻辑
         todo #5-1 故障处理更改
+            typedef enum {} ErrorCode
+                //增减更改故障代码：取消TDS回增溢流
+            Error errors[]
+                //跟随增减更改故障代码
+                //故障优先级及其意义
+            Error_SetCode(ErrorCode errorCode)
+                //故障代码赋值函数对开门与缺水故障蜂鸣特殊处理
+                //其他故障保持定时循环蜂鸣一声
+            ERROR_OVER
+                Error_Handling(void)
+                //增加入口
+                errorOverHandler
+                //增加处理函数
+                ByteFlag AdErr_Flags;
+                //增加通信协议
+                CONFIG_OVER_CHECK
+                //增加宏定义  
+                电源板增加2s溢流判断逻辑
+            ERROR_LACK
+                //功能步骤函数入口确认无流量10秒判断
+                //每次入口都会清计数，恢复后重算
         todo #5-2 保管参数更改
-        todo #5-3 步骤功能函数
     * #6 时序
             CONFIG_T2_STANDARD
+        todo #6-1 时序表
+        todo #6-2 步骤功能函数
 * 3、定位
     * 3.1、 key
         ! Key_MonitorAction(STATE_POWER) #1-1 #3-3
@@ -753,9 +784,18 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
         ! standardSteps[][] #3-3
         ! selfcleanSteps[][] #3-3
     * 3.7、 Error
-        ! Error_Handling() #3-3
+        ! Error_Handling() #3-3 #5-1 
+        ! Error errors[] #5-1
+        ! typedef enum {} ErrorCode #5-1
+        ! Error_SetCode(ErrorCode errorCode) #5-1
+        ! errorOverHandler() #5-1
     * 3.8、 work.h
         ! WorkAction_Flags #2-1
+    * 3.9、 power
+        ! Power_ReceiveDatas() #5-1
+        ! ByteFlag AdErr_Flags #5-1
+    * 3.10、 product_config
+        ! CONFIG_OVER_CHECK #5-1
 
 
 */
