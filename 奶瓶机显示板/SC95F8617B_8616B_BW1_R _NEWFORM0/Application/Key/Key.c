@@ -194,7 +194,7 @@ static void Key_MonitorAction(void)
 					Work_IsSteamMode = 0;//只能运行更改
 					Work_IsDryMode = 1;//无法更改
 					Work_SaveMode = 1;//只能运行更改
-					ight_IsWorking = 0;//无法更改
+					Light_IsWorking = 0;//无法更改
 					Work_InletMode = 0;//无法更改
 					Work_DoorOpenDelaySecondCount = 1;
 					Work_CurrentState  = STATE_WASHING;

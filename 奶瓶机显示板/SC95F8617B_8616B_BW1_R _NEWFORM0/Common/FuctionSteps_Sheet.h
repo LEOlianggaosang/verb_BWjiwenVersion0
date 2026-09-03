@@ -93,17 +93,16 @@ static const StepInfo fastSteps[]=
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},//20251128
 };
 #else
+//! NEWFORM1 #6-1 增加温度补偿，删除蠕动泵，删除干燥时长更改，二漂改为55度，排空强化缺水判定，烘干时间45分钟
 static const StepInfo fastSteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
-	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*未加入温度补偿//*执行排水动作组
+	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 //--------------
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
+	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//主洗排水后温度补偿检查
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*配时非0故障恢复无限延时
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
@@ -114,9 +113,6 @@ static const StepInfo fastSteps[]=
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
@@ -126,45 +122,103 @@ static const StepInfo fastSteps[]=
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时//*不使用二漂进水步骤
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	72,		6*60},//72度温达剩洗*不延时
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		6*60},//72度温达剩洗*不延时//! NEWFORM1 #6-1
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 //--------------
 	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
-	
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//定时加热10分钟//20251216
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//间歇加热2分钟//20251216
-	#else
 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//定时加热8分钟
 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//间歇加热2分钟
-	#endif
 //--------------
 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
-	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
-	#endif
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		10},//排空//20251110 NEWFORM0 时序表//! NEWFORM1 #6-1
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		0},//排空*//(20251127 更改最大延时60->90)//! NEWFORM1 #6-1
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		40*60,		40*60},//45*改为40//! NEWFORM1 #6-1
+	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//加入温度补偿 //! NEWFORM1 #6-1
 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 };
+//! CONFIG_T2_STEAMDRY括的不对
+// static const StepInfo fastSteps[]=
+// {//20251110 NEWFORM0 11
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*未加入温度补偿//*执行排水动作组
+// //--------------
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*配时非0故障恢复无限延时
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42度温达剩洗*不延时
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			90,		90},//*42度左右洗涤补足9分钟
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// //--------------
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	42,		3*60},//42度温达剩洗*不延时
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// //--------------
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时//*不使用二漂进水步骤
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	72,		6*60},//72度温达剩洗*不延时
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// //--------------
+// 	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	#if CONFIG_T2_STEAMDRY//20251211
+// 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		12*60},//250ml
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//定时加热10分钟//20251216
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//间歇加热2分钟//20251216
+// 	#else
+// 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//定时加热8分钟
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//间歇加热2分钟
+// 	#endif
+// //--------------
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
+// 	#if CONFIG_T2_STEAMDRY//20251211
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
+// 	#else
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
+// 	#endif
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
+// //--------------
+// 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
+// };
 		#endif
 
 //// static const StepInfo standardSteps[]=
@@ -252,7 +306,7 @@ static const StepInfo standardSteps[]=
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},//20251128
 };
 #else
-	#if CONFIG_T2_STANDARD//20251211
+//! NEWFORM1 #6-1 删除蠕动泵，删除干燥时长更改，删除标准洗时长更改，二漂改为68度不保温，排空强化缺水判定，烘干时间45分钟
 static const StepInfo standardSteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
@@ -261,90 +315,6 @@ static const StepInfo standardSteps[]=
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*配时非0故障恢复无限延时
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42度温达剩洗*不延时
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,		    90,		90},//*42度左右洗涤补足10分钟//20251211
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			55,		240},//55度温达剩洗*不延时*改机制区分快速
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
-//--------------
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
-	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		4*60},//55度温达剩洗*不延时*改机制区分快速//20251211
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
-//--------------
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
-	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时//*不使用二漂进水步骤
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
-
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP2,	0, 		 	82,		14*60},//72度温达剩洗*不延时*改机制区分快速//20251211
-
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			10,		0},//20251211
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-//--------------
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
-	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
-
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//定时加热10分钟//20251216
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//间歇加热2分钟//20251216
-	#else
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//定时加热8分钟
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//间歇加热2分钟
-	#endif
-//--------------
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
-	
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
-	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
-	#endif
-
-	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
-	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
-//--------------
-	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
-};	
-	#else
-static const StepInfo standardSteps[]=
-{//20251110 NEWFORM0 11
-	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
-	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*执行排水动作组
-//--------------
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*配时非0故障恢复无限延时
@@ -357,9 +327,6 @@ static const StepInfo standardSteps[]=
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
@@ -369,46 +336,190 @@ static const StepInfo standardSteps[]=
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时//*不使用二漂进水步骤
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	72,		9*60},//72度温达剩洗*不延时*改机制区分快速
+	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	68,		9*60},//72度温达剩洗*不延时*改机制区分快速//! NEWFORM1 #6-1 不保温
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 //--------------
 	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//定时加热10分钟//20251216
-	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//间歇加热2分钟//20251216
-	#else
 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//定时加热8分钟
 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//间歇加热2分钟
-	#endif
 //--------------
 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
-	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
-	#endif
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		10},//排空//20251110 NEWFORM0 时序表//! NEWFORM1 #6-1
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		0},//排空*//(20251127 更改最大延时60->90)//! NEWFORM1 #6-1
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		40*60,		40*60},//45*改为40//! NEWFORM1 #6-1
 	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿
 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 };
-	#endif
+//! CONFIG_T2_STEAMDRY括的不对
+// 	#if CONFIG_T2_STANDARD//20251211
+// static const StepInfo standardSteps[]=
+// {//20251110 NEWFORM0 11
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*执行排水动作组
+// //--------------
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*配时非0故障恢复无限延时
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42度温达剩洗*不延时
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,		    90,		90},//*42度左右洗涤补足10分钟//20251211
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			55,		240},//55度温达剩洗*不延时*改机制区分快速
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// //--------------
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		4*60},//55度温达剩洗*不延时*改机制区分快速//20251211
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// //--------------
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时//*不使用二漂进水步骤
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP2,	0, 		 	82,		14*60},//72度温达剩洗*不延时*改机制区分快速//20251211
+
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			10,		0},//20251211
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// //--------------
+// 	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+
+// 	#if CONFIG_T2_STEAMDRY//20251211
+// 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		12*60},//250ml
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//定时加热10分钟//20251216
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//间歇加热2分钟//20251216
+// 	#else
+// 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//定时加热8分钟
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//间歇加热2分钟
+// 	#endif
+// //--------------
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
+	
+// 	#if CONFIG_T2_STEAMDRY//20251211
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
+// 	#else
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
+// 	#endif
+
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
+// //--------------
+// 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
+// };	
+// 	#else
+// static const StepInfo standardSteps[]=
+// {//20251110 NEWFORM0 11
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*执行排水动作组
+// //--------------
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*配时非0故障恢复无限延时
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		450},//42度温达剩洗*不延时
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,		   150,		150},//*42度左右洗涤补足10分钟
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			55,		240},//55度温达剩洗*不延时*改机制区分快速
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// //--------------
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		5*60},//55度温达剩洗*不延时*改机制区分快速
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// //--------------
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时//*不使用二漂进水步骤
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	72,		9*60},//72度温达剩洗*不延时*改机制区分快速
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// //--------------
+// 	{STAGE_STEAM,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_STEAM,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_STEAM,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_STEAM,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	#if CONFIG_T2_STEAMDRY//20251211
+// 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		12*60},//250ml
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//定时加热10分钟//20251216
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//间歇加热2分钟//20251216
+// 	#else
+// 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//定时加热8分钟
+// 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//间歇加热2分钟
+// 	#endif
+// //--------------
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
+// 	#if CONFIG_T2_STEAMDRY//20251211
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
+// 	#else
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
+// 	#endif
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
+// //--------------
+// 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
+// };
+// 	#endif
 #endif
 
 //// static const StepInfo steamSteps[]=
@@ -437,6 +548,7 @@ static const StepInfo standardSteps[]=
 //// 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 //// };
 
+//! NEWFORM1 #6-1 删除蠕动泵，删除干燥时长更改，排空强化缺水判定，烘干时间45分钟
 static const StepInfo steamSteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
@@ -444,38 +556,60 @@ static const StepInfo steamSteps[]=
 //--------------
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
-	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
 //--------------
-	{STAGE_STEAM,	1,	0,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml//*mod*
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//定时加热8分钟//*mod
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//间歇加热2分钟//*mod
-
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//定时加热10分钟//20251216
-	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//间歇加热2分钟//20251216
-	#else
+	{STAGE_STEAM,	1,	0,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
 	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//定时加热8分钟
 	{STAGE_STEAM,	1,	0,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//间歇加热2分钟
-	#endif
 //--------------
 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
-	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
-	#endif
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		10},//排空//20251110 NEWFORM0 时序表//! NEWFORM1 #6-1
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		0},//排空*//(20251127 更改最大延时60->90)//! NEWFORM1 #6-1
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		40*60,		40*60},//45*改为40//! NEWFORM1 #6-1
 	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿
 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 };
+//! CONFIG_T2_STEAMDRY括的不对，多加了一段蒸汽，本就有温度补偿
+// static const StepInfo steamSteps[]=
+// {//20251110 NEWFORM0 11
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*执行排水动作组
+// //--------------
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
+// //--------------
+// // 	#if CONFIG_T2_STEAMDRY//20251211
+// // 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		12*60},//250ml
+// // 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			10*60,	12*60},//定时加热10分钟//20251216
+// // 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	12*60},//间歇加热2分钟//20251216
+// // 	#else
+// // 	{STAGE_STEAM,	0,	1,  1,	0,	1,	INLET_STEAM,		0, 			0,		10*60},//250ml
+// // 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_TIMER,			0,			8*60,	10*60},//定时加热8分钟
+// // 	{STAGE_STEAM,	0,	1,  1,	0,	0,	HEAT_STEAM,			0,			2*60,	10*60},//间歇加热2分钟
+// // 	#endif
+// //--------------
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
+// 	#if CONFIG_T2_STEAMDRY//20251211
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
+// 	#else
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
+// 	#endif
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
+// //--------------
+// 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
+// };
 
 // static const StepInfo drySteps[]=
 // {
@@ -490,6 +624,7 @@ static const StepInfo steamSteps[]=
 // 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 // };
 
+//! NEWFORM1 #6-1 删除蠕动泵，删除干燥时长更改，烘干时间45分钟
 static const StepInfo drySteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
@@ -498,22 +633,39 @@ static const StepInfo drySteps[]=
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
 //--------------
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_TIMER,		0, 		38*60,		38*60},//20251216
-	#else
-	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_TIMER,		0, 		40*60,		40*60},//45*改为40*无静置排空//*mod
-	#endif
+	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_TIMER,		0, 		45*60,		45*60},//45*改为40*无静置排空//! NEWFORM1 #6-1
 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿//*mod
 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s//*mod
 	{STAGE_DRY,		1,	0,  1,	0,	1,	COMPLETE_SAVE,		0, 			0,		0},//*mod
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 };
+//! 本就有温度补偿，无静置
+// static const StepInfo drySteps[]=
+// {//20251110 NEWFORM0 11
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*执行排水动作组
+// //--------------
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
+// //--------------
+// 	#if CONFIG_T2_STEAMDRY//20251211
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_TIMER,		0, 		38*60,		38*60},//20251216
+// 	#else
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_TIMER,		0, 		40*60,		40*60},//45*改为40*无静置排空//*mod
+// 	#endif
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿//*mod
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s//*mod
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	COMPLETE_SAVE,		0, 			0,		0},//*mod
+// //--------------
+// 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
+// };
 
 #if NEWTPE1
 //// static const StepInfo selfcleanSteps[]=
@@ -581,6 +733,7 @@ static const StepInfo selfcleanSteps[]=
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 };
 #else
+//! NEWFORM1 #6-1 因为阶段时间改了顺便改下自清洁，此步骤用不上
 static const StepInfo selfcleanSteps[]=
 {//20251110 NEWFORM0 11
 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
@@ -589,9 +742,6 @@ static const StepInfo selfcleanSteps[]=
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	// {STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*配时非0故障恢复无限延时
@@ -602,9 +752,6 @@ static const StepInfo selfcleanSteps[]=
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时
 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
@@ -614,9 +761,6 @@ static const StepInfo selfcleanSteps[]=
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
-	#if CONFIG_MP_ENABLE
-	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
-	#endif
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时//*不使用二漂进水步骤
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
@@ -624,21 +768,74 @@ static const StepInfo selfcleanSteps[]=
 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
 //--------------
 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
-	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
-
-	#if CONFIG_T2_STEAMDRY//20251211
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
-	#else
-	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
-	#endif
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		10},//排空//20251110 NEWFORM0 时序表//! NEWFORM1 #6-1
+	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   10,		0},//排空*//(20251127 更改最大延时60->90)//! NEWFORM1 #6-1
+	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		40*60,		40*60},//45*改为40//! NEWFORM1 #6-1
 	// {STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿
 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
 //--------------
 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
 };
-		#endif
+//! 多写一个endif是对应NEWTPE1的，无蒸汽，无温度补偿
+// static const StepInfo selfcleanSteps[]=
+// {//20251110 NEWFORM0 11
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			0,		0},
+// 	{STAGE_PRE,		1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},//*执行排水动作组
+// //--------------
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_MAIN,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	// {STAGE_MAIN,	1,	0,  1,	0,	1,	PRE_TEMP_CHECK,		0,			 0,		0},//预洗温度补偿检查*改主洗
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*8),		30},//800ml*配时非0故障恢复无限延时
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0,			42,		5*60},//42度温达剩洗*不延时*自洁
+// 	{STAGE_MAIN,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// //--------------
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	42,		2*60},//42度温达剩洗*不延时*自洁
+// 	{STAGE_RINSE1,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			 2,		0},
+// //--------------
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	DRAIN_TIMER,		0,			15,		32},//排水动作组S1//*配时非0*并入
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	PAUSE_TIMER,		0,			 2,		32},//排水动作组S2
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	0,	DRAIN_TIMER,		0,			15,		32},//排水动作组S3
+// 	#if CONFIG_MP_ENABLE
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	MOVE_TIMER,			0, 			10,		10},//排水动作组S4
+// 	#endif
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	INLET_ROTATION,		0, (C_LITER*7),		30},//700ml*配时非0故障恢复无限延时//*不使用二漂进水步骤
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_TIMER,			0,			20,		0},//*热洗之前冷洗20s
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	WASH_HEAT_TEMP1,	0, 		 	55,		3*60},//55度温达剩洗*不延时*自洁
+// 	{STAGE_RINSE2,	1,	0,  1,	0,	1,	PAUSE_TIMER,		0,			2,		0},
+// //--------------
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	FAN_PTC_STEAM,		0, 		 4*60,		4*60},//静置
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		    0,		60},//排空//20251110 NEWFORM0 时序表
+// 	{STAGE_DRY,		1,	0,  1,	0,	1,	DRAIN_ALL,			0,		   30,		0},//排空*//(20251127 更改最大延时60->90)
+
+// 	#if CONFIG_T2_STEAMDRY//20251211
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		33*60,		33*60},//20251216
+// 	#else
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_PTC_TIMER,		0, 		35*60,		35*60},//45*改为40
+// 	#endif
+// 	// {STAGE_DRY,		1,	0,  0,	1,	1,	DRY_TEMP_WORK,		0, 		10*60,		10*60},//*加入温度补偿
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	FAN_TIMER,			0,		   30,		0},//*提前30s关闭改为附加风机30s
+// 	{STAGE_DRY,		1,	0,  0,	1,	1,	COMPLETE_SAVE,		0, 			0,		0},
+// //--------------
+// 	{STAGE_COMPLETE,1,	0,  1,	0,	1,	COMPLETE,			0,			0,		0},
+// };
+#endif
 #endif
 //20251011 厂测模式
 static const TestInfo Test1Steps[]=

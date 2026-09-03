@@ -53,6 +53,7 @@ const stMenuPara  MenuList[] =
 //! dryModeEnable 此按键能否可选判断：保管功能
 //! 烘干菜单无法取消保管
 //! dryMode 能否认为存在叠加功能：烘干阶段
+//! 烘干时间从40改回45
 // const stMenuPara  MenuList[] = 
 // {
 // 	{MENU_FAST,		0,		1,		0,		1, 		1},
@@ -67,7 +68,7 @@ const UCHAR_XDATA Work_StageStartTimeMode[MAX_MENU_NUMBER][STAGE_END+1]=
 	{19,19,10,7,0,0,0,0},//MENU_FAST
 	{29,29,15,10,0,0,0,0},//MENU_STANDARD
 	{10,10,10,10,10,0,0,0},//MENU_STEAM
-	{40,40,40,40,40,40,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
+	{45,45,45,45,45,45,0,0},//MENU_DRY//45//35//20251110 NEWFORM0 11.3
 	{10,10,5,3,0,0,0}//MENU_SELFCLEAN
 	//20251126 少于配时扣足配时，大于配时不再走时，非进水最大延时跳步，阶段走时上下限
 };
@@ -665,7 +666,10 @@ void Work_Control(void)
   */
 static bit checkLackError(void) //故障修改 
 {
-	if(((P_FlowMCnt + FlowMCnt) >= FlowMCntSet)||((P_FlowMCnt + FlowMCnt) >= (FlowMCntBuf+5)))
+	// ! NEWFORM1 #6-2 强化缺水判断
+	if(((P_FlowMCnt + FlowMCnt) >= FlowMCntSet)||((P_FlowMCnt + FlowMCnt) >= (FlowMCntBuf+100)))
+	// !
+	// if(((P_FlowMCnt + FlowMCnt) >= FlowMCntSet)||((P_FlowMCnt + FlowMCnt) >= (FlowMCntBuf+5)))
 	{//20251007
 		FlowMCntBuf = P_FlowMCnt + FlowMCnt;//20251007
 		LackTimer = 0;
@@ -1433,10 +1437,11 @@ static void Pre_Temp_Check(void)//2025.9.20 时序 NEWTPE1
 	if(Temperature_Value < 20)
 	{
 		Work_TempCompensation = MD_TRUE;
-		if(IsDryMune(Work_CurrentMenu))
-		{
-			Work_LeftMinToEnd += 10;//预洗温度补偿10分钟
-		}
+		//! NEWFORM1 #6-2 温度补偿功能补充时间
+		// if(IsDryMune(Work_CurrentMenu))
+		// {
+		// 	Work_LeftMinToEnd += 10;//预洗温度补偿10分钟
+		// }
 	}
 	else
 	{
@@ -1623,8 +1628,23 @@ static void runMinCountDown(void)
 {//Work_TimerTick1s
 	UCHAR upperRangeTimeInCurrentStage;
 	UCHAR lowerRangeTimeInCurrentStage;
+
+	//! NEWFORM1 #6-2 温度补偿功能补充时间
+	static UCHAR TempCompensationTimeInDryStage;
 	//! NEWFORM1 #4-2 跳阶段强制更新时间上限一次
 	static UCHAR last_stage = 0;
+
+	//! NEWFORM1 #6-2 温度补偿功能补充时间
+	//! 在此处定义为10分钟，烘干阶段赋值
+	if((Work_TempCompensation)&&(STAGE_DRY == Work_CurrentStage))
+	{
+		TempCompensationTimeInDryStage = 10;
+	}
+	else
+	{
+		TempCompensationTimeInDryStage = 0;
+	}
+
 	if(STAGE_PRE == Work_CurrentStage)
 	{
 		last_stage = STAGE_PRE;
@@ -1632,7 +1652,7 @@ static void runMinCountDown(void)
 	else if(last_stage != Work_CurrentStage)
 	{
 		last_stage = Work_CurrentStage;
-		Work_LeftMinToEnd = upperRangeTimeInCurrentStage;
+		Work_LeftMinToEnd = upperRangeTimeInCurrentStage + TempCompensationTimeInDryStage; //! NEWFORM1 #6-2 温度补偿功能补充时间
 		runSecCount = 0;
 	}
 // // if(Work_CurrentStage < STAGE_COMPLETE)
@@ -1644,8 +1664,8 @@ static void runMinCountDown(void)
 	}
 	else if((STAGE_DRY == Work_CurrentStage)&&(IsDryMune(Work_CurrentMenu)))
 	{
-		upperRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage];
-		lowerRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage + 1];
+		upperRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage] + TempCompensationTimeInDryStage;//! NEWFORM1 #6-2 温度补偿功能补充时间
+		lowerRangeTimeInCurrentStage = Work_StageStartTimeMode[(UCHAR)MENU_DRY][Work_CurrentStage + 1] + TempCompensationTimeInDryStage;//! NEWFORM1 #6-2 温度补偿功能补充时间
 	}
 	else
 	{
@@ -1812,7 +1832,7 @@ static void Init_Variable_When_Close_Power(void)
 		Work_ClosePowerInit = MD_FALSE;
 		Work_CurrentState = STATE_POWER;
 		//! NEWFORM1 #2-1 开关机默认程序与叠加功能，保管标志位初始化
-		Work_LastMenu = MENU_INIT;
+		Work_LastMenu = INIT_MENU;
 		Work_SaveMode = 1;
 		// Work_LastMenu = Work_CurrentMenu;
 		//20251110 NEWFORM0 2.4//Work_CurrentMenu = MENU_NULL;//Work_IsSteamMode = MD_FALSE;//Work_IsDryMode = MD_FALSE;

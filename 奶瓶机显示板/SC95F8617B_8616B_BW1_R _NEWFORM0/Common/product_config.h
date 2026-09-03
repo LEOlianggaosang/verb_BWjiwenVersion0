@@ -516,6 +516,9 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
     ! (0==CONFIG_IQC_TEST)
     ! (0==CONFIG_NIGHT_LIGHT)////直接关
     ! (0==CONFIG_DISPLAY_INLET)////直接关
+    ! (0==CONFIG_STEAM_FAN)//步骤功能相关
+    ! (0==CONFIG_T2_STANDARD)//时序相关
+    ! (0==CONFIG_T2_STEAMDRY)//时序相关
 * 1、问题
     * 1.1、 转速修正(反馈检测）-电源板
     * 1.2、 蒸汽温度(温度检测）-电源板/显示板
@@ -595,6 +598,7 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
         //重构 key/work/display/light 更改规则
         todo #4-1 更改按键规则
             Key_MonitorAction
+                //整体增加长按兼容与无效音提示
             ? STATE_STANDBY
                 //菜单键只能选取4种程序，无法复选取消
                 //叠加功能键作为选取菜使用，默认叠加烘干与保管，不叠加蒸汽
@@ -616,6 +620,9 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
                 //增加按键无效提示
                 //保持待机关机不触发强排
             ? STATE_SAVING
+                //增加无效音，无法暂停，只对开门反应
+                //只能关机
+            ? STATE_TESTING
                 //更改前进键位置
         todo #4-2 更改工作规则
             MenuList
@@ -626,6 +633,7 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
             Work_StageStartTimeMode[MAX_MENU_NUMBER][STAGE_END+1]
             //? 时间计算问题：上限/配时/走时/延时/非零
             Work_StageStartTimeMode
+                //烘干时间从40改回45
             Work_NextStep
                 //跳步配时清算，非零
             Work_Control
@@ -721,10 +729,38 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
                 //功能步骤函数入口确认无流量10秒判断
                 //每次入口都会清计数，恢复后重算
         todo #5-2 保管参数更改
+            //确认显示：菜单不亮功能亮，开门故障代替显示移植
+            //确认按键：无效
+            //确认工作：已开启臭氧
+            //确认保管过程是否保持原状
     * #6 时序
-            CONFIG_T2_STANDARD
         todo #6-1 时序表
+            // CONFIG_T2_STEAMDRY 保持为0，屏蔽之后不再带
+            // CONFIG_T2_STANDARD 保持为0，屏蔽之后不再带
+            // CONFIG_MP_ENABLE 保持为0，屏蔽之后不再带
+            //所有程序都需要需要添加温度补偿步骤
+            //每个程序固定叠加45min烘干，通过标志位固定，无需改变步骤选配属性
+            //排空改为最少10，最长100，超时固排10秒
+            fastSteps[]
+            standardSteps[]
+            steamSteps[]
+            drySteps[]
+                //加热暂不按按B1条件恢复，沿用加热不延时
+                //顺便修复之前CONFIG_T2_STEAMDRY的时序漏洞
+            selfcleanSteps[]
+                //因为阶段时间改了顺便改下自清洁，此步骤用不上
         todo #6-2 步骤功能函数
+            // CONFIG_STEAM_FAN 保持为0，蒸汽不开风机
+            bit checkLackError(void)
+                //强化缺水步骤判断阈值，从5脉冲改为100
+            void Pre_Temp_Check(void)
+                //不再直接对剩余时间增减
+                Work_TempCompensation
+                //只改变此标志位
+                void Dry_Temp_Work(void)
+                //使用此标志位
+                runMinCountDown()
+                //实现倒计时增减
 * 3、定位
     * 3.1、 key
         ! Key_MonitorAction(STATE_POWER) #1-1 #3-3
@@ -748,8 +784,10 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
         ! Work_Control(STATE_STANDBY) #4-2
         ! Work_Control(STATE_WASHING) #3-3
         ! Work_Control(STATE_FINISHED) #4-2
+        ! bit checkLackError(void) #6-2
         ! wash_heat_temp3() #3-3
-        ! runMinCountDown() #4-2
+        ! void Pre_Temp_Check(void) #6-2
+        ! runMinCountDown() #4-2 #6-2
         ! Init_Variable_When_Goto_Standby() #1-1 #2-1 #3-3
         ! Init_Variable_When_Close_Power() #2-1 #2-2 #3-3
         ! complete() #2-1 #2-2 #3-3
@@ -780,9 +818,12 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
         ! Recovery_Power_Lost_Memory() #2-1 #2-2
         ! Work_PowerDownDeal() #2-2
     * 3.6、 FuctionSteps_Sheet
-        ! fastSteps[][] #3-3
-        ! standardSteps[][] #3-3
+        ! fastSteps[][] #3-3 #6-1
+        ! standardSteps[][] #3-3 #6-1
         ! selfcleanSteps[][] #3-3
+        ! steamSteps[][] #6-1
+        ! drySteps[][] #6-1
+        ! selfcleanSteps[][] #6-1
     * 3.7、 Error
         ! Error_Handling() #3-3 #5-1 
         ! Error errors[] #5-1
@@ -796,6 +837,7 @@ ps：因为显示驱动的初始化更改寄存器导致USCI1失效
         ! ByteFlag AdErr_Flags #5-1
     * 3.10、 product_config
         ! CONFIG_OVER_CHECK #5-1
+    * 3.11、 save
 
 
 */
