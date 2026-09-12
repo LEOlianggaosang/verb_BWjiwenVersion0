@@ -75,18 +75,19 @@ static void Work_PowerTest(void)
 	#if NEWTPE1
   if(F_Led_Power||F_Led_Start)
   {
-    RelayEnable = OutputEnable =0;
+    RelayEnable = OutputEnable =0;//20260722 bug修复
     Inlet_IsInLetting = 0;
     FlowMCntSet = 0;
     Inlet_ErrReload = 1;
   }
   else
   {
+    //20260912 bug修复
+    RelayEnable = OutputEnable =0;
+    Inlet_IsInLetting = 0;
+    FlowMCntSet = 0;
     if(F_Led_Light)
     {//对流量、温度、转速控制作处理20260702
-      RelayEnable = OutputEnable =0;
-      Inlet_IsInLetting = 0;
-      FlowMCntSet = 0;
       if(F_Led_SelfClean)
       {//进水800ml
         FlowMCntSet = 8*C_LITER;
